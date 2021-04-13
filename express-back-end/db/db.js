@@ -30,12 +30,13 @@ require('dotenv').config();
 // db.tweets.createIndex( { text: "text" } )
 // db.tweets.find( { $text: { $search: "\"NDPConvention2021\"" }  } ).pretty()
 
+  // finds tweets with sentiment score >= specified value
+  // returns average sentiment score
 const findSentiment = function(collection, callback) {
-  // query 
-  collection.find({ "sentiment.score": { $gte: 5 } }).toArray(function(err, result) {
+  collection.find({ "sentiment.score": { $gte: 1 } }).toArray(function(err, result) {
     if (result) {
-      console.log('Found the following tweets:\n', result);
-      console.log(`Found ${result.length} matching results! Wowee`);
+      // console.log('Found the following tweets:\n', result);
+      console.log(`Found ${result.length} matching results.`);
       let total = 0;
       result.map(e => {
         total += e.sentiment.score
@@ -47,18 +48,28 @@ const findSentiment = function(collection, callback) {
 };
 
 const findHashtag = function(collection, callback) {
-  
-}
+  collection.find({ $text: { $search: "\"#NDPConvention2021\"" } }).toArray(function (err, result) {
+    if(result) {
+      console.log(`Found ${result.length} matching results.`);
+    }
+    callback(result);
+  });
+};
 
 const MongoClient = require('mongodb').MongoClient;
+const chalk = require('chalk');
 const uri = ;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
-  console.log('Successfully Connected to the server');
+  console.log(`${chalk.green('Successfully Connected to the server')}`);
   const collection = client.db('trendi').collection('tweets');
   // perform actions on the collection object
 
-  findSentiment(collection, function() {
+  // findSentiment(collection, function() {
+  //   client.close();
+  // })
+
+  findHashtag(collection, function() {
     client.close();
   })
 
