@@ -30,12 +30,27 @@ require('dotenv').config();
 // db.tweets.createIndex( { text: "text" } )
 // db.tweets.find( { $text: { $search: "\"NDPConvention2021\"" }  } ).pretty()
 
+const findTweets = function(collection, callback) {
+  // Get the documents collection
+  // Find some documents
+  collection.find({ "sentiment.score": { $gte: 5 } }).toArray(function(err, tweets) {
+    console.log('Found the following records');
+    console.log(tweets);
+    console.log(`Found ${tweets.length} matching results! Wowee`)
+    callback(tweets);
+  });
+};
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@tweetmaps.lu2jd.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
+  console.log('Successfully Connected to the server');
   const collection = client.db('trendi').collection('tweets');
   // perform actions on the collection object
-  client.close();
+
+  findTweets(collection, function() {
+    client.close();
+  })
+
 });
