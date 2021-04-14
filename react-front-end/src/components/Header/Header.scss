@@ -77,11 +77,12 @@ nav {
 
   .backButton {
     color: $white-inactive;
-    background-color: #e419566b;
+    background-color: $accent-opacity;
     font-weight: 900;
     font-size: 1rem;
     &:hover {
-      background-color: $accent-red-opacity;
+      background-color: $accent-blue;
+      color: $black-active;
 
     }
   }
