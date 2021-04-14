@@ -158,4 +158,9 @@ const runSingleQuery = function(hashtag) {
 // getCurrentUSATrends()
 // runSingleQuery('NYTimesPropaganda');
 
+// const tweetStream = streamCanadaBorderBox('#dogecoin');
+// tweetStream.on('tweet', async tweet => {
+//   console.log(tweet)
+// })
+
 module.exports = { streamCanadaBorderBox }
