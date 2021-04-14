@@ -3,7 +3,7 @@
 
 .leftData {
   background-color: $dark-grey-background-opacity;
-  width: 31%;
+  width: 28%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -26,7 +26,7 @@
     font-size: 1.6rem;
     font-weight: 900;
     color: $white-active;
-    margin: 20px 35px 5px 0;
+    margin: 1vh 5vh .5vh 2vh;
   }
   &::-webkit-scrollbar {
     width: 6px;
@@ -48,15 +48,15 @@
   .dataContainer {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 85%;
     justify-content: center;
     align-content: flex-start;
     overflow: visible;
     // background: $accent-opacity-dark;
-    background: $black-opacity;
+    background: $black;
     border-radius: 35px;
     box-shadow: 13px 15px 15px -3px rgba(0, 0, 0, 0.404);
-    margin: 1vh .4vh 5vh 9.5vh;
+    margin: 1vh 0vh 5vh 2vh;
     transition: 0.3s;
     position:relative;
 
