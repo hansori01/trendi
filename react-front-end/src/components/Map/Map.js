@@ -3,6 +3,7 @@ import { Map, Marker, GoogleApiWrapper, HeatMap } from "google-maps-react";
 import './Map.scss';
 import mapStyle from './mapStyle';
 import Header from '../Header/Header'
+import { ThreeSixty } from "@material-ui/icons";
 
 require('dotenv').config()
 export class MapContainer extends Component {
@@ -10,16 +11,19 @@ export class MapContainer extends Component {
     map.setOptions({
       styles: mapStyle
     });
-    this.tweetPositions = mapProps.tweetPositions;
   }
 
-  // onMapClick({x, y, lat, lng, event}) {
-  //   if (this._googleMap !== undefined) {
-  //     const point = new google.maps.LatLng(lat, lng)
-  //     this._googleMap.heatmap.data.push(point)
-  //   }
+  // componentDidMount() {
+
   // }
 
+  // componentDidUpdate() {
+
+  // }
+
+  // componentWillUnmount() {
+
+  // }
   
 
   render() {
@@ -69,7 +73,7 @@ export class MapContainer extends Component {
         <HeatMap
           gradient={gradient}
           opacity={0.2}
-          positions={heatMapData.positions}
+          positions={this.props.positions}
           radius={10}
         />
       </Map>
