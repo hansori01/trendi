@@ -26,7 +26,7 @@
     font-size: 1.6rem;
     font-weight: 900;
     color: $white-active;
-    margin: 25px 35px 5px 0;
+    margin: 20px 35px 5px 0;
   }
   &::-webkit-scrollbar {
     width: 6px;
@@ -56,7 +56,7 @@
     background: $black-opacity;
     border-radius: 35px;
     box-shadow: 13px 15px 15px -3px rgba(0, 0, 0, 0.404);
-    margin: 1vh .4vh 1vh 9.5vh;
+    margin: 1vh .4vh 5vh 9.5vh;
     transition: 0.3s;
     position:relative;
 
@@ -70,6 +70,10 @@
       overflow: hidden;
     }
     .barchart {
+      width: 80%;
+      overflow: hidden;
+    }
+    .piechart {
       width: 80%;
       overflow: hidden;
     }

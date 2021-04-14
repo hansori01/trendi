@@ -13,11 +13,11 @@ const data = [
 const COLORS = ['#1DE9B6', '#e41956', '#FFBB28'];
 export default function SentiPieChart() {
   return (
-    <PieChart width={800} height={400}>
+    <PieChart width={350} height={350} className='piechart'>
       <Pie
         data={data}
-        cx={120}
-        cy={200}
+        // cx={150}
+        // cy={150}
         innerRadius={60}
         outerRadius={80}
         fill="#8884d8"
@@ -28,7 +28,7 @@ export default function SentiPieChart() {
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
-      <Pie
+      {/* <Pie
         data={data}
         cx={600}
         cy={200}
@@ -43,7 +43,7 @@ export default function SentiPieChart() {
         {data.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
-      </Pie>
+      </Pie> */}
     </PieChart>
   );
 }
