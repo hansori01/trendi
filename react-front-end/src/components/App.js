@@ -6,10 +6,10 @@ import RightTweets from './RightTweets/RightTweets'
 
 import MapContainer from './Map/Map.js'
 import Fab from "@material-ui/core/Fab";
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
+
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import EqualizerOutlinedIcon from '@material-ui/icons/EqualizerOutlined';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import io from "socket.io-client";
 
 import './App.scss';
@@ -28,8 +28,8 @@ export default function App() {
   const [hashtag, setHashtag] = useState('');
   // const socket = io("http://localhost:8080/");
 
-//at the start of launching app, we want to run socket.io
-// within that socket function we update setTweets
+  //at the start of launching app, we want to run socket.io
+  // within that socket function we update setTweets
 
   useEffect(() => {
     console.log('useEffect....running')
@@ -42,44 +42,57 @@ export default function App() {
     return () => socket.disconnect();
   }, [tweets]);
 
-  // const toggleLeft = () => setState({ ...state, left: !state.left });
   const toggleLeft = () => {
     console.log('1st', state)
-    setState(prev => ({...prev, left: !state.left}))
+    setState(prev => ({ ...prev, left: !state.left }))
     console.log(state)
-}
+  }
   const toggleRight = () => {
     console.log('1st', state)
-    setState(prev => ({...prev, right: !state.right}))
+    setState(prev => ({ ...prev, right: !state.right }))
     console.log(state)
-}
+  }
 
 
-return (
-  <div className="App">
-    <MapContainer />
+  return (
+    <div className="App">
+      <MapContainer />
 
-//left container
-    <Fab className='data-icon' onClick={toggleLeft}>
-      <EqualizerOutlinedIcon className='icon' />
-    </Fab>
-    <Animated
-    animationInDuration={400}
-    animationOutDuration={400}
-      isVisible={state.left}>
-    <LeftData />
-    </Animated>
+      {!state.left &&
+        (<Fab className='data-icon' onClick={toggleLeft}>
+          <EqualizerOutlinedIcon className='icon' />
+        </Fab>)
+      }
+      {state.left &&
+        (<Fab className='data-icon' onClick={toggleLeft}>
+          <PlayCircleOutlineIcon className='icon rotate'/>
+        </Fab>)
+      }
+      <Animated
+        animationInDuration={500}
+        animationOutDuration={500}
+        isVisible={state.left}>
+        <LeftData />
+      </Animated>
 
-//right container
-    <Fab className='tweet-icon' onClick={toggleRight}>
-      <ChatOutlinedIcon className='icon' />
-    </Fab>
-    <Animated
-    animationInDuration={400}
-    animationOutDuration={400}
-      isVisible={state.right}>
-      <RightTweets tweets={tweets}/>
-    </Animated>
-  </div>
-);
+
+
+      {!state.right &&
+        (<Fab className='tweet-icon' onClick={toggleRight}>
+          <ChatOutlinedIcon className='icon' />
+        </Fab>)
+      }
+      {state.right &&
+        (<Fab className='tweet-icon' onClick={toggleRight}>
+          <PlayCircleOutlineIcon className='icon rotate'/>
+        </Fab>)
+      }
+      <Animated
+        animationInDuration={500}
+        animationOutDuration={500}
+        isVisible={state.right}>
+        <RightTweets tweets={tweets} />
+      </Animated>
+    </div>
+  );
 }

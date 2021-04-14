@@ -70,6 +70,9 @@ html, body {
     width: 38px;
     height: 38px;
   }
+  .rotate {
+    transform: rotate(90deg);
+  }
   .data-icon {
     background-color: $accent-red;
     color: $white-active;
