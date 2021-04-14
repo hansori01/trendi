@@ -13,16 +13,22 @@ export class MapContainer extends Component {
     });
   }
 
+  // state = { 
+  //   positions: this.props.positions,
+  // }
+  
   // componentDidMount() {
 
   // }
 
   // componentDidUpdate() {
-
-  // }
+  //   this.setState({
+  //     positions: this.props.positions
+  //   });
+  // };
 
   // componentWillUnmount() {
-
+  //   console.log("Unmounted");
   // }
   
 
