@@ -23,10 +23,11 @@
 
   span {
     align-self: flex-start;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 900;
     color: $white-active;
-    margin: 1vh 5vh .5vh 2vh;
+    margin: 3vh 6.5vh .5vh 2vh;
+    text-shadow: 0 0 1.5px #FFFFFF;
   }
   &::-webkit-scrollbar {
     width: 6px;
@@ -53,15 +54,15 @@
     align-content: flex-start;
     overflow: visible;
     // background: $accent-opacity-dark;
-    background: $black;
+    background: $black-opacity;
     border-radius: 35px;
     box-shadow: 13px 15px 15px -3px rgba(0, 0, 0, 0.404);
-    margin: 1vh 0vh 5vh 2vh;
+    margin: 1vh 0vh 5vh .5vh;
     transition: 0.3s;
     position:relative;
 
     &:hover {
-      background-color: $black-inactive;
+      background-color: $black;
       // color: $black-active;
     }
 
