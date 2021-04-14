@@ -18,7 +18,7 @@ import { Animated } from "react-animated-css";
 export default function App() {
 
   // keep track of state of left and right containers
-  const [state, setState] = useState({
+  const [expandContainer, setExpandContainer] = useState({
     left: false,//is container open or closed
     right: false
   })
@@ -43,14 +43,13 @@ export default function App() {
   }, [tweets]);
 
   const toggleLeft = () => {
-    console.log('1st', state)
-    setState(prev => ({ ...prev, left: !state.left }))
-    console.log(state)
+    console.log('1st', expandContainer)
+    setExpandContainer(prev => ({ ...prev, left: !expandContainer.left }))
   }
   const toggleRight = () => {
-    console.log('1st', state)
-    setState(prev => ({ ...prev, right: !state.right }))
-    console.log(state)
+    console.log('1st', expandContainer)
+    setExpandContainer(prev => ({ ...prev, right: !expandContainer.right }))
+
   }
 
 
@@ -58,12 +57,12 @@ export default function App() {
     <div className="App">
       <MapContainer />
 
-      {!state.left &&
+      {!expandContainer.left &&
         (<Fab className='data-icon' onClick={toggleLeft}>
           <EqualizerOutlinedIcon className='icon' />
         </Fab>)
       }
-      {state.left &&
+      {expandContainer.left &&
         (<Fab className='data-icon' onClick={toggleLeft}>
           <PlayCircleOutlineIcon className='icon rotate'/>
         </Fab>)
@@ -71,18 +70,18 @@ export default function App() {
       <Animated
         animationInDuration={500}
         animationOutDuration={500}
-        isVisible={state.left}>
+        isVisible={expandContainer.left}>
         <LeftData />
       </Animated>
 
 
 
-      {!state.right &&
+      {!expandContainer.right &&
         (<Fab className='tweet-icon' onClick={toggleRight}>
           <ChatOutlinedIcon className='icon' />
         </Fab>)
       }
-      {state.right &&
+      {expandContainer.right &&
         (<Fab className='tweet-icon' onClick={toggleRight}>
           <PlayCircleOutlineIcon className='icon rotate'/>
         </Fab>)
@@ -90,7 +89,7 @@ export default function App() {
       <Animated
         animationInDuration={500}
         animationOutDuration={500}
-        isVisible={state.right}>
+        isVisible={expandContainer.right}>
         <RightTweets tweets={tweets} />
       </Animated>
     </div>
