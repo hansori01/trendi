@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
+import Button from '@material-ui/core/Button'
 
 
 
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function TrendingHash() {
+export default function TrendingHash(props) {
   const classes = useStyles();
   const trendingList = trendingHashtags.map((hashtag, i) => {
     return (
@@ -53,11 +54,22 @@ export default function TrendingHash() {
   return (
     <>
       <div className='choose'>
-        Choose a <span className='redText'>&nbsp;trend&nbsp;</span> to activate <span className='greenText'>&nbsp;trendi&nbsp;</span>
+        Trending in <span className='redText'>&nbsp;{props.currentCountry}...</span>
+      </div>
+      <div className='choose'>
+        Choose a trending topic to activate <span className='greenText'>&nbsp;trendi&nbsp;</span>
       </div>
       <div className={classes.root}>
         {trendingList}
       </div>
+      <Button
+        className="backButton"
+        variant='contained'
+        size='large'
+        onClick={props.onBack}
+      >
+        Back
+        </Button>
     </>
   );
 }

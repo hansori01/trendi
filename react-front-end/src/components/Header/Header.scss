@@ -75,4 +75,15 @@ nav {
     color: $white;
   }
 
+  .backButton {
+    color: $white-inactive;
+    background-color: #e419566b;
+    font-weight: 900;
+    font-size: 1rem;
+    &:hover {
+      background-color: $accent-red-opacity;
+
+    }
+  }
+
 }
