@@ -26,6 +26,7 @@ export default function App() {
   const [response, setResponse] = useState([]);
   const [tweets, setTweets] = useState([]);
   const [hashtag, setHashtag] = useState('');
+  const [tweetPositions, setTweetPositions] = useState([{lat: 49.2827, lng:-123.1217}]);
   // const socket = io("http://localhost:8080/");
 
 //at the start of launching app, we want to run socket.io
@@ -34,9 +35,10 @@ export default function App() {
   useEffect(() => {
     console.log('useEffect....running')
     const socket = io('http://localhost:8080/');
-    socket.emit('start', '#apecave');
+    socket.emit('start', '#dogecoin');
     socket.on('tweet', (tweet) => {
       setTweets([tweet, ...tweets]);
+      // setTweetPositions([tweet.user_location_coords, tweetPositions]);
     })
 
     return () => socket.disconnect();
@@ -57,7 +59,7 @@ export default function App() {
 
 return (
   <div className="App">
-    <MapContainer />
+    <MapContainer positions={tweetPositions}/>
 
 //left container
     <Fab className='data-icon' onClick={toggleLeft}>
@@ -67,7 +69,7 @@ return (
     animationInDuration={400}
     animationOutDuration={400}
       isVisible={state.left}>
-    <LeftData />
+    {/* <LeftData /> */}
     </Animated>
 
 //right container
