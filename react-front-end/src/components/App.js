@@ -35,10 +35,11 @@ export default function App() {
   useEffect(() => {
     console.log('useEffect....running')
     const socket = io('http://localhost:8080/');
-    socket.emit('start', '#dogecoin');
+    socket.emit('start', '#apecave');
     socket.on('tweet', (tweet) => {
+      console.log("user location: ", tweet.user_location_coords)
       setTweets([tweet, ...tweets]);
-      // setTweetPositions([tweet.user_location_coords, tweetPositions]);
+      setTweetPositions([tweet.user_location_coords, ...tweetPositions]);
     })
 
     return () => socket.disconnect();
