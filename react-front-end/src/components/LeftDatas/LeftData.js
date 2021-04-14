@@ -5,6 +5,7 @@ import words from './tempWords';
 import './LeftData.scss';
 import Wordcloud from './Wordcloud';
 import SentiBarChart from './BarChart';
+import SentiPieChart from './PieChart';
 
 export default function LeftData() {
 
@@ -14,6 +15,11 @@ export default function LeftData() {
       <span>Sentiment Analysis</span>
       <div className='dataContainer'>
         <SentiBarChart />
+      </ div>
+
+      <span>Pie Chart</span>
+      <div className='dataContainer'>
+        <SentiPieChart />
       </ div>
 
       <span>Common words</span>
