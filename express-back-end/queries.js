@@ -158,9 +158,24 @@ const runSingleQuery = function(hashtag) {
 // getCurrentUSATrends()
 // runSingleQuery('NYTimesPropaganda');
 
-// const tweetStream = streamCanadaBorderBox('#dogecoin');
+// const tweetStream = streamCanadaBorderBox('#wednesdaythought');
+// console.log('listening for tweets');
 // tweetStream.on('tweet', async tweet => {
 //   console.log(tweet)
 // })
+// tweetStream.on('warning', function (warning) {
+//   console.log(warning);
+// })
+// tweetStream.on('error', function(error){
+//   console.log(error);
+// });
+
+// getCurrentUSATrends();
+// streamKeyword('#DayofPink');
+// runSingleQuery('#DayofPink');
+
+// getCurrentCanadaTrends()
+// streamUSBorderBox('#ExposeCNN');
+// streamKeyword('#wednesdaythought');
 
 module.exports = { streamCanadaBorderBox }
