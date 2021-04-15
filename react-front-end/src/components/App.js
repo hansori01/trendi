@@ -29,7 +29,7 @@ export default function App() {
   // const [response, setResponse] = useState([]);
   const [tweets, setTweets] = useState([]);
   const [hashtag, setHashtag] = useState('');
-  const [tweetPositions, setTweetPositions] = useState([]);
+  const [tweetPositions, setTweetPositions] = useState([{lat: 49.2827, lng: -123.1207}]);
   const [socket, setSocket] = useState();
   const [streamKeyWord, setStreamKeyWord] = useState('');
   // const socket = io("http://localhost:8080/");
@@ -103,6 +103,7 @@ export default function App() {
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
+          tweetPositions={tweetPositions}
         />
       </div>
 
