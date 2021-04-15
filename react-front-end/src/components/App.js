@@ -86,6 +86,10 @@ export default function App() {
 
   return (
     <div className="App">
+            <Header
+      activateContainer={activateContainer}
+      deactivateContainer={deactivateContainer}
+      />
       <div className="map">
       <ReactMap
           activateContainer={activateContainer} 

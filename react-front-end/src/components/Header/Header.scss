@@ -10,11 +10,12 @@ nav {
   display: flex;
   flex-direction: column;
   // justify-content: center;
+  left: 20vw;
   overflow: auto;
   margin: 15px auto;
   width: 60vw;
-  // position: absolute;
-  position: relative;
+  position: fixed;
+  // position: relative;
   border-radius: 55px;
   z-index: 1;
 

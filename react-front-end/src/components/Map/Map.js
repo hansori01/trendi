@@ -20,12 +20,6 @@ const ReactMap = withScriptjs(withGoogleMap((props) =>
     defaultCenter={{ lat: 49.279793, lng: -123.115669 }}
     clickableIcons={false}
   >
-  <OverlayView>
-    <Header
-      activateContainer={props.activateContainer}
-      deactivateContainer={props.deactivateContainer}
-    />
-  </OverlayView>
   </GoogleMap>
 </div>
 
