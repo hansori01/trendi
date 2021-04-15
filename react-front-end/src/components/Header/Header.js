@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HoverImage from "react-hover-image";
 
 import './Header.scss';
-import ChooseCountry from './Start';
+import ChooseCountry from './ChooseCountry';
 import TrendingHash from './TrendingHash';
 import { Animated } from "react-animated-css";
 

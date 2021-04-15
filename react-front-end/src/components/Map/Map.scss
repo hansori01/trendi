@@ -3,6 +3,8 @@
   // margin-top: 7vh;
   // width: 100%;
   .gm-style > div:not(:first-child) { display: none; }
+
+  z-index: -1;
  
   .gm-style div {
     -webkit-transform: scale(1.022);
