@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { uiContext } from '../States/UIStateProvider'
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-import axios from 'axios';
 import Button from '@material-ui/core/Button'
-
-
-
-
-// const trendingHashtags = ['#joshua', '#isamu', '#sori', '#freebritney', '#awesomeweatherthisweek', 'devil.inc', 'trendiistrendy', 'testingchips', 'blahblahblah', 'hellotoptenhashtags', '#joshua', '#isamu', '#sori', '#freebritney', '#awesomeweatherthisweek', 'devil.inc', 'trendiistrendy', 'testingchips', 'blahblahblah', 'hellotoptenhashtags']
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,17 +36,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TrendingHash(props) {
 
+  const {
+    uiState,
+    onBackHandler,
+    activateTrendi
+  } = useContext(uiContext);
+
   const [trendingHashtags, setTrendingHashtags] = useState([]);
 
   useEffect(() => {
-    const getTrending = async () =>{
-      const trending = await axios.get(`http://localhost:8080/api/trending-${props.currentCountry}`)
+    const getTrending = async () => {
+      const trending = await axios.get(`http://localhost:8080/api/trending-${uiState.currentCountry}`)
       setTrendingHashtags(trending.data)
     }
 
     getTrending();
-  }, [props.country]);
-  
+  }, [uiState.currentCountry]);
+
   const classes = useStyles();
   const trendingList = trendingHashtags.map((hashtag, i) => {
     return (
@@ -61,16 +62,15 @@ export default function TrendingHash(props) {
         label={hashtag.name}
         key={i}
         className={classes.chip}
-        onClick={props.activateTrendi}
+        onClick={activateTrendi}
       />
     )
   })
-console.log('trendingHsh prop check', props)
 
   return (
     <>
       <div className='choose'>
-        Trending in <span className='redText'>&nbsp;{props.currentCountry}...</span>
+        Trending in <span className='redText'>&nbsp;{uiState.currentCountry}...</span>
       </div>
       <div className='choose'>
         Choose a trending topic to activate <span className='greenText'>&nbsp;trendi&nbsp;</span>
@@ -82,7 +82,7 @@ console.log('trendingHsh prop check', props)
         className="backButton"
         variant='contained'
         size='large'
-        onClick={props.onBack}
+        onClick={onBackHandler}
       >
         Back
         </Button>

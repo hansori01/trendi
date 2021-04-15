@@ -6,11 +6,8 @@ import HoverImage from "react-hover-image";
 export default function ChooseCountry(props) {
 
   const {
-    // uiState,
     toggleChooseCanada,
     toggleChooseUsa,
-    // onBackHandler,
-    // activateTrendi
   } = useContext(uiContext);
 
   return (

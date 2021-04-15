@@ -51,12 +51,12 @@ export default function App() {
 
   return (
     <div className="App">
-      {/* <UIStateProvider> */}
+
         <Header />
-        {/* <div className="map">
+        <div className="map">
           <ReactMap
-            activateContainer={ui.activateContainer}
-            deactivateContainer={ui.deactivateContainer}
+            // activateContainer={ui.activateContainer}
+            // deactivateContainer={ui.deactivateContainer}
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `100vh` }} />}
@@ -64,7 +64,7 @@ export default function App() {
           />
         </div>
 
-        {!ui.uiState.left &&
+        {/* {!ui.uiState.left &&
           (<Fab className='data-icon'
             onClick={ui.toggleLeft}
             disabled={ui.uiState.disabled}>
@@ -110,7 +110,7 @@ export default function App() {
         >
           <RightTweets tweets={tweets} />
         </Animated> */}
-      {/* </UIStateProvider> */}
+
     </div>
   );
 }

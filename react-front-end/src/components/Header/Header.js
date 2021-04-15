@@ -10,13 +10,7 @@ import './Header.scss';
 
 export default function Header(props) {
 
-  const {
-    uiState,
-    // toggleChooseCanada,
-    // toggleChooseUsa,
-    // onBackHandler,
-    // activateTrendi
-  } = useContext(uiContext);
+  const { uiState } = useContext(uiContext);
 
   //TODO on picking a chip, update this state for currentTrend
   //TODO on picking a chip, showTrends / chooseCountry = false
@@ -27,23 +21,23 @@ export default function Header(props) {
   return (
     <nav>
       <div className='headerParent'>
-        <HoverImage src="./images/logo.png" hoverSrc="./images/logohover.png" className="logo" />
-        <img src='./images/user.png' alt='' className="userAvatar"></img>
+        <HoverImage
+          src="./images/logo.png"
+          hoverSrc="./images/logohover.png"
+          className="logo" />
+        <img
+          src='./images/user.png'
+          alt=''
+          className="userAvatar">
+        </img>
       </div>
 
       {uiState.chooseCountry && (
-        <ChooseCountry
-          // chooseCanada={toggleChooseCanada}
-          // chooseUsa={toggleChooseUsa}
-        />
+        <ChooseCountry />
       )}
 
       {uiState.showTrends && (
-        <TrendingHash
-          currentCountry={uiState.currentCountry}
-          // onBack={onBackHandler}
-          // activateTrendi={activateTrendi}
-        />
+        <TrendingHash />
       )}
     </nav>
 

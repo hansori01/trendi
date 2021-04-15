@@ -35,7 +35,7 @@ export default function UIStateProvider(props) {
       ...prev,
       chooseCountry: !uiState.chooseCountry,
       showTrends: !uiState.showTrends,
-      currentCountry: 'canada'
+      currentCountry: 'Canada'
     }));
   }
   const toggleChooseUsa = () => {
@@ -53,7 +53,7 @@ export default function UIStateProvider(props) {
       chooseCountry: true,
       showTrends: false
     }))
-    props.deactivateContainer()
+    deactivateContainer()
   }
 
   const activateTrendi = () => {
@@ -62,9 +62,10 @@ export default function UIStateProvider(props) {
       chooseCountry: false,
       showTrends: false
     }));
-    props.activateContainer();
+    activateContainer();
   }
 
+  console.log('current country', uiState.currentCountry)
   const uiData = {
     uiState,
     toggleLeft,
