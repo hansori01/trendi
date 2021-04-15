@@ -7,7 +7,6 @@ require('dotenv').config()
 
 export class MapContainer extends Component {
   _mapLoaded(mapProps, map) {
-    mapInstance = map;
     map.setOptions({
       styles: mapStyle
     });
@@ -40,11 +39,7 @@ export class MapContainer extends Component {
 
   render() {
     const coords = { lat: 49.279793, lng: -123.115669 };
-    this.props.positions.forEach(location => {  
-      const point = new google.maps.LatLng(location.lat, location.lng)
-      console.log("map instance", mapInstance)
-      mapInstance && mapInstance.heatmap.data.push(point)
-    });
+
     const heatMapData = {
       positions: [
         {lat: 49.2827, lng:-123.1217},
