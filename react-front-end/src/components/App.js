@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 
-import LeftData from './LeftDatas/LeftData'
-import RightTweets from './RightTweets/RightTweets'
+import LeftData from './LeftDatas/LeftData';
+import RightTweets from './RightTweets/RightTweets';
 
-import MapContainer from './Map/Map.js'
+import MapContainer from './Map/Map.js';
 import Fab from "@material-ui/core/Fab";
-
+// import toggleHeader from './helper/headerStatusHelper';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import EqualizerOutlinedIcon from '@material-ui/icons/EqualizerOutlined';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
@@ -20,12 +20,13 @@ export default function App() {
   // keep track of state of left and right containers
   const [expandContainer, setExpandContainer] = useState({
     left: false,//is container open or closed
-    right: false
+    right: false,
+    disabled: true //disable FAB icons and side containers when header is expanded
   })
 
-  const [response, setResponse] = useState([]);
+  // const [response, setResponse] = useState([]);
   const [tweets, setTweets] = useState([]);
-  const [hashtag, setHashtag] = useState('');
+  // const [hashtag, setHashtag] = useState('');
   // const socket = io("http://localhost:8080/");
 
   //at the start of launching app, we want to run socket.io
@@ -49,22 +50,29 @@ export default function App() {
   const toggleRight = () => {
     console.log('1st', expandContainer)
     setExpandContainer(prev => ({ ...prev, right: !expandContainer.right }))
-
+  }
+  const activateContainer = () => {
+    console.log('toggelHeader is turning off the containers', expandContainer)
+    setExpandContainer(prev => ({ ...prev, disabled:false}))
+  }
+  const deactivateContainer = () => {
+    console.log('toggelHeader is turning off the containers', expandContainer)
+    setExpandContainer(prev => ({ ...prev, disabled:true}))
   }
 
 
   return (
     <div className="App">
-      <MapContainer />
+      <MapContainer activateContainer={activateContainer} deactivateContainer={deactivateContainer} />
 
       {!expandContainer.left &&
-        (<Fab className='data-icon' onClick={toggleLeft}>
+        (<Fab className='data-icon' onClick={toggleLeft} disabled={expandContainer.disabled}>
           <EqualizerOutlinedIcon className='icon' />
         </Fab>)
       }
       {expandContainer.left &&
         (<Fab className='data-icon' onClick={toggleLeft}>
-          <PlayCircleOutlineIcon className='icon rotate'/>
+          <PlayCircleOutlineIcon className='icon rotate' />
         </Fab>)
       }
       <Animated
@@ -77,13 +85,13 @@ export default function App() {
 
 
       {!expandContainer.right &&
-        (<Fab className='tweet-icon' onClick={toggleRight}>
+        (<Fab className='tweet-icon' onClick={toggleRight} disabled={expandContainer.disabled}>
           <ChatOutlinedIcon className='icon' />
         </Fab>)
       }
       {expandContainer.right &&
         (<Fab className='tweet-icon' onClick={toggleRight}>
-          <PlayCircleOutlineIcon className='icon rotate'/>
+          <PlayCircleOutlineIcon className='icon rotate' />
         </Fab>)
       }
       <Animated
