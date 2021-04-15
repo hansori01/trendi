@@ -21,15 +21,15 @@ export default function App() {
 
   // keep track of state of left and right containers
   const [expandContainer, setExpandContainer] = useState({
-    left: true,//is container open or closed
-    right: true,
+    left: false,//is container open or closed
+    right: false,
     disabled: true //disable FAB icons and side containers when header is expanded
   })
 
   // const [response, setResponse] = useState([]);
   const [tweets, setTweets] = useState([]);
   const [hashtag, setHashtag] = useState('');
-  const [tweetPositions, setTweetPositions] = useState([{lat: 49.2827, lng:-123.1217}]);
+  const [tweetPositions, setTweetPositions] = useState([{ lat: 49.2827, lng: -123.1217 }]);
   const [socket, setSocket] = useState();
   // const socket = io("http://localhost:8080/");
 
@@ -76,25 +76,25 @@ export default function App() {
   }
   const activateContainer = () => {
     console.log('toggelHeader is turning off the containers', expandContainer)
-    setExpandContainer(prev => ({ ...prev, disabled:false}))
+    setExpandContainer(prev => ({ ...prev, disabled: false }))
   }
   const deactivateContainer = () => {
     console.log('toggelHeader is turning off the containers', expandContainer)
-    setExpandContainer(prev => ({ ...prev, disabled:true}))
+    setExpandContainer(prev => ({ ...prev, disabled: true }))
   }
 
 
   return (
     <div className="App">
-            <Header
-      activateContainer={activateContainer}
-      deactivateContainer={deactivateContainer}
+      <Header
+        activateContainer={activateContainer}
+        deactivateContainer={deactivateContainer}
       />
       <div className="map">
-      <ReactMap
-          activateContainer={activateContainer} 
+        <ReactMap
+          activateContainer={activateContainer}
           deactivateContainer={deactivateContainer}
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process. env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
@@ -102,12 +102,16 @@ export default function App() {
       </div>
 
       {!expandContainer.left &&
-        (<Fab className='data-icon' onClick={toggleLeft} disabled={expandContainer.disabled}>
+        (<Fab className='data-icon'
+          onClick={toggleLeft}
+          disabled={expandContainer.disabled}>
           <EqualizerOutlinedIcon className='icon' />
         </Fab>)
       }
       {expandContainer.left &&
-        (<Fab className='data-icon' onClick={toggleLeft}>
+        (<Fab
+          className='data-icon'
+          onClick={toggleLeft}>
           <PlayCircleOutlineIcon className='icon rotate' />
         </Fab>)
       }
