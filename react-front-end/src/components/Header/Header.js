@@ -23,26 +23,38 @@ export default function Header(props) {
 
   const toggleChooseCanada = () => {
     console.log('choosing canada')
-    // if (headerState.chooseCountry === true || headerState.showTrends === true) {
-    //   props.toggleHeader();
-    // }
-    setHeaderState(prev => ({ ...prev, chooseCountry: !headerState.chooseCountry, showTrends: !headerState.showTrends, currentCountry: 'Canada' }));
+
+    setHeaderState(prev => ({
+      ...prev,
+      chooseCountry: !headerState.chooseCountry,
+      showTrends: !headerState.showTrends,
+      currentCountry: 'canada'
+    }));
   }
   const toggleChooseUsa = () => {
-    console.log('choosing usa')
-    // if (headerState.chooseCountry === true || headerState.showTrends === true) {
-    //   props.toggleHeader();
-    // }
-    setHeaderState(prev => ({ ...prev, chooseCountry: !headerState.chooseCountry, showTrends: !headerState.showTrends, currentCountry: 'USA' }));
+    setHeaderState(prev => ({ 
+      ...prev,
+      chooseCountry: !headerState.chooseCountry,
+      showTrends: !headerState.showTrends,
+      currentCountry: 'USA'
+    }));
   }
 
   const onBackHandler = () => {
-    setHeaderState(prev => ({ ...prev, chooseCountry: true, showTrends: false }))
+    setHeaderState(prev => ({
+      ...prev,
+      chooseCountry: true,
+      showTrends: false
+    }))
     props.deactivateContainer()
   }
 
   const activateTrendi = () => {
-    setHeaderState(prev => ({ ...prev, chooseCountry: false, showTrends: false }));
+    setHeaderState(prev => ({
+      ...prev,
+      chooseCountry: false,
+      showTrends: false
+    }));
     props.activateContainer();
   }
 
@@ -54,11 +66,18 @@ export default function Header(props) {
       </div>
 
       {headerState.chooseCountry && (
-        <ChooseCountry chooseCanada={toggleChooseCanada} chooseUsa={toggleChooseUsa} />
+        <ChooseCountry
+          chooseCanada={toggleChooseCanada}
+          chooseUsa={toggleChooseUsa}
+        />
       )}
 
       {headerState.showTrends && (
-        <TrendingHash currentCountry={headerState.currentCountry} onBack={onBackHandler} activateTrendi={activateTrendi} />
+        <TrendingHash
+          currentCountry={headerState.currentCountry}
+          onBack={onBackHandler}
+          activateTrendi={activateTrendi}
+        />
       )}
     </nav>
 

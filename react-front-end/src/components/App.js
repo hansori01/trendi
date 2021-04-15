@@ -26,12 +26,8 @@ export default function App() {
 
   // const [response, setResponse] = useState([]);
   const [tweets, setTweets] = useState([]);
-<<<<<<< feature/render-hashtags
   const [hashtag, setHashtag] = useState('');
   const [socket, setSocket] = useState();
-=======
-  // const [hashtag, setHashtag] = useState('');
->>>>>>> master
   // const socket = io("http://localhost:8080/");
 
   //at the start of launching app, we want to run socket.io
