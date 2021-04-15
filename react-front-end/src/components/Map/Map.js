@@ -4,10 +4,12 @@ import './Map.scss';
 import mapStyle from './mapStyle';
 import Header from '../Header/Header'
 import { ThreeSixty } from "@material-ui/icons";
-
+/* global google */
 require('dotenv').config()
+let mapInstance
 export class MapContainer extends Component {
   _mapLoaded(mapProps, map) {
+    mapInstance = map;
     map.setOptions({
       styles: mapStyle
     });
@@ -30,10 +32,21 @@ export class MapContainer extends Component {
   // componentWillUnmount() {
   //   console.log("Unmounted");
   // }
+  // onMapClick({x, y, lat, lng, event}) {
+  //   if (this._googleMap !== undefined) {
+      // const point = new google.maps.LatLng(lat, lng)
+      // this._googleMap.heatmap.data.push(point)
+  //   }
+  // }
   
 
   render() {
     const coords = { lat: 49.279793, lng: -123.115669 };
+    this.props.positions.forEach(location => {  
+      const point = new google.maps.LatLng(location.lat, location.lng)
+      console.log("map instance", mapInstance)
+      mapInstance && mapInstance.heatmap.data.push(point)
+    });
     const heatMapData = {
       positions: [
         {lat: 49.2827, lng:-123.1217},
@@ -48,6 +61,9 @@ export class MapContainer extends Component {
         weight: 20
       }
     }
+
+    console.log("positions: ", this.props.positions);
+
     const gradient = [
       'rgba(0, 255, 255, 0)',
       'rgba(0, 255, 255, 1)',
