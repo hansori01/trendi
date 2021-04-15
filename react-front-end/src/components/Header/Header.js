@@ -8,7 +8,7 @@ import { Animated } from "react-animated-css";
 
 
 export default function Header(props) {
-
+  
   //controls which header component is shown
   const [headerState, setHeaderState] = useState({
     chooseCountry: true,
@@ -46,7 +46,6 @@ export default function Header(props) {
     props.activateContainer();
   }
 
-
   return (
     <nav>
       <div className='headerParent'>
@@ -61,7 +60,6 @@ export default function Header(props) {
       {headerState.showTrends && (
         <TrendingHash currentCountry={headerState.currentCountry} onBack={onBackHandler} activateTrendi={activateTrendi} />
       )}
-
     </nav>
 
   );
