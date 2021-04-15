@@ -84,10 +84,10 @@ export class MapContainer extends Component {
         onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
       >
         <Marker position={coords} />
-        <Header 
+      <Header
         activateContainer={this.props.activateContainer}
         deactivateContainer={this.props.deactivateContainer}
-        />
+      />
       </Map>
     );
   }

@@ -20,8 +20,8 @@ export default function App() {
 
   // keep track of state of left and right containers
   const [expandContainer, setExpandContainer] = useState({
-    left: false,//is container open or closed
-    right: false,
+    left: true,//is container open or closed
+    right: true,
     disabled: true //disable FAB icons and side containers when header is expanded
   })
 
@@ -86,10 +86,9 @@ export default function App() {
   return (
     <div className="App">
       <ReactMap
-        styles={mapStyle}
+        className="map"
         activateContainer={activateContainer} 
         deactivateContainer={deactivateContainer}
-        isMarkerShown
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `100vh` }} />}
