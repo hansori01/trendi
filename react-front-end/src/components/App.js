@@ -17,10 +17,15 @@ import './App.scss';
 
 export default function App() {
 
-  const { ui } = useContext(uiContext);
+  const {
+    uiState,
+    toggleLeft,
+    toggleRight,
+  } = useContext(uiContext);
 
+  //TODO - set tweet data, positions using useContext
   const [tweets, setTweets] = useState([]);
-  const [hashtag, setHashtag] = useState('');
+  // const [hashtag, setHashtag] = useState('');
   const [tweetPositions, setTweetPositions] = useState([{ lat: 49.2827, lng: -123.1217 }]);
   const [socket, setSocket] = useState();
 
@@ -52,64 +57,64 @@ export default function App() {
   return (
     <div className="App">
 
-        <Header />
-        <div className="map">
-          <ReactMap
-            // activateContainer={ui.activateContainer}
-            // deactivateContainer={ui.deactivateContainer}
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `100vh` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-          />
-        </div>
+      <Header />
+      <div className="map">
+        <ReactMap
+          // activateContainer={ui.activateContainer}
+          // deactivateContainer={ui.deactivateContainer}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `100vh` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      </div>
 
-        {/* {!ui.uiState.left &&
-          (<Fab className='data-icon'
-            onClick={ui.toggleLeft}
-            disabled={ui.uiState.disabled}>
-            <EqualizerOutlinedIcon className='icon' />
-          </Fab>)
-        }
-        {ui.uiState.left &&
-          (<Fab
-            className='data-icon'
-            onClick={ui.toggleLeft}>
-            <PlayCircleOutlineIcon className='icon rotate' />
-          </Fab>)
-        }
-        <Animated
-          animationInDuration={500}
-          animationOutDuration={500}
-        isVisible={ui.uiState.left}
-        >
-          <LeftData />
-        </Animated>
+      {!uiState.left &&
+        (<Fab className='data-icon'
+          onClick={toggleLeft}
+          disabled={uiState.disabled}>
+          <EqualizerOutlinedIcon className='icon' />
+        </Fab>)
+      }
+      {uiState.left &&
+        (<Fab
+          className='data-icon'
+          onClick={toggleLeft}>
+          <PlayCircleOutlineIcon className='icon rotate' />
+        </Fab>)
+      }
+      <Animated
+        animationInDuration={500}
+        animationOutDuration={500}
+        isVisible={uiState.left}
+      >
+        <LeftData />
+      </Animated>
 
-        {!ui.uiState.right &&
-          (<Fab
-            className='tweet-icon'
-          onClick={ui.toggleRight}
-          disabled={ui.uiState.disabled}
-          >
-            <ChatOutlinedIcon className='icon' />
-          </Fab>)
-        }
-        {ui.uiState.right &&
-          (<Fab
-            className='tweet-icon'
-          onClick={ui.toggleRight}
-          >
-            <PlayCircleOutlineIcon className='icon rotate' />
-          </Fab>)
-        }
-        <Animated
-          animationInDuration={500}
-          animationOutDuration={500}
-        isVisible={ui.uiState.right}
+      {!uiState.right &&
+        (<Fab
+          className='tweet-icon'
+          onClick={toggleRight}
+          disabled={uiState.disabled}
         >
-          <RightTweets tweets={tweets} />
-        </Animated> */}
+          <ChatOutlinedIcon className='icon' />
+        </Fab>)
+      }
+      {uiState.right &&
+        (<Fab
+          className='tweet-icon'
+          onClick={toggleRight}
+        >
+          <PlayCircleOutlineIcon className='icon rotate' />
+        </Fab>)
+      }
+      <Animated
+        animationInDuration={500}
+        animationOutDuration={500}
+        isVisible={uiState.right}
+      >
+        <RightTweets tweets={tweets} />
+      </Animated>
 
     </div>
   );

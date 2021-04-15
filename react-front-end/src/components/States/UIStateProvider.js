@@ -12,11 +12,6 @@ export default function UIStateProvider(props) {
     currentTrend: '',
   });
 
-  // const [headerState, setHeaderState] = useState({
-  // })
-
-
-  // TODO - AR ask about diff between prev or just spreading state
   const toggleLeft = () => {
     setUIState(prev => ({ ...prev, left: !uiState.left }))
   };
