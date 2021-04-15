@@ -4,9 +4,10 @@ require('dotenv').config()
 
 const getLatLngFromLocation = function(location) {
   return new Promise((resolve, reject) => {
-    needle.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.GOOGLE_MAPS_GEOCODE_API_KEY}`, (error, response) => {
+    const searchUrl = encodeURI(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.GOOGLE_MAPS_GEOCODE_API_KEY}`)
+    needle.get(searchUrl, (error, response) => {
       if (error) reject(error);
-      if (response.body.results){
+      if (response.body.results && response.body.results.length > 0){
         resolve(response.body.results[0].geometry.location);
       } else {
         resolve(null);
@@ -14,5 +15,4 @@ const getLatLngFromLocation = function(location) {
     });
   }) 
 }
-
 module.exports = { getLatLngFromLocation }
