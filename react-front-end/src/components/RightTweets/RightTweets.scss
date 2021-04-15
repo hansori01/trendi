@@ -3,14 +3,14 @@
 
 .righttweets {
   background-color: $dark-grey-background-opacity;
-  width: 30%;
+  width: 28%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   height: 73%;
-  margin-bottom: 1.2%;
-  margin-right: 1%;
+  margin-bottom: 1%;
+  margin-right: 2vh;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -40,15 +40,15 @@
   article {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 83%;
     justify-content: center;
     align-content: flex-start;
     overflow: visible;
     background-color: $white-inactive;
     color: $black-inactive;
-    border-radius: 20px;
+    border-radius: 12px;
     box-shadow: 13px 15px 15px -3px rgba(0, 0, 0, 0.404);
-    margin: 1.5vh 9vh .4vh 1vh;
+    margin: 1.7vh 2vh .4vh 1.5vh;
     transition: 0.3s;
 
 
@@ -95,7 +95,7 @@
     
     .tweeter img {
       width: 2rem;
-      margin: .5em;
+      margin: .7em;
       transition: 0.3s;
       border-radius: 50px;
     }
@@ -104,12 +104,12 @@
     .tweet {
       justify-content: flex-start;
       align-self: center;
-      width: 95%;
+      width: 90%;
       font-size: 1rem;
       font-weight: thin;
       color: #2f2f2f;
       word-wrap: anywhere;
-      margin-bottom: .5em;
+      margin-bottom: .6em;
     }
     
     // article footer {

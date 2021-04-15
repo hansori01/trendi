@@ -3,23 +3,32 @@
 
 .leftData {
   background-color: $dark-grey-background-opacity;
-  width: 33%;
+  width: 28%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 73%;
-  margin-bottom: 1.2%;
+  margin-bottom: 1%;
   margin-left: 2vh;
   position:absolute;
   left: 0;
   bottom: 0;
   padding: 2px;
-  overflow: scroll;
+  overflow:scroll;
   overflow-x: hidden;
   color: white;
   border-radius: 0px 15px 15px 0px;
-direction: rtl;
+  direction: rtl;
+
+  span {
+    align-self: flex-start;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: $white-active;
+    margin: 3vh 6.5vh .5vh 2vh;
+    text-shadow: 0 0 1.5px #FFFFFF;
+  }
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -40,24 +49,35 @@ direction: rtl;
   .dataContainer {
     display: flex;
     flex-direction: column;
+    width: 85%;
     justify-content: center;
     align-content: flex-start;
-    background: $accent-opacity-dark;
-    width: 80%;
-    height: 300px;
-    border-radius: 20px;
+    overflow: visible;
+    // background: $accent-opacity-dark;
+    background: $black-opacity;
+    border-radius: 35px;
     box-shadow: 13px 15px 15px -3px rgba(0, 0, 0, 0.404);
-    margin: 1vh .4vh 1vh 9vh;
+    margin: 1vh 0vh 5vh .5vh;
     transition: 0.3s;
+    position:relative;
 
     &:hover {
-      box-shadow: 20px 20px 10px -2px rgba(0, 0, 0, 0.74);
-      background-color: $accent-opacity;
-      color: $black-active;
+      background-color: $black;
+      // color: $black-active;
     }
 
     .wordCloud {
-      // display:flex;
+      width: 80%;
+      overflow: hidden;
     }
+    .barchart {
+      width: 80%;
+      overflow: hidden;
+    }
+    .piechart {
+      width: 80%;
+      overflow: hidden;
+    }
+
   }
 }
