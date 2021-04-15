@@ -10,18 +10,16 @@ require('dotenv').config()
 
 const ReactMap = withScriptjs(withGoogleMap((props) =>
 
-<div className="map">
-<GoogleMap
-    defaultOptions={{
-      styles: mapStyle,
-      disableDefaultUI: true,
-    }}
-    zoom={10}
-    defaultCenter={{ lat: 49.279793, lng: -123.115669 }}
-    clickableIcons={false}
-  >
-  </GoogleMap>
-</div>
+    <GoogleMap
+      defaultOptions={{
+        styles: mapStyle,
+        disableDefaultUI: true,
+      }}
+      zoom={10}
+      defaultCenter={{ lat: 49.279793, lng: -123.115669 }}
+      clickableIcons={false}
+    >
+    </GoogleMap>
 
 ));
 
