@@ -1,6 +1,10 @@
 @import "~normalize.css/normalize.css";
+
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900");
+
 @import "components/styles/variables.scss";
+// @import "styles/reset.scss";
+
 @import "components/styles/typography.scss";
 
 * {
@@ -9,6 +13,7 @@
 
 body {
   font-family: $font-family;
+  // background-color: $black;
 }
 
 .layout {

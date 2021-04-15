@@ -1,28 +1,62 @@
-import React, { useContext } from 'react';
-import { uiContext } from '../States/UIStateProvider'
-// import UIStateProvider from '..'
-import ChooseCountry from './ChooseCountry';
-import TrendingHash from './TrendingHash';
+import React, { useState } from 'react';
 import HoverImage from "react-hover-image";
-import { Animated } from "react-animated-css";
 
 import './Header.scss';
+import ChooseCountry from './ChooseCountry';
+import TrendingHash from './TrendingHash';
+import { Animated } from "react-animated-css";
+
 
 export default function Header(props) {
-
-  const {
-    uiState,
-    // toggleChooseCanada,
-    // toggleChooseUsa,
-    // onBackHandler,
-    // activateTrendi
-  } = useContext(uiContext);
-
+  
+  //controls which header component is shown
+  const [headerState, setHeaderState] = useState({
+    chooseCountry: true,
+    showTrends: false,
+    currentCountry: '',
+    currentTrend: '',
+  })
   //TODO on picking a chip, update this state for currentTrend
   //TODO on picking a chip, showTrends / chooseCountry = false
   //TODO Show currentTrend on the Header bar when shrunk
   //TODO back button in showTrends
 
+  const toggleChooseCanada = () => {
+    console.log('choosing canada')
+
+    setHeaderState(prev => ({
+      ...prev,
+      chooseCountry: !headerState.chooseCountry,
+      showTrends: !headerState.showTrends,
+      currentCountry: 'canada'
+    }));
+  }
+  const toggleChooseUsa = () => {
+    setHeaderState(prev => ({ 
+      ...prev,
+      chooseCountry: !headerState.chooseCountry,
+      showTrends: !headerState.showTrends,
+      currentCountry: 'USA'
+    }));
+  }
+
+  const onBackHandler = () => {
+    setHeaderState(prev => ({
+      ...prev,
+      chooseCountry: true,
+      showTrends: false
+    }))
+    props.deactivateContainer()
+  }
+
+  const activateTrendi = () => {
+    setHeaderState(prev => ({
+      ...prev,
+      chooseCountry: false,
+      showTrends: false
+    }));
+    props.activateContainer();
+  }
 
   return (
     <nav>
@@ -31,18 +65,18 @@ export default function Header(props) {
         <img src='./images/user.png' alt='' className="userAvatar"></img>
       </div>
 
-      {uiState.chooseCountry && (
+      {headerState.chooseCountry && (
         <ChooseCountry
-          // chooseCanada={toggleChooseCanada}
-          // chooseUsa={toggleChooseUsa}
+          chooseCanada={toggleChooseCanada}
+          chooseUsa={toggleChooseUsa}
         />
       )}
 
-      {uiState.showTrends && (
+      {headerState.showTrends && (
         <TrendingHash
-          currentCountry={uiState.currentCountry}
-          // onBack={onBackHandler}
-          // activateTrendi={activateTrendi}
+          currentCountry={headerState.currentCountry}
+          onBack={onBackHandler}
+          activateTrendi={activateTrendi}
         />
       )}
     </nav>

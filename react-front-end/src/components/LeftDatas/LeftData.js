@@ -1,12 +1,11 @@
 import React from 'react';
 
-//TODO replace tempWords with useState of words that come in during stream
 import words from './tempWords';
 
 import './LeftData.scss';
 import Wordcloud from './Wordcloud';
 import SentiBarChart from './BarChart';
-import SentiPieChart from './SentiPieChart';
+import SentiPieChart from './PieChart';
 
 export default function LeftData() {
 
