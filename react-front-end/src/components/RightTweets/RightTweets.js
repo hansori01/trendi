@@ -1,11 +1,10 @@
 import React from 'react';
 
 import Tweets from './Tweets'
-// import tempProps from './tempTweets'
 import './RightTweets.scss';
 
 export default function RightTweets(props) {
-  // const loadTweets = tempProps.map((tweet, i) =>
+
   const loadTweets = props.tweets.map((tweet, i) =>
     <Tweets
       key={i}

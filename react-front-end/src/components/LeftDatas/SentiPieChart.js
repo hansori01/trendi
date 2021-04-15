@@ -1,8 +1,11 @@
 import React from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell } from 'recharts';
 
 
 import './LeftData.scss';
+
+//TODO store const data into useState
+//TODO feed real-time data to example...[1:{dataStream}]
 
 const data = [
   { "name": "Positive", "value": 45 },
@@ -16,8 +19,6 @@ export default function SentiPieChart() {
     <PieChart width={430} height={350} className='piechart'>
       <Pie
         data={data}
-        // cx={150}
-        // cy={150}
         innerRadius={60}
         outerRadius={80}
         fill="#8884d8"
@@ -28,22 +29,6 @@ export default function SentiPieChart() {
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
-      {/* <Pie
-        data={data}
-        cx={600}
-        cy={200}
-        startAngle={0}
-        endAngle={360}
-        innerRadius={60}
-        outerRadius={80}
-        fill="#8884d8"
-        paddingAngle={5}
-        dataKey="value"
-      >
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie> */}
     </PieChart>
   );
 }
