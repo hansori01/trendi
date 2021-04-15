@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 // import axios from 'axios';
+import UIStateProvider from './States/UIStateProvider';
 
 import LeftData from './LeftDatas/LeftData';
 import RightTweets from './RightTweets/RightTweets';
+import Header from './Header/Header';
 
 import ReactMap from './Map/Map.js';
 import Fab from "@material-ui/core/Fab";
@@ -10,19 +12,18 @@ import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import EqualizerOutlinedIcon from '@material-ui/icons/EqualizerOutlined';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import io from "socket.io-client";
+import { Animated } from "react-animated-css";
 
 import './App.scss';
-import { Animated } from "react-animated-css";
-import Header from './Header/Header';
 
 export default function App() {
 
   // keep track of state of left and right containers
-  const [expandContainer, setExpandContainer] = useState({
-    left: false,//is container open or closed
-    right: false,
-    disabled: true //disable FAB icons and side containers when header is expanded
-  })
+  // const [expandContainer, setExpandContainer] = useState({
+  //   left: false,//is container open or closed
+  //   right: false,
+  //   disabled: true //disable FAB icons and side containers when header is expanded
+  // })
 
   const [tweets, setTweets] = useState([]);
   const [hashtag, setHashtag] = useState('');
@@ -59,18 +60,18 @@ export default function App() {
   //   // setTweets(tweets);
   // }, [tweets])
 
-  const toggleLeft = () => {
-    setExpandContainer(prev => ({ ...prev, left: !expandContainer.left }))
-  };
-  const toggleRight = () => {
-    setExpandContainer(prev => ({ ...prev, right: !expandContainer.right }))
-  };
-  const activateContainer = () => {
-    setExpandContainer(prev => ({ ...prev, disabled: false }))
-  };
-  const deactivateContainer = () => {
-    setExpandContainer(prev => ({ ...prev, disabled: true }))
-  };
+  // const toggleLeft = () => {
+  //   setExpandContainer(prev => ({ ...prev, left: !expandContainer.left }))
+  // };
+  // const toggleRight = () => {
+  //   setExpandContainer(prev => ({ ...prev, right: !expandContainer.right }))
+  // };
+  // const activateContainer = () => {
+  //   setExpandContainer(prev => ({ ...prev, disabled: false }))
+  // };
+  // const deactivateContainer = () => {
+  //   setExpandContainer(prev => ({ ...prev, disabled: true }))
+  // };
 
 
   return (
