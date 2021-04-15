@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import UIStateProvider, { uiContext } from './States/UIStateProvider';
+import { uiContext } from './States/UIStateProvider';
 
 import LeftData from './LeftDatas/LeftData';
 import RightTweets from './RightTweets/RightTweets';
@@ -52,10 +52,7 @@ export default function App() {
   return (
     <div className="App">
       {/* <UIStateProvider> */}
-        <Header
-        // activateContainer={ui.activateContainer}
-        // deactivateContainer={ui.deactivateContainer}
-        />
+        <Header />
         {/* <div className="map">
           <ReactMap
             activateContainer={ui.activateContainer}
