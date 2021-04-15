@@ -1,17 +1,8 @@
-import React, { useContext } from 'react';
-import { uiContext } from '../States/UIStateProvider'
+import React from 'react';
 import HoverImage from "react-hover-image";
 
 
 export default function ChooseCountry(props) {
-
-  const {
-    // uiState,
-    toggleChooseCanada,
-    toggleChooseUsa,
-    // onBackHandler,
-    // activateTrendi
-  } = useContext(uiContext);
 
   return (
     <>
@@ -23,13 +14,13 @@ export default function ChooseCountry(props) {
           src="./images/canada.png"
           hoverSrc="./images/canadahover.png"
           className="canada"
-          onClick={toggleChooseCanada}
-        />
+          onClick={props.chooseCanada}
+          />
         <HoverImage
           src="./images/usa.png"
           hoverSrc="./images/usahover.png"
           className="usa"
-          onClick={toggleChooseUsa}
+          onClick={props.chooseUsa}
         />
       </div>
     </>
