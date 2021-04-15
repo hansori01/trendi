@@ -29,7 +29,7 @@ export default function App() {
   // const [response, setResponse] = useState([]);
   const [tweets, setTweets] = useState([]);
   const [hashtag, setHashtag] = useState('');
-  const [tweetPositions, setTweetPositions] = useState([{lat: 49.2827, lng: -123.1207}]);
+  // const [tweetPositions, setTweetPositions] = useState([{lat: 49.2827, lng: -123.1207}]);
   const [socket, setSocket] = useState();
   const [streamKeyWord, setStreamKeyWord] = useState('');
   // const socket = io("http://localhost:8080/");
@@ -52,12 +52,10 @@ export default function App() {
     socket.on('tweet', async (tweet) => {
       console.log("Inside Asynce useEffect2");
       console.log("Tweet length from useEffect2", tweets.length);
-      setTweetPositions((prevLocations) => [tweet.user_location_coords, ...prevLocations]);
       await appendTweets(tweet)
     })
     return () => {
       console.log('Disconnecting from socket');
-      socket.emit('disconnect');
       socket.disconnect();
     };
   }, []);
@@ -100,11 +98,11 @@ export default function App() {
       <ReactMap
           activateContainer={activateContainer} 
           deactivateContainer={deactivateContainer}
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process. env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places,visualization`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places,visualization`}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
-          tweetPositions={tweetPositions}
+          tweets={tweets}
         />
       </div>
 
