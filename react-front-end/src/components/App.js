@@ -57,7 +57,8 @@ export default function App() {
     })
     return () => {
       console.log('Disconnecting from socket');
-      socket.disconnect()
+      socket.emit('disconnect');
+      socket.disconnect();
     };
   }, []);
 
