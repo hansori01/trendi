@@ -31,6 +31,7 @@ export default function App() {
   const [hashtag, setHashtag] = useState('');
   const [tweetPositions, setTweetPositions] = useState([{lat: 49.2827, lng:-123.1217}]);
   const [socket, setSocket] = useState();
+  const [streamKeyWord, setStreamKeyWord] = useState('');
   // const socket = io("http://localhost:8080/");
 
   //at the start of launching app, we want to run socket.io
@@ -59,6 +60,10 @@ export default function App() {
       socket.disconnect()
     };
   }, []);
+
+  useEffect(() => {
+    // should have socket.emit statements here to change stream
+  }, [streamKeyWord])
 
   // useEffect(() => {
   //   console.log('Rerendering');
