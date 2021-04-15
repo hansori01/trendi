@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import LeftData from './LeftDatas/LeftData';
 import RightTweets from './RightTweets/RightTweets';
 
-import MapContainer from './Map/Map.js';
+import ReactMap from './Map/Map.js';
+import mapStyle from './Map/mapStyle';
 import Fab from "@material-ui/core/Fab";
 // import toggleHeader from './helper/headerStatusHelper';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
@@ -84,7 +85,16 @@ export default function App() {
 
   return (
     <div className="App">
-      <MapContainer activateContainer={activateContainer} deactivateContainer={deactivateContainer} />
+      <ReactMap
+        styles={mapStyle}
+        activateContainer={activateContainer} 
+        deactivateContainer={deactivateContainer}
+        isMarkerShown
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `100vh` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
 
       {!expandContainer.left &&
         (<Fab className='data-icon' onClick={toggleLeft} disabled={expandContainer.disabled}>
