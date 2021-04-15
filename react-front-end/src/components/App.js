@@ -112,6 +112,7 @@ export default function App() {
           animationOutDuration={500}
           isVisible={uiState.right}
         >
+          {/* <RightTweets /> */}
           <RightTweets tweets={tweets} />
         </Animated>
       {/* </TweetStateProvider> */}
