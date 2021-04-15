@@ -70,8 +70,11 @@ html, body {
     width: 38px;
     height: 38px;
   }
+  .rotate {
+    transform: rotate(90deg);
+  }
   .data-icon {
-    background-color: $accent-red;
+    background-color: $dark-grey-background-opacity;
     color: $white-active;
     position: fixed;
     left: 0;
@@ -80,15 +83,17 @@ html, body {
     height: 75px;
     width: 75px;
     z-index: 1;
-    box-shadow: 0px 0px 10px -3px #BA3B61;
+    // opacity: .75;
+    box-shadow: 0px 0px 12px -4px #1DE9B6;
     &:hover {
       background-color: $accent;
       color: $black-active;
-      box-shadow: 0px 0px 22px -7px #1DE9B6;
+      box-shadow: 0px 0px 20px -4px #1DE9B6;
+      opacity: 1;
     }
   }
   .tweet-icon {
-    background-color: $accent-red;
+    background-color: $dark-grey-background-opacity;
     color: $white-active;
     position: fixed;
     right: 0;
@@ -97,11 +102,13 @@ html, body {
     height: 75px;
     width: 75px;
     z-index: 1;
-    box-shadow: 0px 0px 10px -3px #BA3B61;
+    // opacity: .75;
+    box-shadow: 0px 0px 12px -4px #1DE9B6;
     &:hover {
       background-color: $accent;
       color: $black-active;
-      box-shadow: 0px 0px 22px -7px #1DE9B6;
+      box-shadow: 0px 0px 20px -4px #1DE9B6;
+      opacity: 1;
     }
   }
 

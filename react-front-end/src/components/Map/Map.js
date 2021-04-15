@@ -3,10 +3,8 @@ import { Map, Marker, GoogleApiWrapper, HeatMap } from "google-maps-react";
 import './Map.scss';
 import mapStyle from './mapStyle';
 import Header from '../Header/Header'
-import { ThreeSixty } from "@material-ui/icons";
-/* global google */
 require('dotenv').config()
-let mapInstance
+
 export class MapContainer extends Component {
   _mapLoaded(mapProps, map) {
     mapInstance = map;
@@ -91,12 +89,9 @@ export class MapContainer extends Component {
         onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
       >
         <Marker position={coords} />
-        <Header />
-        <HeatMap
-          gradient={gradient}
-          opacity={0.2}
-          positions={this.props.positions}
-          radius={10}
+        <Header 
+        activateContainer={this.props.activateContainer}
+        deactivateContainer={this.props.deactivateContainer}
         />
       </Map>
     );

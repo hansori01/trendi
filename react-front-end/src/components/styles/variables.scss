@@ -6,22 +6,27 @@ $inactive-opacity: 0.15;
 $white: #fff;
 $white-inactive: #ffffffb4;
 $white-active: #ffffffe3;
+$white-opacity: #ffffff38;
 $black: #000;
 $black-active: rgba(0, 0, 0, 0.938);
 $black-inactive: rgba(0, 0, 0, 0.787);
+$black-opacity: #03030381;
 
 $dark-background: #0c1824;
 $dark-grey-background: #0e0f0f;
-$dark-grey-background-opacity: #0e0f0fef;
+$dark-grey-background-opacity: #0e0f0fd3;
 $accent: #1DE9B6;
 $accent-opacity: #48dafb5b;
-$accent-opacity-dark: #48dafb32;
-$accent-red: #BA3B61;
+$accent-blue-opacity: #48dafb32;
+$accent-blue: #2c869b;
+$accent-red: #e41956;
+$accent-red-opacity: #e419568e;
+$accent-grey: #413f40;
 
-$weeks-colors: #54a0ff, #48dbfb, #1dd1a1, #5f27cd;
+$weeks-colors: #54a0ff, #48dbfb, #1dd1a1, #5e27cd46;
 $booked-color: #54a0ff;
 $danger-color: #ee5253;
-$error-color: #ff9f43;
+$error-color: #ff9e43b9;
 $confirm-color: #10ac84;
 
 $spacing: 2rem;
