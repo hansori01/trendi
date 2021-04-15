@@ -41,7 +41,6 @@ export default function TrendingHash(props) {
     uiState,
     onBackHandler,
     activateTrendi,
-    activateContainer
   } = useContext(uiContext);
 
   const [trendingHashtags, setTrendingHashtags] = useState([]);
@@ -59,9 +58,10 @@ export default function TrendingHash(props) {
   const trendingList = trendingHashtags.map((hashtag, i) => {
 
     const chooseHashtag = () =>{
-      console.log('running chooseHashtag', hashtag.name)
+      // console.log('running chooseHashtag', hashtag.name)
       activateTrendi(hashtag.name);
-      activateContainer();// get this to be working
+      // activateContainer();// get this to be working
+      // console.log('log state in TrendingHash', uiState)
     }
 
     return (
