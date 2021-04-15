@@ -35,7 +35,7 @@ require('dotenv').config()
 //   p6,
 // ];
 
-const gradient = [
+const goodgradient = [
   'rgba(0, 255, 255, 0)',
   'rgba(0, 255, 255, 1)',
   'rgba(0, 191, 255, 1)',
@@ -52,6 +52,24 @@ const gradient = [
   'rgba(255, 0, 0, 1)'
 ];
 
+const gradient = [
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(255, 0, 0, 1)',
+  'rgba(0, 255, 255, 0)',
+]
+
+const negativeGradient = ['rgba(255, 0, 0, 1)']
+
 const ReactMap = withScriptjs(withGoogleMap((props) =>
 
 <div className="map">
@@ -65,10 +83,12 @@ const ReactMap = withScriptjs(withGoogleMap((props) =>
     clickableIcons={false}
   >
     <HeatmapLayer
-      data={props.tweetPositions.map((point) => new google.maps.LatLng(point.lat, point.lng))}
-      opacity={1}
-      radius={1000}
-      gradient={gradient}
+      data={props.tweets.map((tweet) => new google.maps.LatLng(tweet.user_location_coords.lat, tweet.user_location_coords.lng))}
+      options={{
+        opacity: 0.1,
+        gradient: goodgradient,
+        radius: 20
+      }}
     />
   </GoogleMap>
 </div>
