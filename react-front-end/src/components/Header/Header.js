@@ -12,10 +12,10 @@ export default function Header(props) {
 
   const {
     uiState,
-    toggleChooseCanada,
-    toggleChooseUsa,
-    onBackHandler,
-    activateTrendi
+    // toggleChooseCanada,
+    // toggleChooseUsa,
+    // onBackHandler,
+    // activateTrendi
   } = useContext(uiContext);
 
   //TODO on picking a chip, update this state for currentTrend
@@ -33,16 +33,16 @@ export default function Header(props) {
 
       {uiState.chooseCountry && (
         <ChooseCountry
-          chooseCanada={toggleChooseCanada}
-          chooseUsa={toggleChooseUsa}
+          // chooseCanada={toggleChooseCanada}
+          // chooseUsa={toggleChooseUsa}
         />
       )}
 
       {uiState.showTrends && (
         <TrendingHash
           currentCountry={uiState.currentCountry}
-          onBack={onBackHandler}
-          activateTrendi={activateTrendi}
+          // onBack={onBackHandler}
+          // activateTrendi={activateTrendi}
         />
       )}
     </nav>
