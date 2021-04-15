@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from "react";
+// import {tweetContext} from '../States/TweetStateProvider'
+
 import { PieChart, Pie, Cell } from 'recharts';
 
 
@@ -15,6 +17,9 @@ const data = [
 
 const COLORS = ['#1DE9B6', '#e41956', '#FFBB28'];
 export default function SentiPieChart() {
+
+  // const {} = useContext(tweetContext)
+  
   return (
     <PieChart width={430} height={350} className='piechart'>
       <Pie
