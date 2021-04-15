@@ -12,63 +12,40 @@ require('dotenv').config()
 
 
 
-// {lat: 49.2827, lng: -123.1207},
-//   {lat: 49.2927, lng: -123.1307},
-//   {lat: 49.3027, lng: -123.1407},
-//   {lat: 49.3127, lng: -123.1507},
-//   {lat: 49.3227, lng: -123.1607},
-//   {lat: 49.3327, lng: -123.1707},
-// const google = window.google
-// const p1 = new google.maps.LatLng(49.2827, -123.1207);
-// const p2 = new google.maps.LatLng(49.2927, -123.1307);
-// const p3 = new google.maps.LatLng(49.3027, -123.1407);
-// const p4 = new google.maps.LatLng(49.3127, -123.1507);
-// const p5 = new google.maps.LatLng(49.3227, -123.1607);
-// const p6 = new google.maps.LatLng(49.3327, -123.1707);
-
-// const points = [
-//   p1,
-//   p2,
-//   p3,
-//   p4,
-//   p5,
-//   p6,
-// ];
-
-const goodgradient = [
-  'rgba(0, 255, 255, 0)',
-  'rgba(0, 255, 255, 1)',
-  'rgba(0, 191, 255, 1)',
-  'rgba(0, 127, 255, 1)',
-  'rgba(0, 63, 255, 1)',
-  'rgba(0, 0, 255, 1)',
-  'rgba(0, 0, 223, 1)',
-  'rgba(0, 0, 191, 1)',
-  'rgba(0, 0, 159, 1)',
-  'rgba(0, 0, 127, 1)',
-  'rgba(63, 0, 91, 1)',
-  'rgba(127, 0, 63, 1)',
-  'rgba(191, 0, 31, 1)',
-  'rgba(255, 0, 0, 1)'
-];
-
-const gradient = [
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(255, 0, 0, 1)',
-  'rgba(0, 255, 255, 0)',
+const negative = [
+  'rgba(228,25,86,0)',
+  'rgba(228,25,86,0.1)',
+  'rgba(228,25,86,0.2)',
+  'rgba(228,25,86,0.25)',
+  'rgba(228,25,86,0.3)',
+  'rgba(228,25,86,0.35)',
+  'rgba(228,25,86,0.4)',
+  'rgba(228,25,86,0.45)',
+  'rgba(228,25,86,0.5)',
+  'rgba(228,25,86,0.65)',
+  'rgba(228,25,86,0.7)',
+  'rgba(228,25,86,0.8)',
+  'rgba(228,25,86,0.9)',
+  'rgba(228,25,86,1)',
 ]
 
-const negativeGradient = ['rgba(255, 0, 0, 1)']
+const positive = [
+  'rgba(29,233,182,0)',
+  'rgba(29,233,182,0.1)',
+  'rgba(29,233,182,0.2)',
+  'rgba(29,233,182,0.3)',
+  'rgba(29,233,182,0.4)',
+  'rgba(29,233,182,0.45)',
+  'rgba(29,233,182,0.5)',
+  'rgba(29,233,182,0.55)',
+  'rgba(29,233,182,0.6)',
+  'rgba(29,233,182,0.65)',
+  'rgba(29,233,182,0.7)',
+  'rgba(29,233,182,0.75)',
+  'rgba(29,233,182,0.8)',
+  'rgba(29,233,182,0.9)',
+]
+
 
 const ReactMap = withScriptjs(withGoogleMap((props) =>
 
@@ -83,13 +60,24 @@ const ReactMap = withScriptjs(withGoogleMap((props) =>
     clickableIcons={false}
   >
     <HeatmapLayer
-      data={props.tweets.map((tweet) => new google.maps.LatLng(tweet.user_location_coords.lat, tweet.user_location_coords.lng))}
+      // data={props.tweets.map((tweet) => new google.maps.LatLng(tweet.user_location_coords.lat, tweet.user_location_coords.lng))}
+      data={[new google.maps.LatLng(49.279793, -123.115669)]}
       options={{
-        opacity: 0.1,
-        gradient: goodgradient,
+        opacity: 0.5,
+        gradient: negative,
         radius: 20
       }}
     />
+    <HeatmapLayer
+      // data={props.tweets.map((tweet) => new google.maps.LatLng(tweet.user_location_coords.lat, tweet.user_location_coords.lng))}
+      data={[new google.maps.LatLng(49.720692, -123.156624)]}
+      options={{
+        opacity: 1,
+        gradient: positive,
+        radius: 50
+      }}
+    />
+    
   </GoogleMap>
 </div>
 
