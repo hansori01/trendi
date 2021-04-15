@@ -2,7 +2,7 @@ import { createContext, useState } from 'react';
 
 export default function UIStateProvider(props) {
 
-  const [ui, setUI] = useState({
+  const [uiState, setUIState] = useState({
     left: false,//is container open or closed
     right: false,
     disabled: true //disable FAB icons and side containers when header is expanded
@@ -10,20 +10,20 @@ export default function UIStateProvider(props) {
 
   // TODO - AR ask about diff between prev or just spreading state
   const toggleLeft = () => {
-    setUI(prev => ({ ...prev, left: !ui.left }))
+    setUIState(prev => ({ ...prev, left: !uiState.left }))
   };
   const toggleRight = () => {
-    setUI(prev => ({ ...prev, right: !ui.right }))
+    setUIState(prev => ({ ...prev, right: !uiState.right }))
   };
   const activateContainer = () => {
-    setUI(prev => ({ ...prev, disabled: false }))
+    setUIState(prev => ({ ...prev, disabled: false }))
   };
   const deactivateContainer = () => {
-    setUI(prev => ({ ...prev, disabled: true }))
+    setUIState(prev => ({ ...prev, disabled: true }))
   };
 
   const uiData = {
-    ui,
+    uiState,
     toggleLeft,
     toggleRight,
     activateContainer,

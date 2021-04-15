@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-// import axios from 'axios';
-import UIStateProvider from './States/UIStateProvider';
+import UIStateProvider, { uiContext } from './States/UIStateProvider';
 
 import LeftData from './LeftDatas/LeftData';
 import RightTweets from './RightTweets/RightTweets';
@@ -18,12 +17,7 @@ import './App.scss';
 
 export default function App() {
 
-  // keep track of state of left and right containers
-  // const [expandContainer, setExpandContainer] = useState({
-  //   left: false,//is container open or closed
-  //   right: false,
-  //   disabled: true //disable FAB icons and side containers when header is expanded
-  // })
+  const { ui } = useContext(uiContext);
 
   const [tweets, setTweets] = useState([]);
   const [hashtag, setHashtag] = useState('');
@@ -54,80 +48,72 @@ export default function App() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   console.log('Rerendering');
-  //   console.log("tweet array size from useEffect2, ", tweets.length);
-  //   // setTweets(tweets);
-  // }, [tweets])
-
-  // const toggleLeft = () => {
-  //   setExpandContainer(prev => ({ ...prev, left: !expandContainer.left }))
-  // };
-  // const toggleRight = () => {
-  //   setExpandContainer(prev => ({ ...prev, right: !expandContainer.right }))
-  // };
-  // const activateContainer = () => {
-  //   setExpandContainer(prev => ({ ...prev, disabled: false }))
-  // };
-  // const deactivateContainer = () => {
-  //   setExpandContainer(prev => ({ ...prev, disabled: true }))
-  // };
-
 
   return (
     <div className="App">
-      <Header
-        activateContainer={activateContainer}
-        deactivateContainer={deactivateContainer}
-      />
-      <div className="map">
-        <ReactMap
-          activateContainer={activateContainer}
-          deactivateContainer={deactivateContainer}
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100vh` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
+      {/* <UIStateProvider> */}
+        <Header
+        // activateContainer={ui.activateContainer}
+        // deactivateContainer={ui.deactivateContainer}
         />
-      </div>
+        {/* <div className="map">
+          <ReactMap
+            activateContainer={ui.activateContainer}
+            deactivateContainer={ui.deactivateContainer}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `100vh` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
+          />
+        </div>
 
-      {!expandContainer.left &&
-        (<Fab className='data-icon'
-          onClick={toggleLeft}
-          disabled={expandContainer.disabled}>
-          <EqualizerOutlinedIcon className='icon' />
-        </Fab>)
-      }
-      {expandContainer.left &&
-        (<Fab
-          className='data-icon'
-          onClick={toggleLeft}>
-          <PlayCircleOutlineIcon className='icon rotate' />
-        </Fab>)
-      }
-      <Animated
-        animationInDuration={500}
-        animationOutDuration={500}
-        isVisible={expandContainer.left}>
-        <LeftData />
-      </Animated>
+        {!ui.uiState.left &&
+          (<Fab className='data-icon'
+            onClick={ui.toggleLeft}
+            disabled={ui.uiState.disabled}>
+            <EqualizerOutlinedIcon className='icon' />
+          </Fab>)
+        }
+        {ui.uiState.left &&
+          (<Fab
+            className='data-icon'
+            onClick={ui.toggleLeft}>
+            <PlayCircleOutlineIcon className='icon rotate' />
+          </Fab>)
+        }
+        <Animated
+          animationInDuration={500}
+          animationOutDuration={500}
+        isVisible={ui.uiState.left}
+        >
+          <LeftData />
+        </Animated>
 
-      {!expandContainer.right &&
-        (<Fab className='tweet-icon' onClick={toggleRight} disabled={expandContainer.disabled}>
-          <ChatOutlinedIcon className='icon' />
-        </Fab>)
-      }
-      {expandContainer.right &&
-        (<Fab className='tweet-icon' onClick={toggleRight}>
-          <PlayCircleOutlineIcon className='icon rotate' />
-        </Fab>)
-      }
-      <Animated
-        animationInDuration={500}
-        animationOutDuration={500}
-        isVisible={expandContainer.right}>
-        <RightTweets tweets={tweets} />
-      </Animated>
+        {!ui.uiState.right &&
+          (<Fab
+            className='tweet-icon'
+          onClick={ui.toggleRight}
+          disabled={ui.uiState.disabled}
+          >
+            <ChatOutlinedIcon className='icon' />
+          </Fab>)
+        }
+        {ui.uiState.right &&
+          (<Fab
+            className='tweet-icon'
+          onClick={ui.toggleRight}
+          >
+            <PlayCircleOutlineIcon className='icon rotate' />
+          </Fab>)
+        }
+        <Animated
+          animationInDuration={500}
+          animationOutDuration={500}
+        isVisible={ui.uiState.right}
+        >
+          <RightTweets tweets={tweets} />
+        </Animated> */}
+      {/* </UIStateProvider> */}
     </div>
   );
 }
