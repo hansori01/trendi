@@ -52,7 +52,7 @@ export default function App() {
     socket.on('tweet', async (tweet) => {
       console.log("Inside Asynce useEffect2");
       console.log("Tweet length from useEffect2", tweets.length);
-      setTweetPositions([tweet.user_location_coords, ...tweetPositions]);
+      setTweetPositions((prevLocations) => [tweet.user_location_coords, ...prevLocations]);
       await appendTweets(tweet)
     })
     return () => {
