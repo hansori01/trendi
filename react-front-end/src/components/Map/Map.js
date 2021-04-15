@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleMap } from "react-google-maps";
+import { GoogleMap, OverlayView, HeatmapLayer } from "react-google-maps";
 import './Map.scss';
 import './mapStyle';
 import Header from '../Header/Header';
@@ -8,9 +8,10 @@ import withScriptjs from "react-google-maps/lib/withScriptjs";
 import mapStyle from "./mapStyle";
 require('dotenv').config()
 
-const ReactMap = withScriptjs(withGoogleMap((props) => 
-  <GoogleMap
-    className="map"
+const ReactMap = withScriptjs(withGoogleMap((props) =>
+
+<div className="map">
+<GoogleMap
     defaultOptions={{
       styles: mapStyle,
       disableDefaultUI: true,
@@ -19,11 +20,15 @@ const ReactMap = withScriptjs(withGoogleMap((props) =>
     defaultCenter={{ lat: 49.279793, lng: -123.115669 }}
     clickableIcons={false}
   >
-  <Header
-    activateContainer={props.activateContainer}
-    deactivateContainer={props.deactivateContainer}
-  />
+  <OverlayView>
+    <Header
+      activateContainer={props.activateContainer}
+      deactivateContainer={props.deactivateContainer}
+    />
+  </OverlayView>
   </GoogleMap>
+</div>
+
 ));
 
 export default ReactMap;

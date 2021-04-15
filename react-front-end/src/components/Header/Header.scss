@@ -9,9 +9,11 @@ nav {
   background-color: $dark-grey-background-opacity-darker;
   display: flex;
   flex-direction: column;
+  // justify-content: center;
   overflow: auto;
   margin: 15px auto;
   width: 60vw;
+  // position: absolute;
   position: relative;
   border-radius: 55px;
   z-index: 1;

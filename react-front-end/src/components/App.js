@@ -15,6 +15,7 @@ import io from "socket.io-client";
 
 import './App.scss';
 import { Animated } from "react-animated-css";
+import Header from './Header/Header';
 
 export default function App() {
 
@@ -85,15 +86,16 @@ export default function App() {
 
   return (
     <div className="App">
+      <div className="map">
       <ReactMap
-        className="map"
-        activateContainer={activateContainer} 
-        deactivateContainer={deactivateContainer}
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100vh` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
+          activateContainer={activateContainer} 
+          deactivateContainer={deactivateContainer}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process. env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `100vh` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      </div>
 
       {!expandContainer.left &&
         (<Fab className='data-icon' onClick={toggleLeft} disabled={expandContainer.disabled}>
