@@ -51,13 +51,14 @@ export default function UIStateProvider(props) {
     deactivateContainer()
   }
 
-  const activateTrendi = () => {
+  const activateTrendi = (trend) => {
     setUIState(prev => ({
       ...prev,
       chooseCountry: false,
-      showTrends: false
+      showTrends: false,
+      currentTrend: trend
     }));
-    activateContainer();
+    // activateContainer();
   }
 
   console.log('current country', uiState.currentCountry)

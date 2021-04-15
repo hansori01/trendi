@@ -35,11 +35,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function TrendingHash(props) {
+  const classes = useStyles();
 
   const {
     uiState,
     onBackHandler,
-    activateTrendi
+    activateTrendi,
+    activateContainer
   } = useContext(uiContext);
 
   const [trendingHashtags, setTrendingHashtags] = useState([]);
@@ -53,8 +55,14 @@ export default function TrendingHash(props) {
     getTrending();
   }, [uiState.currentCountry]);
 
-  const classes = useStyles();
+  
   const trendingList = trendingHashtags.map((hashtag, i) => {
+
+    const chooseHashtag = () =>{
+      activateTrendi(hashtag.name);
+      activateContainer();// get this to be working
+    }
+
     return (
       <Chip
         variant='outlined'
@@ -62,7 +70,7 @@ export default function TrendingHash(props) {
         label={hashtag.name}
         key={i}
         className={classes.chip}
-        onClick={activateTrendi}
+        onClick={chooseHashtag}
       />
     )
   })
