@@ -13,7 +13,7 @@ const data = [
 const COLORS = ['#1DE9B6', '#e41956', '#FFBB28'];
 export default function SentiPieChart() {
   return (
-    <PieChart width={350} height={350} className='piechart'>
+    <PieChart width={430} height={350} className='piechart'>
       <Pie
         data={data}
         // cx={150}

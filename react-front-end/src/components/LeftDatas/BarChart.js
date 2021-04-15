@@ -23,7 +23,7 @@ const data = [
 export default function SentiBarChart() {
   return (
     <BarChart
-      width={350}
+      width={420}
       height={280}
       data={data}
       margin={{
