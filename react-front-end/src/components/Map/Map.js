@@ -3,8 +3,8 @@ import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import './Map.scss';
 import mapStyle from './mapStyle';
 import Header from '../Header/Header'
-
 require('dotenv').config()
+
 export class MapContainer extends Component {
   _mapLoaded(mapProps, map) {
     map.setOptions({
@@ -25,7 +25,10 @@ export class MapContainer extends Component {
         onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
       >
         <Marker position={coords} />
-        <Header />
+        <Header 
+        activateContainer={this.props.activateContainer}
+        deactivateContainer={this.props.deactivateContainer}
+        />
       </Map>
     );
   }

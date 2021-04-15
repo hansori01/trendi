@@ -4,6 +4,10 @@ const words = [
     value: 64,
   },
   {
+    text: 'Enze',
+    value: 44,
+  },
+  {
     text: 'josh',
     value: 11,
   },
