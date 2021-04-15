@@ -27,6 +27,7 @@ export default function App() {
   // const [response, setResponse] = useState([]);
   const [tweets, setTweets] = useState([]);
   const [hashtag, setHashtag] = useState('');
+  const [tweetPositions, setTweetPositions] = useState([{lat: 49.2827, lng:-123.1217}]);
   const [socket, setSocket] = useState();
   // const socket = io("http://localhost:8080/");
 
@@ -48,6 +49,7 @@ export default function App() {
     socket.on('tweet', async (tweet) => {
       console.log("Inside Asynce useEffect2");
       console.log("Tweet length from useEffect2", tweets.length);
+      setTweetPositions([tweet.user_location_coords, ...tweetPositions]);
       await appendTweets(tweet)
     })
     return () => {

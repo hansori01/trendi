@@ -7,6 +7,7 @@ const { streamCanadaBorderBox, getCurrentCanadaTrends, getCurrentUSATrends } = r
 
 const http = require("http");
 const socketIo = require("socket.io");
+const { getLatLngFromLocation } = require('./google-maps-search');
 // const index = require("./routes/index");
 
 // Express Configuration
@@ -38,7 +39,11 @@ io.on('connection', (socket) => {
       console.log('Streaming')
       console.log(tweet.user);
       if(tweet.text.match(regex)){
-        io.emit('tweet', tweet)
+        getLatLngFromLocation(tweet.user.location).then((location) => {
+          console.log(location)
+          tweet['user_location_coords'] = location
+          io.emit('tweet', tweet)
+        })
       }
     });
   })
