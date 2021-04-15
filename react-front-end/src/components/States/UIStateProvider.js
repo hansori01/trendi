@@ -52,16 +52,17 @@ export default function UIStateProvider(props) {
   }
 
   const activateTrendi = (trend) => {
+    console.log('activate trendi', uiState)
     setUIState(prev => ({
       ...prev,
       chooseCountry: false,
       showTrends: false,
       currentTrend: trend
     }));
+    console.log('activate trendi', uiState)
     // activateContainer();
   }
 
-  console.log('current country', uiState.currentCountry)
   const uiData = {
     uiState,
     toggleLeft,
