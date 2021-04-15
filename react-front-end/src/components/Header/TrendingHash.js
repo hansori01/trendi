@@ -47,9 +47,11 @@ export default function TrendingHash(props) {
         label={hashtag}
         key={i}
         className={classes.chip}
+        onClick={props.activateTrendi}
       />
     )
   })
+console.log('trendingHsh prop check', props)
 
   return (
     <>

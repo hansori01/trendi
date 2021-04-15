@@ -7,7 +7,7 @@ import TrendingHash from './TrendingHash';
 import { Animated } from "react-animated-css";
 
 
-export default function Header() {
+export default function Header(props) {
 
   //controls which header component is shown
   const [headerState, setHeaderState] = useState({
@@ -23,16 +23,28 @@ export default function Header() {
 
   const toggleChooseCanada = () => {
     console.log('choosing canada')
+    // if (headerState.chooseCountry === true || headerState.showTrends === true) {
+    //   props.toggleHeader();
+    // }
     setHeaderState(prev => ({ ...prev, chooseCountry: !headerState.chooseCountry, showTrends: !headerState.showTrends, currentCountry: 'Canada' }));
   }
   const toggleChooseUsa = () => {
     console.log('choosing usa')
+    // if (headerState.chooseCountry === true || headerState.showTrends === true) {
+    //   props.toggleHeader();
+    // }
     setHeaderState(prev => ({ ...prev, chooseCountry: !headerState.chooseCountry, showTrends: !headerState.showTrends, currentCountry: 'USA' }));
   }
 
-const onBackHandler = () => {
-  setHeaderState(prev => ({...prev, chooseCountry: true, showTrends: false}))
-}
+  const onBackHandler = () => {
+    setHeaderState(prev => ({ ...prev, chooseCountry: true, showTrends: false }))
+    props.deactivateContainer()
+  }
+
+  const activateTrendi = () => {
+    setHeaderState(prev => ({ ...prev, chooseCountry: false, showTrends: false }));
+    props.activateContainer();
+  }
 
 
   return (
@@ -47,7 +59,7 @@ const onBackHandler = () => {
       )}
 
       {headerState.showTrends && (
-        <TrendingHash currentCountry={headerState.currentCountry} onBack={onBackHandler}  />
+        <TrendingHash currentCountry={headerState.currentCountry} onBack={onBackHandler} activateTrendi={activateTrendi} />
       )}
 
     </nav>
