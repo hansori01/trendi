@@ -12,7 +12,7 @@ export default function Tweets(props) {
       <header>
         <div className="tweeter">
           <span className="profile">
-            <img src={img} alt='profile picture'/>
+            <img src={img} alt=''/>
             {name}
           </span>
           <a className="handle" href={`https://twitter.com/${handle}`} target="_blank">{handle}</a>
