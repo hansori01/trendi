@@ -5,9 +5,7 @@ import LeftData from './LeftDatas/LeftData';
 import RightTweets from './RightTweets/RightTweets';
 
 import ReactMap from './Map/Map.js';
-import mapStyle from './Map/mapStyle';
 import Fab from "@material-ui/core/Fab";
-// import toggleHeader from './helper/headerStatusHelper';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import EqualizerOutlinedIcon from '@material-ui/icons/EqualizerOutlined';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
@@ -26,15 +24,10 @@ export default function App() {
     disabled: true //disable FAB icons and side containers when header is expanded
   })
 
-  // const [response, setResponse] = useState([]);
   const [tweets, setTweets] = useState([]);
   const [hashtag, setHashtag] = useState('');
   const [tweetPositions, setTweetPositions] = useState([{ lat: 49.2827, lng: -123.1217 }]);
   const [socket, setSocket] = useState();
-  // const socket = io("http://localhost:8080/");
-
-  //at the start of launching app, we want to run socket.io
-  // within that socket function we update setTweets
 
   const appendTweets = async (tweet) => {
     console.log("before tweets length ", tweets.length);
@@ -67,21 +60,17 @@ export default function App() {
   // }, [tweets])
 
   const toggleLeft = () => {
-    console.log('1st', expandContainer)
     setExpandContainer(prev => ({ ...prev, left: !expandContainer.left }))
-  }
+  };
   const toggleRight = () => {
-    console.log('1st', expandContainer)
     setExpandContainer(prev => ({ ...prev, right: !expandContainer.right }))
-  }
+  };
   const activateContainer = () => {
-    console.log('toggelHeader is turning off the containers', expandContainer)
     setExpandContainer(prev => ({ ...prev, disabled: false }))
-  }
+  };
   const deactivateContainer = () => {
-    console.log('toggelHeader is turning off the containers', expandContainer)
     setExpandContainer(prev => ({ ...prev, disabled: true }))
-  }
+  };
 
 
   return (
@@ -121,8 +110,6 @@ export default function App() {
         isVisible={expandContainer.left}>
         <LeftData />
       </Animated>
-
-
 
       {!expandContainer.right &&
         (<Fab className='tweet-icon' onClick={toggleRight} disabled={expandContainer.disabled}>

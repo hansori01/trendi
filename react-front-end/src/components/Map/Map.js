@@ -2,7 +2,6 @@ import React from "react";
 import { GoogleMap, OverlayView, HeatmapLayer } from "react-google-maps";
 import './Map.scss';
 import './mapStyle';
-import Header from '../Header/Header';
 import withGoogleMap from "react-google-maps/lib/withGoogleMap";
 import withScriptjs from "react-google-maps/lib/withScriptjs";
 import mapStyle from "./mapStyle";
