@@ -26,10 +26,12 @@ export default function SentiBarChart() {
 
     setTweetScores(prevScores => {
       
+      // prev neutral state
       const prevNeutral = prevScores.neutral;
+      const prevVeryPos = prevScores.veryPos;
       
       return(
-        {...prevScores, neutral: prevNeutral + 1}
+        {...prevScores, neutral: prevNeutral + 1, veryPos: prevVeryPos +  1}
       )
     })
   }, [tweets])
