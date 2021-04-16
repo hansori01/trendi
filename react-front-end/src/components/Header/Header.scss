@@ -19,6 +19,15 @@ nav {
   border-radius: 55px;
   z-index: 1;
 
+    .controllerButtons {
+      display: flex;
+
+
+      .button{
+        color: $white-active;
+      }
+  }
+
   .headerParent {
     display: flex;
     flex-direction: row;
