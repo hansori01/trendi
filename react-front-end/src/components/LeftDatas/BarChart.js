@@ -3,31 +3,29 @@ import {tweetContext} from '../States/TweetStateProvider'
 
 import { BarChart, XAxis, Bar } from 'recharts';
 
-
 import './LeftData.scss';
-
-
-const data = [
-  //negative numbers are 11-15 because im lazy rn
-  { name: "3-", 0: 5 },
-  { name: "2-", 0: 14 },
-  { name: "1-", 0: 22 },
-  { name: "0", 0: 12 },
-  { name: "1", 0: 12 },
-  { name: "2", 0: 20 },
-  { name: "3", 0: 5 },
-]
 
 export default function SentiBarChart() {
   const { tweets } = useContext(tweetContext)
 
-  console.log(tweets[0].sentiment.score);
+  tweets.map(e => console.log('incoming socre! =>', e.sentiment.score));
   
+  const tweetScores = [
+    //negative numbers are 11-15 because im lazy rn
+    { name: "3-", 0: 0 },
+    { name: "2-", 0: 0 },
+    { name: "1-", 0: 0 },
+    { name: "0", 0: 0 },
+    { name: "1", 0: 0 },
+    { name: "2", 0: 0 },
+    { name: "3", 0: 0 },
+  ]
+
   return (
     <BarChart
       width={420}
       height={280}
-      data={data}
+      data={tweetScores}
       margin={{
         top: 20,
         right: 10,
