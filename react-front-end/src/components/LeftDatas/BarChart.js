@@ -9,17 +9,13 @@ import './LeftData.scss';
 
 const data = [
   //negative numbers are 11-15 because im lazy rn
-  { name: "🤬", 15: 11 },
-  { name: "😤", 14: 14 },
-  // { name: "😥", 13: 4 },
-  { name: "😕", 12: 22 },
-  // { name: "🥲", 11: 2 },
-  { name: "🤡", 0: 12 },
-  { name: "😌", 1: 12 },
-  // { name: "😁", 2: 1 },
-  { name: "🤗", 3: 20 },
-  // { name: "😘", 4: 22 },
-  { name: "🥰", 5: 32 },
+  { name: "3-", 0: 11 },
+  { name: "2-", 0: 14 },
+  { name: "1-", 0: 22 },
+  { name: "0", 0: 12 },
+  { name: "1", 0: 12 },
+  { name: "2", 0: 20 },
+  { name: "3", 0: 32 },
 ]
 
 export default function SentiBarChart() {
@@ -37,7 +33,7 @@ export default function SentiBarChart() {
         bottom: 5,
       }}
       className="barChart"
-      >
+    >
 
       <Bar dataKey={5} fill="#1DE9B6" barSize={20}/>
       {/* <Bar dataKey={4} fill="#1ad6a7" /> */}
