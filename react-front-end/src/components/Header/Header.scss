@@ -35,9 +35,14 @@ nav {
       display: flex;
       align-items: center;
       opacity: 1;
-
       .MuiIconButton-root {
+      padding:0;
       color: $white-opacity;
+      .controllerIcon {
+        padding: 2px;
+        width: 37px;
+        height: 37px;
+      }
       }
 
       .activated-start {
@@ -101,9 +106,9 @@ nav {
   }
 
   .searchIcon {
-    margin-right: 0.2vw;
-    width: 30px;
-    height:30px;
+    margin-right: 0.3vw;
+    width: 35px;
+    height:35px;
   }
 
   .backButton {

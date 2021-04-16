@@ -15,7 +15,7 @@ import './Header.scss';
 
 const CssTextField = withStyles({
   root: {
-    width:'20vw',
+    width: '20vw',
     '& input': {
       color: '#ffffffe3',
     },
@@ -55,7 +55,8 @@ export default function Header() {
 
   const {
     uiState,
-    handleSearch
+    handleSearch,
+    reset
   } = useContext(uiContext);
 
   return (
@@ -67,36 +68,44 @@ export default function Header() {
           className="logo" />
 
         <span className='controller' >
-          <img src='./images/icon.png' className='searchIcon' alt='' />
-          
-          <form className={classes.root} noValidate>
-            <CssTextField
-              className={classes.margin}
-              label="Trendi Search"
-              value={uiState.currentTrend}
-              onChange={handleSearch}
-              variant="outlined"
-              InputLabelProps={{ style: { color: '#ffffffb4' } }}
-              size="small"
-              id="custom-css-outlined-input"
-            />
-          </form>
+          {uiState.trendiActivated && (
+            <img src='./images/icon.png' className='searchIcon' alt='' />
+          )}
 
-          <IconButton
-            className={!uiState.disableStart && 'activated-start'}
-            disabled={uiState.disableStart}>
-            <PlayCircleOutlineIcon />
-          </IconButton>
-          <IconButton
-            className={!uiState.disablePause && 'activated-pause'}
-            disabled={uiState.disablePause}>
-            <PauseCircleOutlineIcon />
-          </IconButton>
-          <IconButton
-            className={!uiState.disableStop && 'activated-stop'}
-            disabled={uiState.disableStart}>
-            <HighlightOffIcon />
-          </IconButton>
+          {!uiState.disableSearch && (
+            <>
+              <form className={classes.root} noValidate>
+                <CssTextField
+                  className={classes.margin}
+                  label={!uiState.disableSearch && "Trendi Search"}
+                  value={uiState.currentTrend}
+                  disabled={uiState.disableSearch}
+                  onChange={handleSearch}
+                  InputLabelProps={{ style: { color: '#ffffffb4' } }}
+                  size="small"
+                  id="custom-css-outlined-input"
+                />
+              </form>
+
+              <IconButton
+                className={!uiState.disableStart && 'activated-start'}
+                disabled={uiState.disableStart}>
+                <PlayCircleOutlineIcon className='controllerIcon' />
+              </IconButton>
+              <IconButton
+                className={!uiState.disablePause && 'activated-pause'}
+                disabled={uiState.disablePause}>
+                <PauseCircleOutlineIcon className='controllerIcon' />
+              </IconButton>
+              <IconButton
+                className={!uiState.disableStop && 'activated-stop'}
+                disabled={uiState.disableStart}
+                onClick={reset}
+              >
+                <HighlightOffIcon className='controllerIcon' />
+              </IconButton>
+            </>
+          )}
         </span>
 
         <img

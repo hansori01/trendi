@@ -3,9 +3,10 @@ import { createContext, useState } from 'react';
 export default function UIStateProvider(props) {
 
   const [uiState, setUIState] = useState({
-    left: false,//is container open or closed
-    right: false,
+    left: true,//is container open or closed
+    right: true,
     disableContainer: true, //disable FAB icons and side containers when header is expanded
+    disableSearch: true,
     disableStart: true,
     disablePause: true,
     disableStop: true,
@@ -13,6 +14,7 @@ export default function UIStateProvider(props) {
     showTrends: false,
     currentCountry: '',
     currentTrend: '',
+    trendiActivated: false,
   });
 
   // const [trendState, setTrendState] = useState({
@@ -38,55 +40,87 @@ export default function UIStateProvider(props) {
       ...prev,
       chooseCountry: !uiState.chooseCountry,
       showTrends: !uiState.showTrends,
+      disableSearch: false,
       currentCountry: 'Canada'
     }));
-  }
+  };
   const toggleChooseUsa = () => {
-    setUIState(prev => ({ 
+    setUIState(prev => ({
       ...prev,
       chooseCountry: !uiState.chooseCountry,
       showTrends: !uiState.showTrends,
+      disableSearch: false,
       currentCountry: 'USA'
     }));
-  }
+  };
 
   const onBackHandler = () => {
     setUIState(prev => ({
       ...prev,
       chooseCountry: true,
-      showTrends: false
+      showTrends: false,
+      disableSearch: true,
+      disableStart: true,
+      disablePause: true,
+      disableStop: true,
     }))
     deactivateContainer()
-  }
-
-const handleSearch = e => {
-  
-  if (e.target.value.length === 0) {
-    setUIState(prev => ({...prev, disableStart: true, disableStop: true}))
   };
-  if (e.target.value.length > 0) {
-    setUIState(prev => ({...prev, disableStart: false, disableStop: false}))
-  };
-  setUIState(prev => ({...prev, currentTrend: e.target.value}));
-}
 
-const updateCurrentTrend = trend => {
-  setUIState(prev => ({
-    ...prev,
-    currentTrend: trend
-  }));
-}
+  const handleSearch = e => {
+    if (e.target.value.length === 0) {
+      setUIState(prev => ({ ...prev, disableStart: true, disableStop: true }))
+    };
+    if (e.target.value.length > 0) {
+      setUIState(prev => ({ ...prev, disableStart: false, disableStop: false }))
+    };
+    setUIState(prev => ({ ...prev, currentTrend: e.target.value }));
+  };
+
+  const updateCurrentTrend = trend => {
+    //TODO debug this
+    setUIState(prev => ({
+      ...prev,
+      currentTrend: trend,
+      disableStart: false,
+      disableStop: false,
+    }));
+  };
+
   const activateTrendi = () => {
     // console.log('activate trendi', uiState)
     setUIState(prev => ({
       ...prev,
       chooseCountry: false,
       showTrends: false,
-      // currentTrend: trend
+      trendiActivated: true,
     }));
     console.log('activate trendi', uiState)
     activateContainer();
-  }
+  };
+
+  const reset = () => {
+
+    if (uiState.currentTrend.length > 0) {
+      setUIState(prev => ({
+        ...prev,
+        chooseCountry: false,
+        showTrends: true,
+        currentTrend: ''
+      }));
+    } else {
+      setUIState(prev => ({
+        ...prev,
+        chooseCountry: true,
+        showTrends: false,
+        currentTrend: '',
+        disableSearch: true,
+        disableStart: true,
+        disablePause: true,
+        disableStop: true,
+      }));
+    }
+  };
 
   const uiData = {
     uiState,
@@ -99,7 +133,8 @@ const updateCurrentTrend = trend => {
     onBackHandler,
     handleSearch,
     updateCurrentTrend,
-    activateTrendi
+    activateTrendi,
+    reset,
   };
 
   return (
