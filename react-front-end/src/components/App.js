@@ -1,22 +1,19 @@
-import React, { useContext,useState, useEffect } from 'react';
-import uiContext from './States/UIStateProvider'
-// import axios from 'axios';
+import React, { useContext, useState, useEffect } from 'react';
+import { uiContext } from './States/UIStateProvider';
 
 import LeftData from './LeftDatas/LeftData';
 import RightTweets from './RightTweets/RightTweets';
+import Header from './Header/Header';
 
 import ReactMap from './Map/Map.js';
-import mapStyle from './Map/mapStyle';
 import Fab from "@material-ui/core/Fab";
-// import toggleHeader from './helper/headerStatusHelper';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import EqualizerOutlinedIcon from '@material-ui/icons/EqualizerOutlined';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import io from "socket.io-client";
+import { Animated } from "react-animated-css";
 
 import './App.scss';
-import { Animated } from "react-animated-css";
-import Header from './Header/Header';
 
 export default function App() {
 
@@ -31,10 +28,6 @@ export default function App() {
   // const [hashtag, setHashtag] = useState('');
   const [tweetPositions, setTweetPositions] = useState([{ lat: 49.2827, lng: -123.1217 }]);
   const [socket, setSocket] = useState();
-  // const socket = io("http://localhost:8080/");
-
-  //at the start of launching app, we want to run socket.io
-  // within that socket function we update setTweets
 
   const appendTweets = async (tweet) => {
     console.log("before tweets length ", tweets.length);
@@ -59,12 +52,6 @@ export default function App() {
       socket.disconnect()
     };
   }, []);
-
-  // useEffect(() => {
-  //   console.log('Rerendering');
-  //   console.log("tweet array size from useEffect2, ", tweets.length);
-  //   // setTweets(tweets);
-  // }, [tweets])
 
 
   return (
