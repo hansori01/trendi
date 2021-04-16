@@ -22,8 +22,15 @@ export default function App() {
   const {
     tweets,
     setTweets,
+    neutralTweets,
+    setNeutralTweets,
+    positiveTweets,
+    setPositiveTweets,
+    negativeTweets,
+    setNegativeTweets,
     socket,
-    setSocket
+    setSocket,
+    getPositiveTweets,
   } = useContext(tweetContext)
 
   const {
@@ -36,6 +43,16 @@ export default function App() {
     console.log("before tweets length ", tweets.length);
     console.log(tweet.text);
     setTweets((prevTweets) => [tweet, ...prevTweets]);
+    if (tweet.sentiment.score > 0) {
+      console.log('positive tweets', tweet)
+      setPositiveTweets((prevPositiveTweets) => [tweet, ...prevPositiveTweets]);
+    } else if (tweet.sentiment.score < 0) {
+      console.log('negative tweets', tweet)
+      setNegativeTweets((prevNegativeTweets) => [tweet, ...prevNegativeTweets]);
+    } else {
+      console.log('neutral tweets', tweet)
+      setNeutralTweets((prevNeutralTweets) => [tweet, ...prevNeutralTweets]);
+    }
     console.log("New tweets length ", tweets.length);
   }
 
@@ -65,6 +82,9 @@ export default function App() {
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           tweets={tweets}
+          positiveTweets={positiveTweets}
+          negativeTweets={negativeTweets}
+          neutralTweets={neutralTweets}
         />
       </div>
 
