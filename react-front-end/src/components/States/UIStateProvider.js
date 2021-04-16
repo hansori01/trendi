@@ -60,7 +60,7 @@ export default function UIStateProvider(props) {
       currentTrend: trend
     }));
     console.log('activate trendi', uiState)
-    // activateContainer();
+    activateContainer();
   }
 
   const uiData = {

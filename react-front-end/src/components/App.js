@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { uiContext } from './States/UIStateProvider';
 
+// import TweetStateProvider from './States/TweetStateProvider';
 import LeftData from './LeftDatas/LeftData';
 import RightTweets from './RightTweets/RightTweets';
 import Header from './Header/Header';
@@ -56,66 +57,65 @@ export default function App() {
 
   return (
     <div className="App">
+      {/* <TweetStateProvider> */}
+        <Header />
+        <div className="map">
+          <ReactMap
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `100vh` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
+          />
+        </div>
 
-      <Header />
-      <div className="map">
-        <ReactMap
-          // activateContainer={ui.activateContainer}
-          // deactivateContainer={ui.deactivateContainer}
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100vh` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
-      </div>
-
-      {!uiState.left &&
-        (<Fab className='data-icon'
-          onClick={toggleLeft}
-          disabled={uiState.disabled}>
-          <EqualizerOutlinedIcon className='icon' />
-        </Fab>)
-      }
-      {uiState.left &&
-        (<Fab
-          className='data-icon'
-          onClick={toggleLeft}>
-          <PlayCircleOutlineIcon className='icon rotate' />
-        </Fab>)
-      }
-      <Animated
-        animationInDuration={500}
-        animationOutDuration={500}
-        isVisible={uiState.left}
-      >
-        <LeftData />
-      </Animated>
-
-      {!uiState.right &&
-        (<Fab
-          className='tweet-icon'
-          onClick={toggleRight}
-          disabled={uiState.disabled}
+        {!uiState.left &&
+          (<Fab className='data-icon'
+            onClick={toggleLeft}
+            disabled={uiState.disabled}>
+            <EqualizerOutlinedIcon className='icon' />
+          </Fab>)
+        }
+        {uiState.left &&
+          (<Fab
+            className='data-icon'
+            onClick={toggleLeft}>
+            <PlayCircleOutlineIcon className='icon rotate' />
+          </Fab>)
+        }
+        <Animated
+          animationInDuration={500}
+          animationOutDuration={500}
+          isVisible={uiState.left}
         >
-          <ChatOutlinedIcon className='icon' />
-        </Fab>)
-      }
-      {uiState.right &&
-        (<Fab
-          className='tweet-icon'
-          onClick={toggleRight}
-        >
-          <PlayCircleOutlineIcon className='icon rotate' />
-        </Fab>)
-      }
-      <Animated
-        animationInDuration={500}
-        animationOutDuration={500}
-        isVisible={uiState.right}
-      >
-        <RightTweets tweets={tweets} />
-      </Animated>
+          <LeftData />
+        </Animated>
 
+        {!uiState.right &&
+          (<Fab
+            className='tweet-icon'
+            onClick={toggleRight}
+            disabled={uiState.disabled}
+          >
+            <ChatOutlinedIcon className='icon' />
+          </Fab>)
+        }
+        {uiState.right &&
+          (<Fab
+            className='tweet-icon'
+            onClick={toggleRight}
+          >
+            <PlayCircleOutlineIcon className='icon rotate' />
+          </Fab>)
+        }
+        <Animated
+          animationInDuration={500}
+          animationOutDuration={500}
+          isVisible={uiState.right}
+        >
+          {/* <RightTweets /> */}
+          <RightTweets tweets={tweets} />
+        </Animated>
+      {/* </TweetStateProvider> */}
     </div>
   );
 }

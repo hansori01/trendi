@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+// import {tweetContext} from '../States/TweetStateProvider'
 import { GoogleMap, OverlayView, HeatmapLayer } from "react-google-maps";
-import './Map.scss';
-import './mapStyle';
 import Header from '../Header/Header';
 import withGoogleMap from "react-google-maps/lib/withGoogleMap";
 import withScriptjs from "react-google-maps/lib/withScriptjs";
-import mapStyle from "./mapStyle";
+import './Map.scss';
+import './mapStyle';
+
 require('dotenv').config()
+
+// const {} = useContext(tweetContext)
 
 const ReactMap = withScriptjs(withGoogleMap((props) =>
 
-<div className="map">
-<GoogleMap
+  <GoogleMap
     defaultOptions={{
       styles: mapStyle,
       disableDefaultUI: true,
@@ -21,7 +23,6 @@ const ReactMap = withScriptjs(withGoogleMap((props) =>
     clickableIcons={false}
   >
   </GoogleMap>
-</div>
 
 ));
 
