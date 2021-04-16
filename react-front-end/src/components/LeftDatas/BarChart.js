@@ -11,18 +11,27 @@ export default function SentiBarChart() {
   tweets.map(e => console.log('incoming score! =>', e.sentiment.score));
   
   const [tweetScores, setTweetScores] = useState({
-    a: 1,
-    b: 0,
-    c: 0,
-    d: 0,
-    e: 0,
-    f: 0,
-    g: 1
+    veryNeg: 1,
+    neg: 0,
+    slightNeg: 0,
+    neutral: 0,
+    slightPos: 0,
+    pos: 0,
+    veryPos: 1
   })
 
-  useEffect((tweets) => {
+  // access previous state scores
+  // spread then increment values depending on sentiment
+  useEffect(() => {
 
-    setTweetScores(prevScores => ({...prevScores, score: +1}))
+    setTweetScores(prevScores => {
+      
+      const prevNeutral = prevScores.neutral;
+      
+      return(
+        {...prevScores, neutral: prevNeutral + 1}
+      )
+    })
   }, [tweets])
 
   const barData = [
