@@ -1,4 +1,4 @@
-[ { created_at: 'Mon Apr 12 16:16:06 +0000 2021',
+module.exports = [ { created_at: 'Mon Apr 12 16:16:06 +0000 2021',
     id: 1381642290993754000,
     text:
      '@morgfair In 1980\'s a 16 year accused Sylvester Stallone of forcing her into a threesome with him and his body gaur… https://t.co/Uyt6i0TsOe',
@@ -1357,7 +1357,7 @@
        id_str: '1333696277775675392',
        name: 'Weldon McGill 😷',
        screen_name: 'weldonmcgill',
-       location: 'Portland, OR 🇺🇸',
+       location: 'Portland, OR',
        url: null,
        description:
         '⚾🚮Houston Astros fan 1969 - 2019.\n\n\n                        \n\nInstagram: weldonmcgill\n\nTikTok: weldonmcgill\n\n#VIVABETO  #CancelTheGOP',

@@ -45,15 +45,13 @@ export default function App() {
     socket.on('tweet', async (tweet) => {
       console.log("Inside Asynce useEffect2");
       console.log("Tweet length from useEffect2", tweets.length);
-      setTweetPositions([tweet.user_location_coords, ...tweetPositions]);
       await appendTweets(tweet)
     })
     return () => {
       console.log('Disconnecting from socket');
-      socket.disconnect()
+      socket.disconnect();
     };
   }, []);
-
 
   return (
     <div className="App">
@@ -61,10 +59,11 @@ export default function App() {
         <Header />
         <div className="map">
           <ReactMap
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places,visualization`}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `100vh` }} />}
             mapElement={<div style={{ height: `100%` }} />}
+            tweets={tweets}
           />
         </div>
 

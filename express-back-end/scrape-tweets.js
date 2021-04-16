@@ -5,6 +5,7 @@ const _ = require('lodash');
 const { identity } = require('lodash');
 const fs = require('fs');
 const util = require('util');
+const { getLatLngFromLocation } = require('./google-maps-search')
 require('dotenv').config()
 
 const T = new Twit({
@@ -32,6 +33,7 @@ const pushToTweetsData = function(tweet) {
           coordinates: tweet.coordinates,
           extended_tweet: tweet.extended_tweet.full_text,
           place: tweet.place,
+          user_location_coords: tweet.user_location_coords,
           sentiment: {
             score: sentimentResult.score,
             positive: util.inspect(sentimentResult.positive),
@@ -50,6 +52,7 @@ const pushToTweetsData = function(tweet) {
           coordinates: tweet.coordinates,
           extended_tweet: null,
           place: tweet.place,
+          user_location_coords: tweet.user_location_coords,
           sentiment: {
             score: sentimentResult.score,
             positive: util.inspect(sentimentResult.positive),
@@ -58,7 +61,6 @@ const pushToTweetsData = function(tweet) {
         }
         tweetsData.push(tweetData);
       }
-      console.log(tweet);
       console.log("Match Count", tweetCount);
       tweetCount++;
       
@@ -73,27 +75,34 @@ const streamCanadaBorderBox = function(searchWord) {
 
   const stream = T.stream('statuses/filter', {
     track: searchWord,
-    // locations: canada,
     language: 'en'
   });
 
   let count = 0;
   stream.on('tweet', async tweet => {
     if (tweet.text.match(regex)) {
-      pushToTweetsData(tweet);
+      getLatLngFromLocation(tweet.user.location).then((location) => {
+        tweet['user_location_coords'] = location
+        pushToTweetsData(tweet);
+      })
     } else {
       try {
         if (tweet.extended_tweet.full_text.match(regex)) {
-          pushToTweetsData(tweet);
+          const regex = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
+          const user_location = tweet.user.location.replace(regex, '')
+          getLatLngFromLocation(user_location).then((location) => {
+            tweet['user_location_coords'] = location
+            pushToTweetsData(tweet);
+          })
         }
       } catch (error) {
         console.log('No extended tweet');
       }   
     }
 
-    if (tweetsData.length === 50) {
+    if (tweetsData.length === 25) {
       const data = util.inspect(tweetsData)
-      fs.writeFile('./seedData.js', data, function(err, result) {
+      fs.writeFile('./seedData-location-added.js', data, function(err, result) {
         if(err) console.log('error', err);
         stream.stop()
         console.log('Finished writing')
@@ -172,7 +181,8 @@ const runSingleQuery = function(hashtag) {
 }
 
 
-runSingleQuery('NDPConvention2021');
+// runSingleQuery('NDPConvention2021');
+streamCanadaBorderBox('#DogecoinToTheMoon')
 // streamCanadaBorderBox('#NDPConvention2021');
 // streamUSBorderBox('Stallone');
 

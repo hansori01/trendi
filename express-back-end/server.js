@@ -4,6 +4,7 @@ const BodyParser = require('body-parser');
 const PORT = 8080;
 const cors = require('cors')
 const { streamCanadaBorderBox, getCurrentCanadaTrends, getCurrentUSATrends } = require('./queries');
+const Sentiment = require('sentiment');
 
 const http = require("http");
 const socketIo = require("socket.io");
@@ -16,7 +17,7 @@ app.use(BodyParser.json());
 app.use(express.static('public'));
 app.use(cors())
 
-
+const sentiment = new Sentiment();
 const server = http.createServer(app);
 const io = socketIo(server,
   {
@@ -37,10 +38,12 @@ io.on('connection', (socket) => {
     tweetStream = streamCanadaBorderBox(hashtag);
     tweetStream.on('tweet', async tweet => {
       console.log('Streaming')
-      console.log(tweet.user);
+      console.log(tweet);
       if(tweet.text.match(regex)){
         getLatLngFromLocation(tweet.user.location).then((location) => {
           console.log(location)
+          tweet['sentiment'] = sentiment.analyze(tweet.text)
+          console.log(tweet.sentiment)
           tweet['user_location_coords'] = location
           io.emit('tweet', tweet)
         })
@@ -50,6 +53,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
     tweetStream.stop()
+    console.log('the tweetStream has stopped');
   });
 })
 
