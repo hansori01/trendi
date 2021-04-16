@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from "react";
+// import {tweetContext} from '../States/TweetStateProvider'
 
 import words from './tempWords';
-
-import './LeftData.scss';
 import Wordcloud from './Wordcloud';
 import SentiBarChart from './BarChart';
 import SentiPieChart from './PieChart';
 
+import './LeftData.scss';
+
 export default function LeftData() {
+  
+  // const {} = useContext(tweetContext)
 
   return (
     <section className="leftData">

@@ -1,6 +1,7 @@
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 import React from 'react';
 
+//TODO - i think we can still send tweets down as props from RightTweets
 
 export default function Tweets(props) {
 

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from "react";
+// import {tweetContext} from '../States/TweetStateProvider'
+
 import { BarChart, XAxis, Bar } from 'recharts';
 
 
@@ -21,6 +23,8 @@ const data = [
 ]
 
 export default function SentiBarChart() {
+  // const {} = useContext(tweetContext)
+  
   return (
     <BarChart
       width={420}

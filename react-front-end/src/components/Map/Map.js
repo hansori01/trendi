@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+// import {tweetContext} from '../States/TweetStateProvider'
 import { GoogleMap, OverlayView } from "react-google-maps";
 import HeatmapLayer from 'react-google-maps/lib/components/visualization/HeatmapLayer';
 import './Map.scss';
@@ -7,7 +8,8 @@ import Header from '../Header/Header';
 import withGoogleMap from "react-google-maps/lib/withGoogleMap";
 import withScriptjs from "react-google-maps/lib/withScriptjs";
 import mapStyle from "./mapStyle";
-/*global google*/
+// const {} = useContext(tweetContext)
+/* global google */
 require('dotenv').config()
 
 
@@ -46,11 +48,9 @@ const positive = [
   'rgba(29,233,182,0.9)',
 ]
 
-
 const ReactMap = withScriptjs(withGoogleMap((props) =>
 
-<div className="map">
-<GoogleMap
+  <GoogleMap
     defaultOptions={{
       styles: mapStyle,
       disableDefaultUI: true,
@@ -79,7 +79,6 @@ const ReactMap = withScriptjs(withGoogleMap((props) =>
     />
     
   </GoogleMap>
-</div>
 
 ));
 

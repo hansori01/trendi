@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from "react";
+// import {tweetContext} from '../States/TweetStateProvider'
 
 import Tweets from './Tweets'
 // import tempProps from './tempTweets'

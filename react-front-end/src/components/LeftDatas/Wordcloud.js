@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from "react";
+// import {tweetContext} from '../States/TweetStateProvider'
+
 import ReactWordcloud from 'react-wordcloud';
 import './LeftData.scss';
 
@@ -10,13 +12,15 @@ const options = {
   rotations: 2,
   rotationAngles: [0, 90],
   fontFamily: 'UniNeue'
-
+  
 };
 const size = [380, 400];
 
 
 export default function Wordcloud(props) {
-
+  
+  // const {} = useContext(tweetContext)
+  
   return (
     <ReactWordcloud
       callbacks={callbacks}

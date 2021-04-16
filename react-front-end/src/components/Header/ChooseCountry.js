@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { uiContext } from '../States/UIStateProvider'
 import HoverImage from "react-hover-image";
 
 
 export default function ChooseCountry(props) {
+
+  const {
+    toggleChooseCanada,
+    toggleChooseUsa,
+  } = useContext(uiContext);
 
   return (
     <>
@@ -14,13 +20,13 @@ export default function ChooseCountry(props) {
           src="./images/canada.png"
           hoverSrc="./images/canadahover.png"
           className="canada"
-          onClick={props.chooseCanada}
-          />
+          onClick={toggleChooseCanada}
+        />
         <HoverImage
           src="./images/usa.png"
           hoverSrc="./images/usahover.png"
           className="usa"
-          onClick={props.chooseUsa}
+          onClick={toggleChooseUsa}
         />
       </div>
     </>
