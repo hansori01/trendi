@@ -82,9 +82,6 @@ export default function App() {
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           tweets={tweets}
-          positiveTweets={positiveTweets}
-          negativeTweets={negativeTweets}
-          neutralTweets={neutralTweets}
         />
       </div>
 
