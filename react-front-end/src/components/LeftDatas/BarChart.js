@@ -8,7 +8,7 @@ import './LeftData.scss';
 export default function SentiBarChart() {
   const { tweets } = useContext(tweetContext)
 
-  tweets.map(e => console.log('incoming socre! =>', e.sentiment.score));
+  // tweets.map(e => console.log('incoming socre! =>', e.sentiment.score));
   
   const tweetScores = [
     //negative numbers are 11-15 because im lazy rn
@@ -20,6 +20,8 @@ export default function SentiBarChart() {
     { name: "2", 0: 0 },
     { name: "3", 0: 0 },
   ]
+
+  tweetScores[3][0] = tweets[0].sentiment.score;
 
   return (
     <BarChart
