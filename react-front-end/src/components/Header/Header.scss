@@ -23,7 +23,7 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start; //default is stretch - this is why safari elements were stretched and ugly 🥲
+    align-items: center; //default is stretch - this is why safari elements were stretched and ugly 🥲
     .logo {
       display: flex;
       min-width: 120px;
@@ -35,15 +35,19 @@ nav {
       display: flex;
       align-items: center;
       opacity: 1;
+
       .MuiIconButton-root {
       color: $white-opacity;
       }
+
       .activated-start {
         color: $accent;
       }
+
       .activated-pause {
         color: $error-color;
       }
+
       .activated-stop {
         color: $accent-red;
       }
@@ -97,6 +101,7 @@ nav {
   }
 
   .searchIcon {
+    margin-right: 0.2vw;
     width: 30px;
     height:30px;
   }

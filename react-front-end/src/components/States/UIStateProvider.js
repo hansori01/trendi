@@ -6,9 +6,9 @@ export default function UIStateProvider(props) {
     left: false,//is container open or closed
     right: false,
     disableContainer: true, //disable FAB icons and side containers when header is expanded
-    disableStart: false,
-    disablePause: false,
-    disableStop: false,
+    disableStart: true,
+    disablePause: true,
+    disableStop: true,
     chooseCountry: true,
     showTrends: false,
     currentCountry: '',
@@ -60,7 +60,14 @@ export default function UIStateProvider(props) {
   }
 
 const handleSearch = e => {
-  setUIState(prev => ({...prev, currentTrend: e.target.value}))
+  
+  if (e.target.value.length === 0) {
+    setUIState(prev => ({...prev, disableStart: true, disableStop: true}))
+  };
+  if (e.target.value.length > 0) {
+    setUIState(prev => ({...prev, disableStart: false, disableStop: false}))
+  };
+  setUIState(prev => ({...prev, currentTrend: e.target.value}));
 }
 
 const updateCurrentTrend = trend => {

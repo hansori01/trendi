@@ -15,6 +15,7 @@ import './Header.scss';
 
 const CssTextField = withStyles({
   root: {
+    width:'20vw',
     '& input': {
       color: '#ffffffe3',
     },
@@ -67,11 +68,12 @@ export default function Header() {
 
         <span className='controller' >
           <img src='./images/icon.png' className='searchIcon' alt='' />
+          
           <form className={classes.root} noValidate>
             <CssTextField
               className={classes.margin}
-              label=" Search"
-              value={uiState.currentTrends}
+              label="Trendi Search"
+              value={uiState.currentTrend}
               onChange={handleSearch}
               variant="outlined"
               InputLabelProps={{ style: { color: '#ffffffb4' } }}
@@ -79,23 +81,20 @@ export default function Header() {
               id="custom-css-outlined-input"
             />
           </form>
+
           <IconButton
-            // className="button start"
             className={!uiState.disableStart && 'activated-start'}
-            disabled={uiState.disableStart}
-            color="white"
-          >
+            disabled={uiState.disableStart}>
             <PlayCircleOutlineIcon />
           </IconButton>
           <IconButton
             className={!uiState.disablePause && 'activated-pause'}
-            disabled={uiState.disablePause}
-          >
+            disabled={uiState.disablePause}>
             <PauseCircleOutlineIcon />
           </IconButton>
           <IconButton
             className={!uiState.disableStop && 'activated-stop'}
-          >
+            disabled={uiState.disableStart}>
             <HighlightOffIcon />
           </IconButton>
         </span>
