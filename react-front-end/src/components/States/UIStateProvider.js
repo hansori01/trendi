@@ -59,6 +59,10 @@ export default function UIStateProvider(props) {
     deactivateContainer()
   }
 
+const handleSearch = e => {
+  setUIState(prev => ({...prev, currentTrend: e.target.value}))
+}
+
   const activateTrendi = (trend) => {
     console.log('activate trendi', uiState)
     setUIState(prev => ({
@@ -80,6 +84,7 @@ export default function UIStateProvider(props) {
     toggleChooseCanada,
     toggleChooseUsa,
     onBackHandler,
+    handleSearch,
     activateTrendi
   };
 

@@ -1,13 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { uiContext } from '../States/UIStateProvider'
 
-import {
-  // fade,
-  // ThemeProvider,
-  withStyles,
-  makeStyles,
-  // createMuiTheme,
-} from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import HoverImage from "react-hover-image";
 import Button from '@material-ui/core/Button'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
@@ -22,6 +16,9 @@ import './Header.scss';
 
 const CssTextField = withStyles({
   root: {
+    '& input': {
+      color: '#ffffffe3',
+    },
     '& label.Mui-focused': {
       color: '#ffffffe3',
     },
@@ -56,8 +53,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
   const classes = useStyles();
 
-  const { uiState } = useContext(uiContext);
+  const {
+    uiState,
+    handleSearch
+  } = useContext(uiContext);
 
+  // const [value, setValue] = useState('')
 
   return (
     <nav>
@@ -68,21 +69,25 @@ export default function Header() {
           className="logo" />
 
         <span className='controller' >
-          <CssTextField
-            className={classes.margin}
-            label=" Search"
-            variant="outlined"
-            InputLabelProps={{
-              style: { color: '#ffffffb4' },
-            }}
-            size="small"
-          // id="custom-css-outlined-input"
-          />
-
+          <form className={classes.root} noValidate>
+            <CssTextField
+              className={classes.margin}
+              label=" Search"
+              value={uiState.currentTrends}
+              // onChange={e => setValue(e.target.value)}
+              onChange={handleSearch}
+              variant="outlined"
+              InputLabelProps={{
+                style: { color: '#ffffffb4' },
+              }}
+              size="small"
+              id="custom-css-outlined-input"
+            />
+          </form>
           <Button
             className="button start"
             disabled={uiState.disableStart}
-            
+
           >
             <PlayCircleOutlineIcon />
           </Button>
