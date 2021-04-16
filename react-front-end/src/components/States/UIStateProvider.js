@@ -5,12 +5,20 @@ export default function UIStateProvider(props) {
   const [uiState, setUIState] = useState({
     left: false,//is container open or closed
     right: false,
-    disabled: true, //disable FAB icons and side containers when header is expanded
+    disableContainer: true, //disable FAB icons and side containers when header is expanded
+    disableStart: true,
+    disablePause: true,
+    disableStop: true,
     chooseCountry: true,
     showTrends: false,
     currentCountry: '',
     currentTrend: '',
   });
+
+  // const [trendState, setTrendState] = useState({
+  //   currentTrend: '',
+
+  // })
 
   const toggleLeft = () => {
     setUIState(prev => ({ ...prev, left: !uiState.left }))
@@ -19,10 +27,10 @@ export default function UIStateProvider(props) {
     setUIState(prev => ({ ...prev, right: !uiState.right }))
   };
   const activateContainer = () => {
-    setUIState(prev => ({ ...prev, disabled: false }))
+    setUIState(prev => ({ ...prev, disableContainer: false }))
   };
   const deactivateContainer = () => {
-    setUIState(prev => ({ ...prev, disabled: true }))
+    setUIState(prev => ({ ...prev, disableContainer: true }))
   };
 
   const toggleChooseCanada = () => {
