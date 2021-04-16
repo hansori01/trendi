@@ -4,11 +4,14 @@ import './index.scss';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import UIStateProvider from './components/States/UIStateProvider'
+import TweetStateProvider from './components/States/TweetStateProvider'
 
 ReactDOM.render(
   <React.StrictMode>
     <UIStateProvider>
-      <App />
+      <TweetStateProvider>
+        <App />
+      </TweetStateProvider>
     </UIStateProvider>
   </React.StrictMode>,
   document.getElementById('root')

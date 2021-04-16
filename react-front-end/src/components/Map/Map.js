@@ -8,7 +8,7 @@ import Header from '../Header/Header';
 import withGoogleMap from "react-google-maps/lib/withGoogleMap";
 import withScriptjs from "react-google-maps/lib/withScriptjs";
 import mapStyle from "./mapStyle";
-// const {} = useContext(tweetContext)
+
 /* global google */
 require('dotenv').config()
 
@@ -49,6 +49,8 @@ const positive = [
 ]
 
 const ReactMap = withScriptjs(withGoogleMap((props) =>
+
+// const {} = useContext(tweetContext)
 
   <GoogleMap
     defaultOptions={{
