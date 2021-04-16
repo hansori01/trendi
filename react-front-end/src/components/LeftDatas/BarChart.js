@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-// import {tweetContext} from '../States/TweetStateProvider'
+import {tweetContext} from '../States/TweetStateProvider'
 
 import { BarChart, XAxis, Bar } from 'recharts';
 
@@ -9,17 +9,19 @@ import './LeftData.scss';
 
 const data = [
   //negative numbers are 11-15 because im lazy rn
-  { name: "3-", 0: 11 },
+  { name: "3-", 0: 5 },
   { name: "2-", 0: 14 },
   { name: "1-", 0: 22 },
   { name: "0", 0: 12 },
   { name: "1", 0: 12 },
   { name: "2", 0: 20 },
-  { name: "3", 0: 32 },
+  { name: "3", 0: 5 },
 ]
 
 export default function SentiBarChart() {
-  // const {} = useContext(tweetContext)
+  const { tweets } = useContext(tweetContext)
+
+  console.log(tweets[0].sentiment.score);
   
   return (
     <BarChart
@@ -35,17 +37,17 @@ export default function SentiBarChart() {
       className="barChart"
     >
 
-      <Bar dataKey={5} fill="#1DE9B6" barSize={20}/>
-      {/* <Bar dataKey={4} fill="#1ad6a7" /> */}
-      <Bar dataKey={3} fill="#1c9fc7" barSize={20}/>
+      <Bar dataKey={0} fill="#FFA500" barSize={20}/>
+      {/* <Bar dataKey={4} fill="#1ad6a7" />
+      <Bar dataKey={3} fill="#1c9fc7" barSize={20}/> */}
       {/* <Bar dataKey={2} fill="#128f70" /> */}
-      <Bar dataKey={1} fill="#4687db" barSize={20}/>
-      <Bar dataKey={0} fill="#697471" barSize={20}/>
+      {/* <Bar dataKey={1} fill="#4687db" barSize={20}/> */}
+      {/* <Bar dataKey={0} fill="#697471" barSize={20}/> */}
       {/* <Bar dataKey={11} fill="#BA3B61" /> */}
-      <Bar dataKey={12} fill="#BA3B61" barSize={20}/>
+      {/* <Bar dataKey={12} fill="#BA3B61" barSize={20}/> */}
       {/* <Bar dataKey={13} fill="#ec336b" /> */}
-      <Bar dataKey={14} fill="#fa044e" barSize={20}/>
-      <Bar dataKey={15} fill="#911030" barSize={20}/>
+      {/* <Bar dataKey={14} fill="#fa044e" barSize={20}/> */}
+      {/* <Bar dataKey={15} fill="#911030" barSize={20}/> */}
       <XAxis dataKey="name" />
 
     </BarChart>
