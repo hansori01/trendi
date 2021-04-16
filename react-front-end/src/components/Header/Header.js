@@ -12,7 +12,6 @@ import TextField from '@material-ui/core/TextField';
 import ChooseCountry from './ChooseCountry';
 import TrendingHash from './TrendingHash';
 import './Header.scss';
-// import { Animated } from "react-animated-css";
 
 const CssTextField = withStyles({
   root: {
@@ -58,8 +57,6 @@ export default function Header() {
     handleSearch
   } = useContext(uiContext);
 
-  // const [value, setValue] = useState('')
-
   return (
     <nav>
       <div className='headerParent'>
@@ -69,12 +66,12 @@ export default function Header() {
           className="logo" />
 
         <span className='controller' >
+          <img src='./images/icon.png' className='icon' alt=''/>
           <form className={classes.root} noValidate>
             <CssTextField
               className={classes.margin}
               label=" Search"
               value={uiState.currentTrends}
-              // onChange={e => setValue(e.target.value)}
               onChange={handleSearch}
               variant="outlined"
               InputLabelProps={{
