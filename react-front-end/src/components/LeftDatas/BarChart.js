@@ -8,7 +8,7 @@ import './LeftData.scss';
 export default function SentiBarChart() {
   const { tweets } = useContext(tweetContext)
 
-  tweets.map(e => console.log('incoming score! =>', e.sentiment.score));
+  
   
   const [tweetScores, setTweetScores] = useState({
     veryNeg: 1,
@@ -25,13 +25,28 @@ export default function SentiBarChart() {
   useEffect(() => {
 
     setTweetScores(prevScores => {
-      
-      // prev neutral state
-      const prevNeutral = prevScores.neutral;
-      const prevVeryPos = prevScores.veryPos;
+      const newData = {
+        ...prevScores
+      };
+      console.log('these are the tweets for the scores below!', tweets)
+      tweets.map(e => console.log('incoming score! =>', e.sentiment.score));
+
+      // prev sentiment score states
+      const prevVeryNeg = prevScores.veryNeg // 3-
+      const prevNeg = prevScores.neg // 2-
+      const prevSlightNeg = prevScores.slightNeg // 1-
+      const prevNeutral = prevScores.neutral; // 0
+      const prevSlightPos = prevScores.slightPos // 1
+      const prevPos = prevScores.pos // 2
+      const prevVeryPos = prevScores.veryPos; // 3
       
       return(
-        {...prevScores, neutral: prevNeutral + 1, veryPos: prevVeryPos +  1}
+        {
+          ...prevScores,
+          neutral: prevNeutral + 1, 
+          veryPos: prevVeryPos +  1
+        }
+        // newData; this will contain the prevScores and any new updated data
       )
     })
   }, [tweets])
