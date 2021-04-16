@@ -3,7 +3,7 @@ import { uiContext } from '../States/UIStateProvider'
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import HoverImage from "react-hover-image";
-import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -66,7 +66,7 @@ export default function Header() {
           className="logo" />
 
         <span className='controller' >
-          <img src='./images/icon.png' className='icon' alt=''/>
+          <img src='./images/icon.png' className='searchIcon' alt='' />
           <form className={classes.root} noValidate>
             <CssTextField
               className={classes.margin}
@@ -74,32 +74,30 @@ export default function Header() {
               value={uiState.currentTrends}
               onChange={handleSearch}
               variant="outlined"
-              InputLabelProps={{
-                style: { color: '#ffffffb4' },
-              }}
+              InputLabelProps={{ style: { color: '#ffffffb4' } }}
               size="small"
               id="custom-css-outlined-input"
             />
           </form>
-          <Button
-            className="button start"
+          <IconButton
+            // className="button start"
+            className={!uiState.disableStart && 'activated-start'}
             disabled={uiState.disableStart}
-
+            color="white"
           >
             <PlayCircleOutlineIcon />
-          </Button>
-          <Button
-            className="button pause"
-            disabled={uiState.disableStart}
+          </IconButton>
+          <IconButton
+            className={!uiState.disablePause && 'activated-pause'}
+            disabled={uiState.disablePause}
           >
             <PauseCircleOutlineIcon />
-          </Button>
-          <Button
-            className="button stop"
-            disabled={uiState.disableStart}
+          </IconButton>
+          <IconButton
+            className={!uiState.disableStop && 'activated-stop'}
           >
             <HighlightOffIcon />
-          </Button>
+          </IconButton>
         </span>
 
         <img

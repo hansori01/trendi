@@ -6,9 +6,9 @@ export default function UIStateProvider(props) {
     left: false,//is container open or closed
     right: false,
     disableContainer: true, //disable FAB icons and side containers when header is expanded
-    disableStart: true,
-    disablePause: true,
-    disableStop: true,
+    disableStart: false,
+    disablePause: false,
+    disableStop: false,
     chooseCountry: true,
     showTrends: false,
     currentCountry: '',
@@ -63,13 +63,19 @@ const handleSearch = e => {
   setUIState(prev => ({...prev, currentTrend: e.target.value}))
 }
 
-  const activateTrendi = (trend) => {
-    console.log('activate trendi', uiState)
+const updateCurrentTrend = trend => {
+  setUIState(prev => ({
+    ...prev,
+    currentTrend: trend
+  }));
+}
+  const activateTrendi = () => {
+    // console.log('activate trendi', uiState)
     setUIState(prev => ({
       ...prev,
       chooseCountry: false,
       showTrends: false,
-      currentTrend: trend
+      // currentTrend: trend
     }));
     console.log('activate trendi', uiState)
     activateContainer();
@@ -85,6 +91,7 @@ const handleSearch = e => {
     toggleChooseUsa,
     onBackHandler,
     handleSearch,
+    updateCurrentTrend,
     activateTrendi
   };
 

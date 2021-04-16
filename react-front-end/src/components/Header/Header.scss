@@ -19,14 +19,6 @@ nav {
   border-radius: 55px;
   z-index: 1;
 
-    .controller {
-      display: flex;
-      
-      .button{
-        color: $white-active;
-      }
-  }
-
   .headerParent {
     display: flex;
     flex-direction: row;
@@ -37,6 +29,24 @@ nav {
       min-width: 120px;
       max-width: 140px;
       margin-left: 1.2vw;
+    }
+
+    .controller {
+      display: flex;
+      align-items: center;
+      opacity: 1;
+      .MuiIconButton-root {
+      color: $white-opacity;
+      }
+      .activated-start {
+        color: $accent;
+      }
+      .activated-pause {
+        color: $error-color;
+      }
+      .activated-stop {
+        color: $accent-red;
+      }
     }
 
     .userAvatar {
@@ -84,6 +94,11 @@ nav {
 
   .chooseHashtags {
     color: $white;
+  }
+
+  .searchIcon {
+    width: 30px;
+    height:30px;
   }
 
   .backButton {
