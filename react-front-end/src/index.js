@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import UIStateProvider from './components/States/UIStateProvider'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UIStateProvider>
+      <App />
+    </UIStateProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
