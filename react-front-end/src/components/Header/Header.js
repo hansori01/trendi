@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { uiContext } from '../States/UIStateProvider'
-// import UIStateProvider from '..'
-import ChooseCountry from './ChooseCountry';
-import TrendingHash from './TrendingHash';
+
 import HoverImage from "react-hover-image";
-import { Animated } from "react-animated-css";
 
 import './Header.scss';
+import ChooseCountry from './ChooseCountry';
+import TrendingHash from './TrendingHash';
+import { Animated } from "react-animated-css";
+
 
 export default function Header(props) {
 
@@ -16,7 +17,6 @@ export default function Header(props) {
   //TODO on picking a chip, showTrends / chooseCountry = false
   //TODO Show currentTrend on the Header bar when shrunk
   //TODO back button in showTrends
-
 
   return (
     <nav>

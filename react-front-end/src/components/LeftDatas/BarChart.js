@@ -6,8 +6,6 @@ import { BarChart, XAxis, Bar } from 'recharts';
 
 import './LeftData.scss';
 
-//TODO store const data into useState
-//TODO feed real-time data to example...[1:{dataStream}]
 
 const data = [
   //negative numbers are 11-15 because im lazy rn

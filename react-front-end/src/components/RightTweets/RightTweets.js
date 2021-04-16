@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 // import {tweetContext} from '../States/TweetStateProvider'
 
 import Tweets from './Tweets'
+// import tempProps from './tempTweets'
 import './RightTweets.scss';
 
 export default function RightTweets(props) {
-  
-  // const {} = useContext(tweetContext)
+  // const loadTweets = tempProps.map((tweet, i) =>
   const loadTweets = props.tweets.map((tweet, i) =>
     <Tweets
       key={i}

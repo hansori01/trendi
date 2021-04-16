@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 // import {tweetContext} from '../States/TweetStateProvider'
 
-//TODO replace tempWords with useState of words that come in during stream
 import words from './tempWords';
 import Wordcloud from './Wordcloud';
 import SentiBarChart from './BarChart';
-import SentiPieChart from './SentiPieChart';
+import SentiPieChart from './PieChart';
 
 import './LeftData.scss';
 
