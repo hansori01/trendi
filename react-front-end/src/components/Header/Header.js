@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { uiContext } from '../States/UIStateProvider'
+import { tweetContext } from '../States/TweetStateProvider'
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton'
@@ -59,14 +60,30 @@ export default function Header() {
     activateTrendi
   } = useContext(uiContext);
 
+  const {
+    socket
+  } = useContext(tweetContext);
+
+  //new socket logic when clicking on start, or pressing enter
+  const startStream = (event) => {
+    // console.log('click handler strat stream', uiState.currentTrend)
+    activateTrendi(event);
+    socket.emit('start', uiState.currentTrend);
+  }
+
+  const pauseStream = () => {
+    socket.emit('stop');
+  }
+
+
   return (
     <nav>
       <div className='headerParent'>
         {!uiState.trendiActivated && (
-        <img src='./images/logo.png' alt='' className='logo' />
+          <img src='./images/logo.png' alt='' className='logo' />
         )}
         {uiState.trendiActivated && (
-        <img src='./images/logoactivated.png' alt='' className='logo' />
+          <img src='./images/logoactivated.png' alt='' className='logo' />
         )}
 
         <span className='controller' >
@@ -86,7 +103,7 @@ export default function Header() {
                   InputLabelProps={{ style: { color: '#ffffffb4' } }}
                   size="small"
                   id="custom-css-outlined-input"
-                  onSubmit={activateTrendi}
+                  onSubmit={e=>startStream(e)}
                 />
               </form>
 
@@ -100,12 +117,13 @@ export default function Header() {
               <IconButton
                 className={!uiState.disableStart && 'activated-start'}
                 disabled={uiState.disableStart}
-                onClick={activateTrendi}>
+                onClick={startStream}>
                 <PlayCircleOutlineIcon className='controllerIcon' />
               </IconButton>
               <IconButton
                 className={!uiState.disablePause && 'activated-pause'}
-                disabled={uiState.disablePause}>
+                disabled={uiState.disablePause}
+                onClick={pauseStream}>
                 <PauseCircleOutlineIcon className='controllerIcon' />
               </IconButton>
               <IconButton

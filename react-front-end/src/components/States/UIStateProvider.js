@@ -88,8 +88,9 @@ export default function UIStateProvider(props) {
   };
 
   const activateTrendi = (event) => {
-    event.preventDefault();
-
+    // if (event) {
+      event.preventDefault();
+    // }
     if (uiState.currentTrend === '') {
       console.log('dont do that')
       return;
