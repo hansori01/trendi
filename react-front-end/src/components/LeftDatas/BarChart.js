@@ -34,11 +34,11 @@ export default function SentiBarChart() {
         if ((sentiScore > -1 && sentiScore < 1) || sentiScore === 0) {
           newData.neutral = prevScores.neutral + 1;         //  0
         } else if (sentiScore >= 1 && sentiScore < 2) {
-          newData.slightPos = prevScores.slightPos + 1;     //  3
+          newData.slightPos = prevScores.slightPos + 1;     //  1
         } else if (sentiScore >= 2 && sentiScore < 3) {
           newData.pos = prevScores.pos + 1;                 //  2
         } else if (sentiScore >= 3) {
-          newData.veryPos = prevScores.veryPos + 1;         //  1
+          newData.veryPos = prevScores.veryPos + 1;         //  3
         } else if (sentiScore <= -1 && sentiScore > -2) {
           newData.slightNeg = prevScores.slightNeg + 1;     // -1
         } else if (sentiScore <= -2 && sentiScore > -3) {
