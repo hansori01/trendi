@@ -26,9 +26,14 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase',
     opacity: .65,
     "&:hover": {
-      opacity: 1,
+      opacity: .8,
       borderColor: 'transparent',
       background: 'linear-gradient(145deg, #0B8692 20%, #00AD82 80%)'
+    },
+    "&:focus": {
+      borderColor: 'transparent',
+      background: 'linear-gradient(145deg, #0B8692 20%, #00AD82 80%)',
+      opacity: 1,
     }
   }
 }));
@@ -40,7 +45,7 @@ export default function TrendingHash(props) {
   const {
     uiState,
     onBackHandler,
-    activateTrendi,
+    updateCurrentTrend
   } = useContext(uiContext);
 
   const [trendingHashtags, setTrendingHashtags] = useState([]);
@@ -57,9 +62,10 @@ export default function TrendingHash(props) {
   
   const trendingList = trendingHashtags.map((hashtag, i) => {
 
-    const chooseHashtag = () =>{
-      console.log('running chooseHashtag', hashtag.name)
-      // activateTrendi(hashtag.name);
+
+    const clickHandler = () =>{
+      // console.log('running clickHandler', hashtag.name)
+      updateCurrentTrend(hashtag.name);
       // activateContainer();// get this to be working
       // console.log('log state in TrendingHash', uiState)
     }
@@ -71,7 +77,8 @@ export default function TrendingHash(props) {
         label={hashtag.name}
         key={i}
         className={classes.chip}
-        onClick={chooseHashtag}
+        onClick={clickHandler}
+        // id={hashtag.name}
       />
     )
   })

@@ -44,7 +44,6 @@ export default function App() {
       appendTweets(tweet)
     })
     return () => {
-      console.log('Disconnecting from socket');
       socket.disconnect();
     };
   }, []);
@@ -65,7 +64,7 @@ export default function App() {
       {!uiState.left &&
         (<Fab className='data-icon'
           onClick={toggleLeft}
-          disabled={uiState.disabled}>
+          disabled={uiState.disableContainer}>
           <EqualizerOutlinedIcon className='icon' />
         </Fab>)
       }
@@ -88,7 +87,7 @@ export default function App() {
         (<Fab
           className='tweet-icon'
           onClick={toggleRight}
-          disabled={uiState.disabled}
+          disabled={uiState.disableContainer}
         >
           <ChatOutlinedIcon className='icon' />
         </Fab>)

@@ -14,6 +14,7 @@ nav {
   overflow: auto;
   margin: 15px auto;
   width: 60vw;
+  min-height: 90px;
   position: fixed;
   // position: relative;
   border-radius: 55px;
@@ -23,12 +24,39 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start; //default is stretch - this is why safari elements were stretched and ugly 🥲
+    align-items: center; //default is stretch - this is why safari elements were stretched and ugly 🥲
     .logo {
       display: flex;
       min-width: 120px;
       max-width: 140px;
       margin-left: 1.2vw;
+    }
+
+    .controller {
+      display: flex;
+      align-items: center;
+      opacity: 1;
+      .MuiIconButton-root {
+      padding:0;
+      color: $white-opacity;
+      .controllerIcon {
+        padding: 2px;
+        width: 37px;
+        height: 37px;
+      }
+      }
+
+      .activated-start {
+        color: $accent;
+      }
+
+      .activated-pause {
+        color: $error-color;
+      }
+
+      .activated-stop {
+        color: $accent-red;
+      }
     }
 
     .userAvatar {
@@ -51,9 +79,16 @@ nav {
     .redText {
       color: $accent-red; 
     }
-    .greenText{
-      font-weight: 500;
-      text-shadow: 0 0 2px $accent, 0 0 7px $accent, 1px -3px 5px rgba(29,233,182,0);    }
+  }
+  .greenText{
+    color: $white-active;
+    font-weight: 500;
+    text-shadow: 0 0 2px $accent, 0 0 7px $accent, 1px -3px 5px rgba(29,233,182,0);
+  
+  }
+  .currentTrend {
+    padding: 25px;
+    font-size: 1.4rem;
   }
 
   .chooseCountry {
@@ -78,6 +113,13 @@ nav {
     color: $white;
   }
 
+  .searchIcon {
+    margin-right: 0.1vw;
+    width: 32px;
+    height:32px;
+    animation: rotate 4s linear infinite;
+  }
+
   .backButton {
     color: $white-inactive;
     background-color: $accent-opacity;
@@ -87,6 +129,13 @@ nav {
       background-color: $accent-blue;
       color: $black-active;
 
+    }
+  }
+
+  @keyframes rotate {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
     }
   }
 
