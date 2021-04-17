@@ -5,12 +5,19 @@ export default function UIStateProvider(props) {
   const [uiState, setUIState] = useState({
     left: false,//is container open or closed
     right: false,
-    disabled: true, //disable FAB icons and side containers when header is expanded
+    disableContainer: true, //disable FAB icons and side containers when header is expanded
+    disableSearch: true,
+    disableStart: true,
+    disablePause: true,
+    disableStop: true,
     chooseCountry: true,
     showTrends: false,
     currentCountry: '',
     currentTrend: '',
+    trendiActivated: false,
+    showController: false,
   });
+
 
   const toggleLeft = () => {
     setUIState(prev => ({ ...prev, left: !uiState.left }))
@@ -19,10 +26,10 @@ export default function UIStateProvider(props) {
     setUIState(prev => ({ ...prev, right: !uiState.right }))
   };
   const activateContainer = () => {
-    setUIState(prev => ({ ...prev, disabled: false }))
+    setUIState(prev => ({ ...prev, disableContainer: false }))
   };
   const deactivateContainer = () => {
-    setUIState(prev => ({ ...prev, disabled: true }))
+    setUIState(prev => ({ ...prev, disableContainer: true }))
   };
 
   const toggleChooseCanada = () => {
@@ -30,38 +37,114 @@ export default function UIStateProvider(props) {
       ...prev,
       chooseCountry: !uiState.chooseCountry,
       showTrends: !uiState.showTrends,
-      currentCountry: 'Canada'
+      disableSearch: false,
+      currentCountry: 'Canada',
+      showController: true
     }));
-  }
+  };
   const toggleChooseUsa = () => {
-    setUIState(prev => ({ 
+    setUIState(prev => ({
       ...prev,
       chooseCountry: !uiState.chooseCountry,
       showTrends: !uiState.showTrends,
-      currentCountry: 'USA'
+      disableSearch: false,
+      currentCountry: 'USA',
+      showController: true,
     }));
-  }
+  };
 
   const onBackHandler = () => {
     setUIState(prev => ({
       ...prev,
       chooseCountry: true,
-      showTrends: false
+      showTrends: false,
+      disableSearch: true,
+      disableStart: true,
+      disablePause: true,
+      disableStop: true,
+      showController: false
     }))
     deactivateContainer()
-  }
+  };
 
-  const activateTrendi = (trend) => {
-    console.log('activate trendi', uiState)
+  const handleSearch = e => {
+    if (e.target.value.length === 0) {
+      setUIState(prev => ({ ...prev, disableStart: true, disableStop: true }))
+    };
+    if (e.target.value.length > 0) {
+      setUIState(prev => ({ ...prev, disableStart: false, disableStop: false }))
+    };
+    setUIState(prev => ({ ...prev, currentTrend: e.target.value }));
+  };
+
+  const updateCurrentTrend = trend => {
+    setUIState(prev => ({
+      ...prev,
+      currentTrend: trend,
+      disableStart: false,
+      disableStop: false,
+      disablePause: true,
+    }));
+  };
+
+  const activateTrendi = (event) => {
+    event.preventDefault();
+
+    if (uiState.currentTrend === '') {
+      console.log('dont do that')
+      return;
+    }
     setUIState(prev => ({
       ...prev,
       chooseCountry: false,
       showTrends: false,
-      currentTrend: trend
+      trendiActivated: true,
+      disableSearch: true,
+      disableStart: true,
+      disablePause: false,
+      disableStop: false
     }));
     console.log('activate trendi', uiState)
     activateContainer();
-  }
+  };
+
+  const reset = () => {
+    if (uiState.currentTrend.length > 0) {
+      setUIState(prev => ({
+        ...prev,
+        chooseCountry: false,
+        showTrends: true,
+        currentTrend: '',
+        trendiActivated: false,
+        disableSearch: false,
+        disablePause: true,
+      }));
+    } else if (uiState.trendiActivated) {
+      setUIState(prev => ({
+        ...prev,
+        chooseCountry: false,
+        showTrends: true,
+        disableSearch: false,
+        disableStart: false,
+        disablePause: true,
+        disableStop: false,
+        trendiActivated: false,
+      }));
+    } else {
+      setUIState(prev => ({
+        ...prev,
+        chooseCountry: true,
+        showTrends: false,
+        currentTrend: '',
+        disableSearch: true,
+        disableStart: true,
+        disablePause: true,
+        disableStop: true,
+        trendiActivated: false,
+        showController: false,
+      }));
+    }
+  };
 
   const uiData = {
     uiState,
@@ -72,7 +155,10 @@ export default function UIStateProvider(props) {
     toggleChooseCanada,
     toggleChooseUsa,
     onBackHandler,
-    activateTrendi
+    handleSearch,
+    updateCurrentTrend,
+    activateTrendi,
+    reset,
   };
 
   return (
