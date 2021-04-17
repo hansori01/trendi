@@ -5,7 +5,7 @@ import { PieChart, Pie, Cell } from 'recharts';
 
 import './LeftData.scss';
 
-const COLORS = ['#1DE9B6', '#e41956', '#FFBB28'];
+const COLORS = ['#1DE9B6', '#e41956', '#FFA500'];
 
 export default function SentiPieChart() {
   const {
