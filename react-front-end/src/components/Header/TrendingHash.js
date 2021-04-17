@@ -58,8 +58,8 @@ export default function TrendingHash(props) {
   const trendingList = trendingHashtags.map((hashtag, i) => {
 
     const chooseHashtag = () =>{
-      // console.log('running chooseHashtag', hashtag.name)
-      activateTrendi(hashtag.name);
+      console.log('running chooseHashtag', hashtag.name)
+      // activateTrendi(hashtag.name);
       // activateContainer();// get this to be working
       // console.log('log state in TrendingHash', uiState)
     }
