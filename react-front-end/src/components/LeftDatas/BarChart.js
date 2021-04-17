@@ -12,19 +12,6 @@ export default function SentiBarChart() {
     setTweetScores
   } = useContext(tweetContext)
 
-  // const [tweetScores, setTweetScores] = useState({
-  //   veryNeg: 0,
-  //   neg: 0,
-  //   slightNeg: 0,
-  //   neutral: 0,
-  //   slightPos: 0,
-  //   pos: 0,
-  //   veryPos: 0
-  // })
-
-  // access previous state scores
-  // spread, then increment values depending on sentiment value
-  // this hurt my brain beyond comprhension ~ monke no good w/ numbies
   useEffect(() => {
 
     setTweetScores(prevScores => {
