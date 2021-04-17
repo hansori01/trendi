@@ -118,6 +118,9 @@ export default function UIStateProvider(props) {
         trendiActivated: false,
         disableSearch: false,
         disablePause: true,
+        left: false,
+        right: false,
+        disableContainer: true,
       }));
     } else if (uiState.trendiActivated) {
       setUIState(prev => ({
@@ -129,6 +132,9 @@ export default function UIStateProvider(props) {
         disablePause: true,
         disableStop: false,
         trendiActivated: false,
+        left: false,
+        right: false,
+        disableContainer: true,
       }));
     } else {
       setUIState(prev => ({
@@ -142,6 +148,9 @@ export default function UIStateProvider(props) {
         disableStop: true,
         trendiActivated: false,
         showController: false,
+        left: false,
+        right: false,
+        disableContainer: true,
       }));
     }
   };
