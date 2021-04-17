@@ -67,16 +67,16 @@ const neutral = [
 
 const ReactMap = withScriptjs(
   withGoogleMap((props) => {
-    // const {
-    //   tweets,
-    //   neutralTweets,
-    //   positiveTweets,
-    //   negativeTweets,
-    // } = useContext(tweetContext);
+    const {
+      tweets,
+      neutralTweets,
+      positiveTweets,
+      negativeTweets,
+    } = useContext(tweetContext);
 
-    const positiveTweets = data.filter((tweet) => tweet.sentiment.score > 0);
-    const negativeTweets = data.filter((tweet) => tweet.sentiment.score < 0);
-    const neutralTweets = data.filter((tweet) => tweet.sentiment.score === 0);
+    // const positiveTweets = data.filter((tweet) => tweet.sentiment.score > 0);
+    // const negativeTweets = data.filter((tweet) => tweet.sentiment.score < 0);
+    // const neutralTweets = data.filter((tweet) => tweet.sentiment.score === 0);
     const usedCoords = [];
 
     const isInUsedCoords = function(coords) {
