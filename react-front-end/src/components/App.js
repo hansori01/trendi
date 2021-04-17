@@ -39,7 +39,8 @@ export default function App() {
     // setSocket();
     let socket = io('http://localhost:8080/')
     setSocket(socket);
-    socket.emit('start', '#apecave');
+    // socket.emit('start', '#apecave');
+    // console.log('this is SOCKET', socket.emit)
     socket.on('tweet', (tweet) => {
       appendTweets(tweet)
     })

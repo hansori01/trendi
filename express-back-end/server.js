@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
     tweetStream.on('tweet', async tweet => {
       console.log('Streaming')
       console.log(tweet);
-      if(tweet.text.match(regex)){
+      if (tweet.text.match(regex)) {
         getLatLngFromLocation(tweet.user.location).then((location) => {
           console.log(location)
           tweet['sentiment'] = sentiment.analyze(tweet.text)
@@ -49,13 +49,25 @@ io.on('connection', (socket) => {
             tweet['user_location_coords'] = location
           } else {
             // put them in antartica where they belong
-            tweet['user_location_coords'] = {lat: -82.8628, lng: 135.0000}
+            tweet['user_location_coords'] = { lat: -82.8628, lng: 135.0000 }
           }
           io.emit('tweet', tweet)
         })
       }
     });
-  })
+  });
+
+  socket.on('please_stop',(arg) => {
+    console.log('arg arg arg arg arg', arg);
+    if (tweetStream) {
+      tweetStream.stop();
+      console.log('the tweetStream has stopped');
+    } else {
+      console.log('No tweet stream to disconnect');
+    }
+
+  });
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
     if (tweetStream) {
@@ -72,18 +84,18 @@ app.get('/api/data', (req, res) => res.json({
   message: "Seems to work!",
 }));
 
-app.get('/api/trending-canada', (req,res) => {
+app.get('/api/trending-canada', (req, res) => {
   getCurrentCanadaTrends().then(trends => {
     res.json(trends)
   })
-  .catch((error)=>{console.log('Something went wrong', error)})
+    .catch((error) => { console.log('Something went wrong', error) })
 })
 
-app.get('/api/trending-USA', (req,res) => {
+app.get('/api/trending-USA', (req, res) => {
   getCurrentUSATrends().then(trends => {
     res.json(trends)
   })
-  .catch((error)=>{console.log('Something went wrong', error)})
+    .catch((error) => { console.log('Something went wrong', error) })
 })
 
 server.listen(PORT, () => {

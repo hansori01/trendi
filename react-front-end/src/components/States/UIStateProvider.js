@@ -88,8 +88,9 @@ export default function UIStateProvider(props) {
   };
 
   const activateTrendi = (event) => {
-    event.preventDefault();
-
+    // if (event) {
+      event.preventDefault();
+    // }
     if (uiState.currentTrend === '') {
       console.log('dont do that')
       return;
@@ -155,6 +156,16 @@ export default function UIStateProvider(props) {
     }
   };
 
+  const pauseStreamHandler = () => {
+    console.log(' running togglePause'
+    )
+    setUIState(prev => ({
+      ...prev,
+      disableStart: false,
+      disablePause: true,
+    }));
+  }
+
   const uiData = {
     uiState,
     toggleLeft,
@@ -168,6 +179,7 @@ export default function UIStateProvider(props) {
     updateCurrentTrend,
     activateTrendi,
     reset,
+    pauseStreamHandler
   };
 
   return (

@@ -1,22 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
-import {tweetContext} from '../States/TweetStateProvider'
+import { tweetContext } from '../States/TweetStateProvider'
 
 import { BarChart, XAxis, Bar } from 'recharts';
 
 import './LeftData.scss';
 
 export default function SentiBarChart() {
-  const { tweets } = useContext(tweetContext)
+  const {
+    tweets,
+    tweetScores,
+    setTweetScores
+  } = useContext(tweetContext)
 
-  const [tweetScores, setTweetScores] = useState({
-    veryNeg: 0,
-    neg: 0,
-    slightNeg: 0,
-    neutral: 0,
-    slightPos: 0,
-    pos: 0,
-    veryPos: 0
-  })
+  // const [tweetScores, setTweetScores] = useState({
+  //   veryNeg: 0,
+  //   neg: 0,
+  //   slightNeg: 0,
+  //   neutral: 0,
+  //   slightPos: 0,
+  //   pos: 0,
+  //   veryPos: 0
+  // })
 
   // access previous state scores
   // spread, then increment values depending on sentiment value
@@ -50,9 +54,9 @@ export default function SentiBarChart() {
         }
       }
 
-      return(
+      return (
         // this will contain the prevScores and any new updated data
-        newData 
+        newData
       )
     })
   }, [tweets])
@@ -81,7 +85,7 @@ export default function SentiBarChart() {
       className="barChart"
     >
 
-      <Bar dataKey={0} fill="#FFA500" barSize={20}/>
+      <Bar dataKey={0} fill="#FFA500" barSize={20} />
 
       <XAxis dataKey="name" />
 

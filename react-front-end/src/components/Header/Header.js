@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { uiContext } from '../States/UIStateProvider'
+import { tweetContext } from '../States/TweetStateProvider'
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton'
@@ -56,17 +57,51 @@ export default function Header() {
     uiState,
     handleSearch,
     reset,
-    activateTrendi
+    activateTrendi,
+    pauseStreamHandler
   } = useContext(uiContext);
+
+  const {
+    socket,
+    setTweets,
+    setTweetScores,
+  } = useContext(tweetContext);
+
+
+  //TODO make Enter key work
+  const startStream = (event) => {
+    activateTrendi(event);
+    socket.emit('start', uiState.currentTrend);
+  };
+
+  const pauseStream = () => {
+    socket.emit('please_stop', 'pausing');
+    pauseStreamHandler();
+  };
+
+  const stopStream = () => {
+    socket.emit('please_stop', 'pausing');
+    reset();
+    setTweets([]);
+    setTweetScores({
+      veryNeg: 0,
+      neg: 0,
+      slightNeg: 0,
+      neutral: 0,
+      slightPos: 0,
+      pos: 0,
+      veryPos: 0
+    });
+  };
 
   return (
     <nav>
       <div className='headerParent'>
         {!uiState.trendiActivated && (
-        <img src='./images/logo.png' alt='' className='logo' />
+          <img src='./images/logo.png' alt='' className='logo' />
         )}
         {uiState.trendiActivated && (
-        <img src='./images/logoactivated.png' alt='' className='logo' />
+          <img src='./images/logoactivated.png' alt='' className='logo' />
         )}
 
         <span className='controller' >
@@ -86,7 +121,7 @@ export default function Header() {
                   InputLabelProps={{ style: { color: '#ffffffb4' } }}
                   size="small"
                   id="custom-css-outlined-input"
-                  onSubmit={activateTrendi}
+                  onSubmit={e => startStream(e)}
                 />
               </form>
 
@@ -100,18 +135,19 @@ export default function Header() {
               <IconButton
                 className={!uiState.disableStart && 'activated-start'}
                 disabled={uiState.disableStart}
-                onClick={activateTrendi}>
+                onClick={startStream}>
                 <PlayCircleOutlineIcon className='controllerIcon' />
               </IconButton>
               <IconButton
                 className={!uiState.disablePause && 'activated-pause'}
-                disabled={uiState.disablePause}>
+                disabled={uiState.disablePause}
+                onClick={pauseStream}>
                 <PauseCircleOutlineIcon className='controllerIcon' />
               </IconButton>
               <IconButton
                 className={!uiState.disableStop && 'activated-stop'}
                 disabled={uiState.disableStop}
-                onClick={reset}>
+                onClick={stopStream}>
                 <HighlightOffIcon className='controllerIcon' />
               </IconButton>
             </>
