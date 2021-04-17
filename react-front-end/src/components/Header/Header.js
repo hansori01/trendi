@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { uiContext } from '../States/UIStateProvider'
 import { tweetContext } from '../States/TweetStateProvider'
 
