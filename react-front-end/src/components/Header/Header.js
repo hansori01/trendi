@@ -59,12 +59,6 @@ export default function Header() {
     activateTrendi
   } = useContext(uiContext);
 
-  // const onResetClick = () => {
-  //   console.log('header.js reset click')
-  //   reset()
-  // }
-
-
   return (
     <nav>
       <div className='headerParent'>
