@@ -62,24 +62,36 @@ export default function Header() {
   } = useContext(uiContext);
 
   const {
-    socket
+    socket,
+    setTweets,
+    setTweetScores,
   } = useContext(tweetContext);
 
-  
+
   //TODO make Enter key work
   const startStream = (event) => {
     activateTrendi(event);
     socket.emit('start', uiState.currentTrend);
   };
-  
+
   const pauseStream = () => {
     socket.emit('please_stop', 'pausing');
     pauseStreamHandler();
   };
-  
+
   const stopStream = () => {
     socket.emit('please_stop', 'pausing');
     reset();
+    setTweets([]);
+    setTweetScores({
+      veryNeg: 0,
+      neg: 0,
+      slightNeg: 0,
+      neutral: 0,
+      slightPos: 0,
+      pos: 0,
+      veryPos: 0
+    });
   };
 
   return (
