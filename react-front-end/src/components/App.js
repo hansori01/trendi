@@ -18,19 +18,11 @@ import { Animated } from "react-animated-css";
 import './App.scss';
 
 export default function App() {
-
+  console.log('rendering app');
   const {
     tweets,
     setTweets,
-    neutralTweets,
-    setNeutralTweets,
-    positiveTweets,
-    setPositiveTweets,
-    negativeTweets,
-    setNegativeTweets,
-    socket,
-    setSocket,
-    getPositiveTweets,
+    setSocket
   } = useContext(tweetContext)
 
   const {
@@ -39,21 +31,8 @@ export default function App() {
     toggleRight,
   } = useContext(uiContext);
 
-  const appendTweets = async (tweet) => {
-    console.log("before tweets length ", tweets.length);
-    console.log(tweet.text);
+  const appendTweets = (tweet) => {
     setTweets((prevTweets) => [tweet, ...prevTweets]);
-    if (tweet.sentiment.score > 0) {
-      console.log('positive tweets', tweet)
-      setPositiveTweets((prevPositiveTweets) => [tweet, ...prevPositiveTweets]);
-    } else if (tweet.sentiment.score < 0) {
-      console.log('negative tweets', tweet)
-      setNegativeTweets((prevNegativeTweets) => [tweet, ...prevNegativeTweets]);
-    } else {
-      console.log('neutral tweets', tweet)
-      setNeutralTweets((prevNeutralTweets) => [tweet, ...prevNeutralTweets]);
-    }
-    console.log("New tweets length ", tweets.length);
   }
 
   useEffect(() => {
@@ -61,10 +40,8 @@ export default function App() {
     let socket = io('http://localhost:8080/')
     setSocket(socket);
     socket.emit('start', '#apecave');
-    socket.on('tweet', async (tweet) => {
-      console.log("Inside Asynce useEffect2");
-      console.log("Tweet length from useEffect2", tweets.length);
-      await appendTweets(tweet)
+    socket.on('tweet', (tweet) => {
+      appendTweets(tweet)
     })
     return () => {
       console.log('Disconnecting from socket');
