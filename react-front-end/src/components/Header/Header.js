@@ -112,7 +112,7 @@ export default function Header() {
 
           {!uiState.disableSearch && (
             <>
-              <form className={classes.root} onSubmit={activateTrendi} noValidate>
+              <form className={classes.root} onSubmit={e => startStream(e)} noValidate>
                 <CssTextField
                   className={classes.margin}
                   label={!uiState.disableSearch && "Trendi Search"}
@@ -120,6 +120,7 @@ export default function Header() {
                   disabled={uiState.disableSearch}
                   onChange={handleSearch}
                   InputLabelProps={{ style: { color: '#ffffffb4' } }}
+                  inputProps={{ autoComplete: 'off' }}
                   size="small"
                   id="custom-css-outlined-input"
                   onSubmit={e => startStream(e)}
