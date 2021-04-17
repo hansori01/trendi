@@ -36,6 +36,7 @@ io.on('connection', (socket) => {
     const regexpression = hashtag
     const regex = new RegExp(regexpression, "gi");
     tweetStream = streamCanadaBorderBox(hashtag);
+    console.log('tweetStream Created');
     tweetStream.on('tweet', async tweet => {
       console.log('Streaming')
       console.log(tweet);
