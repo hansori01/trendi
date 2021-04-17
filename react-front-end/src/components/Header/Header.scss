@@ -14,6 +14,7 @@ nav {
   overflow: auto;
   margin: 15px auto;
   width: 60vw;
+  min-height: 90px;
   position: fixed;
   // position: relative;
   border-radius: 55px;
@@ -86,7 +87,7 @@ nav {
   
   }
   .currentTrend {
-    padding: 15px;
+    padding: 25px;
     font-size: 1.4rem;
   }
 
@@ -116,7 +117,7 @@ nav {
     margin-right: 0.1vw;
     width: 32px;
     height:32px;
-    animation: rotate 3s linear infinite;
+    animation: rotate 4s linear infinite;
   }
 
   .backButton {

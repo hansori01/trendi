@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { uiContext } from '../States/UIStateProvider'
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import HoverImage from "react-hover-image";
 import IconButton from '@material-ui/core/IconButton'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
@@ -60,13 +59,21 @@ export default function Header() {
     activateTrendi
   } = useContext(uiContext);
 
+  // const onResetClick = () => {
+  //   console.log('header.js reset click')
+  //   reset()
+  // }
+
+
   return (
     <nav>
       <div className='headerParent'>
-        <HoverImage
-          src="./images/logo.png"
-          hoverSrc="./images/logohover.png"
-          className="logo" />
+        {!uiState.trendiActivated && (
+        <img src='./images/logo.png' alt='' className='logo' />
+        )}
+        {uiState.trendiActivated && (
+        <img src='./images/logoactivated.png' alt='' className='logo' />
+        )}
 
         <span className='controller' >
           {uiState.trendiActivated && (
@@ -98,7 +105,8 @@ export default function Header() {
             <>
               <IconButton
                 className={!uiState.disableStart && 'activated-start'}
-                disabled={uiState.disableStart}>
+                disabled={uiState.disableStart}
+                onClick={activateTrendi}>
                 <PlayCircleOutlineIcon className='controllerIcon' />
               </IconButton>
               <IconButton
@@ -108,9 +116,8 @@ export default function Header() {
               </IconButton>
               <IconButton
                 className={!uiState.disableStop && 'activated-stop'}
-                disabled={uiState.disableStart}
-                onClick={reset}
-              >
+                disabled={uiState.disableStop}
+                onClick={reset}>
                 <HighlightOffIcon className='controllerIcon' />
               </IconButton>
             </>

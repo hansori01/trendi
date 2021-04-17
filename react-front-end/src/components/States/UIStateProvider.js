@@ -18,10 +18,6 @@ export default function UIStateProvider(props) {
     showController: false,
   });
 
-  // const [trendState, setTrendState] = useState({
-  //   currentTrend: '',
-
-  // })
 
   const toggleLeft = () => {
     setUIState(prev => ({ ...prev, left: !uiState.left }))
@@ -66,6 +62,7 @@ export default function UIStateProvider(props) {
       disableStart: true,
       disablePause: true,
       disableStop: true,
+      showController: false
     }))
     deactivateContainer()
   };
@@ -86,12 +83,17 @@ export default function UIStateProvider(props) {
       currentTrend: trend,
       disableStart: false,
       disableStop: false,
+      disablePause: true,
     }));
   };
 
   const activateTrendi = (event) => {
     event.preventDefault();
 
+    if (uiState.currentTrend === '') {
+      console.log('dont do that')
+      return;
+    }
     setUIState(prev => ({
       ...prev,
       chooseCountry: false,
@@ -112,7 +114,21 @@ export default function UIStateProvider(props) {
         ...prev,
         chooseCountry: false,
         showTrends: true,
-        currentTrend: ''
+        currentTrend: '',
+        trendiActivated: false,
+        disableSearch: false,
+        disablePause: true,
+      }));
+    } else if (uiState.trendiActivated) {
+      setUIState(prev => ({
+        ...prev,
+        chooseCountry: false,
+        showTrends: true,
+        disableSearch: false,
+        disableStart: false,
+        disablePause: true,
+        disableStop: false,
+        trendiActivated: false,
       }));
     } else {
       setUIState(prev => ({
@@ -124,6 +140,8 @@ export default function UIStateProvider(props) {
         disableStart: true,
         disablePause: true,
         disableStop: true,
+        trendiActivated: false,
+        showController: false,
       }));
     }
   };
