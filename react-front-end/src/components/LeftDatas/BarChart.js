@@ -36,11 +36,22 @@ export default function SentiBarChart() {
       if (tweets.length > 0) {
         const sentiScore = tweets[0].sentiment.score;
         console.log(sentiScore);
-        if (sentiScore === 0) {
+        if ((sentiScore > -1 && sentiScore < 1) || sentiScore === 0) {
+          newData.neutral = prevScores.neutral + 1;
+        } else if (sentiScore >= 1 && sentiScore < 2) {
+          newData.slightPos = prevScores.slightPos + 1;
+        } else if (sentiScore >= 2 && sentiScore < 3) {
           newData.pos = prevScores.pos + 1;
-        }
-        if (sentiScore < 0) {
+        } else if (sentiScore >= 3) {
+          newData.veryPos = prevScores.veryPos + 1;
+        } else if (sentiScore <= -1 && sentiScore > -2) {
+          newData.slightNeg = prevScores.slightNeg + 1;
+        } else if (sentiScore <= -2 && sentiScore > -3) {
           newData.neg = prevScores.neg + 1;
+        } else if (sentiScore <= -3) {
+          newData.veryNeg = prevScores.veryNeg + 1;
+        } else {
+          console.log("This score doesn't have a home!",sentiScore)
         }
       }
 
