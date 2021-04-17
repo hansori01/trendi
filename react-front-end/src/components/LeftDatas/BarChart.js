@@ -11,13 +11,13 @@ export default function SentiBarChart() {
   
   
   const [tweetScores, setTweetScores] = useState({
-    veryNeg: 1,
+    veryNeg: 0,
     neg: 0,
     slightNeg: 0,
     neutral: 0,
     slightPos: 0,
     pos: 0,
-    veryPos: 1
+    veryPos: 0
   })
 
   // access previous state scores
@@ -25,11 +25,24 @@ export default function SentiBarChart() {
   useEffect(() => {
 
     setTweetScores(prevScores => {
+      // logs below for debugging
+      console.log('these are the tweets for the scores below!', tweets)
+      tweets.map(e => console.log('incoming score! =>', e.sentiment.score));
+
       const newData = {
         ...prevScores
       };
-      console.log('these are the tweets for the scores below!', tweets)
-      tweets.map(e => console.log('incoming score! =>', e.sentiment.score));
+
+      if (tweets.length > 0) {
+        const sentiScore = tweets[0].sentiment.score;
+        console.log(sentiScore);
+        if (sentiScore === 0) {
+          newData.pos = prevScores.pos + 1;
+        }
+        if (sentiScore < 0) {
+          newData.neg = prevScores.neg + 1;
+        }
+      }
 
       // prev sentiment score states
       const prevVeryNeg = prevScores.veryNeg // 3-
@@ -40,13 +53,14 @@ export default function SentiBarChart() {
       const prevPos = prevScores.pos // 2
       const prevVeryPos = prevScores.veryPos; // 3
       
+      console.log(newData);
+
       return(
-        {
-          ...prevScores,
-          neutral: prevNeutral + 1, 
-          veryPos: prevVeryPos +  1
-        }
-        // newData; this will contain the prevScores and any new updated data
+        // {
+        //   ...prevScores,
+        //   neutral: prevNeutral + 1, 
+        // }
+        newData // this will contain the prevScores and any new updated data
       )
     })
   }, [tweets])
