@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { uiContext } from '../States/UIStateProvider'
 import { tweetContext } from '../States/TweetStateProvider'
 
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
@@ -161,6 +162,9 @@ export default function Header() {
         </img>
       </div>
 
+      {uiState.loading && (
+        <LinearProgress color="secondary" />
+      )}
       {uiState.chooseCountry && (
         <ChooseCountry />
       )}

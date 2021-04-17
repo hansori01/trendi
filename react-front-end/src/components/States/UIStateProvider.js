@@ -18,6 +18,7 @@ export default function UIStateProvider(props) {
     currentTrend: '',
     trendiActivated: false,
     showController: false,
+    loading: false,
   });
 
 
@@ -176,6 +177,7 @@ export default function UIStateProvider(props) {
 
   const uiData = {
     uiState,
+    setUIState,
     toggleLeft,
     toggleRight,
     activateContainer,
