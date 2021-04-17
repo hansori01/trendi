@@ -3,8 +3,8 @@ import { createContext, useState } from 'react';
 export default function UIStateProvider(props) {
 
   const [uiState, setUIState] = useState({
-    left: true,//is container open or closed
-    right: true,
+    left: false,//is container open or closed
+    right: false,
     disableContainer: true, //disable FAB icons and side containers when header is expanded
     disableSearch: true,
     disableStart: true,
@@ -15,6 +15,7 @@ export default function UIStateProvider(props) {
     currentCountry: '',
     currentTrend: '',
     trendiActivated: false,
+    showController: false,
   });
 
   // const [trendState, setTrendState] = useState({
@@ -41,7 +42,8 @@ export default function UIStateProvider(props) {
       chooseCountry: !uiState.chooseCountry,
       showTrends: !uiState.showTrends,
       disableSearch: false,
-      currentCountry: 'Canada'
+      currentCountry: 'Canada',
+      showController: true
     }));
   };
   const toggleChooseUsa = () => {
@@ -50,7 +52,8 @@ export default function UIStateProvider(props) {
       chooseCountry: !uiState.chooseCountry,
       showTrends: !uiState.showTrends,
       disableSearch: false,
-      currentCountry: 'USA'
+      currentCountry: 'USA',
+      showController: true,
     }));
   };
 
@@ -78,7 +81,6 @@ export default function UIStateProvider(props) {
   };
 
   const updateCurrentTrend = trend => {
-    //TODO debug this
     setUIState(prev => ({
       ...prev,
       currentTrend: trend,
@@ -87,20 +89,24 @@ export default function UIStateProvider(props) {
     }));
   };
 
-  const activateTrendi = () => {
-    // console.log('activate trendi', uiState)
+  const activateTrendi = (event) => {
+    event.preventDefault();
+
     setUIState(prev => ({
       ...prev,
       chooseCountry: false,
       showTrends: false,
       trendiActivated: true,
+      disableSearch: true,
+      disableStart: true,
+      disablePause: false,
+      disableStop: false
     }));
     console.log('activate trendi', uiState)
     activateContainer();
   };
 
   const reset = () => {
-
     if (uiState.currentTrend.length > 0) {
       setUIState(prev => ({
         ...prev,

@@ -56,7 +56,8 @@ export default function Header() {
   const {
     uiState,
     handleSearch,
-    reset
+    reset,
+    activateTrendi
   } = useContext(uiContext);
 
   return (
@@ -74,7 +75,7 @@ export default function Header() {
 
           {!uiState.disableSearch && (
             <>
-              <form className={classes.root} noValidate>
+              <form className={classes.root} onSubmit={activateTrendi} noValidate>
                 <CssTextField
                   className={classes.margin}
                   label={!uiState.disableSearch && "Trendi Search"}
@@ -84,9 +85,17 @@ export default function Header() {
                   InputLabelProps={{ style: { color: '#ffffffb4' } }}
                   size="small"
                   id="custom-css-outlined-input"
+                  onSubmit={activateTrendi}
                 />
               </form>
 
+            </>
+          )}
+          {uiState.trendiActivated && (
+            <span className="greenText currentTrend">{uiState.currentTrend}</span>
+          )}
+          {uiState.showController && (
+            <>
               <IconButton
                 className={!uiState.disableStart && 'activated-start'}
                 disabled={uiState.disableStart}>
