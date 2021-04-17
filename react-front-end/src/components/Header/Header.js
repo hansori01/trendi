@@ -57,24 +57,30 @@ export default function Header() {
     uiState,
     handleSearch,
     reset,
-    activateTrendi
+    activateTrendi,
+    pauseStreamHandler
   } = useContext(uiContext);
 
   const {
     socket
   } = useContext(tweetContext);
 
-  //new socket logic when clicking on start, or pressing enter
+  
+  //TODO make Enter key work
   const startStream = (event) => {
-    // console.log('click handler strat stream', uiState.currentTrend)
     activateTrendi(event);
     socket.emit('start', uiState.currentTrend);
-  }
-
+  };
+  
   const pauseStream = () => {
-    socket.emit('stop');
-  }
-
+    socket.emit('please_stop', 'pausing');
+    pauseStreamHandler();
+  };
+  
+  const stopStream = () => {
+    socket.emit('please_stop', 'pausing');
+    reset();
+  };
 
   return (
     <nav>
@@ -103,7 +109,7 @@ export default function Header() {
                   InputLabelProps={{ style: { color: '#ffffffb4' } }}
                   size="small"
                   id="custom-css-outlined-input"
-                  onSubmit={e=>startStream(e)}
+                  onSubmit={e => startStream(e)}
                 />
               </form>
 
@@ -129,7 +135,7 @@ export default function Header() {
               <IconButton
                 className={!uiState.disableStop && 'activated-stop'}
                 disabled={uiState.disableStop}
-                onClick={reset}>
+                onClick={stopStream}>
                 <HighlightOffIcon className='controllerIcon' />
               </IconButton>
             </>
