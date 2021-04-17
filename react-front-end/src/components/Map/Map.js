@@ -8,6 +8,7 @@ import Header from "../Header/Header";
 import withGoogleMap from "react-google-maps/lib/withGoogleMap";
 import withScriptjs from "react-google-maps/lib/withScriptjs";
 import mapStyle from "./mapStyle";
+import data from "../../temp-data/seedData-location-added"
 
 /* global google */
 require("dotenv").config();
@@ -46,14 +47,98 @@ const positive = [
   "rgba(29,233,182,0.9)",
 ];
 
+const neutral = [
+  "rgba(255,165,0,0)",
+  "rgba(255,165,0,0.1)",
+  "rgba(255,165,0,0.2)",
+  "rgba(255,165,0,0.3)",
+  "rgba(255,165,0,0.4)",
+  "rgba(255,165,0,0.45)",
+  "rgba(255,165,0,0.5)",
+  "rgba(255,165,0,0.55)",
+  "rgba(255,165,0,0.6)",
+  "rgba(255,165,0,0.65)",
+  "rgba(255,165,0,0.7)",
+  "rgba(255,165,0,0.75)",
+  "rgba(255,165,0,0.8)",
+  "rgba(255,165,0,0.9)",
+]
+
+
 const ReactMap = withScriptjs(
   withGoogleMap((props) => {
-    const {
-      tweets,
-      neutralTweets,
-      positiveTweets,
-      negativeTweets,
-    } = useContext(tweetContext);
+    // const {
+    //   tweets,
+    //   neutralTweets,
+    //   positiveTweets,
+    //   negativeTweets,
+    // } = useContext(tweetContext);
+
+    const positiveTweets = data.filter((tweet) => tweet.sentiment.score > 0);
+    const negativeTweets = data.filter((tweet) => tweet.sentiment.score < 0);
+    const neutralTweets = data.filter((tweet) => tweet.sentiment.score === 0);
+    const usedCoords = [];
+
+    const isInUsedCoords = function(coords) {
+      for(const item of usedCoords){
+        if (coords.lat === item.lat && coords.lng === item.lng) {
+          return true
+        }
+      }
+      return false;
+    }
+
+
+    console.log("usedCoords: ", usedCoords);
+    let negativeData;
+    let positiveData;
+    let neutralData;
+    const makeUniqueCoord = function(coords) {
+      for(const item of usedCoords){
+        if (coords.lat === item.lat && coords.lng === item.lng) {
+          const updatedCoord = {
+            lat: coords.lat + 0.01,
+            lng: coords.lng
+          }
+          while(isInUsedCoords(updatedCoord)){
+            updatedCoord.lat += 0.01;
+          }
+          usedCoords.push(updatedCoord);
+          return updatedCoord;
+        }
+      }
+      usedCoords.push(coords);
+      return coords;
+    }
+
+    if(negativeTweets.length > 0){
+      negativeData = negativeTweets.map((tweet) => {
+        const lat = tweet.user_location_coords.lat;
+        const lng = tweet.user_location_coords.lng
+        const coord = makeUniqueCoord({lat, lng});
+        return new google.maps.LatLng(coord.lat, coord.lng);
+      })
+    }
+
+    if (positiveTweets.length > 0) {
+      positiveData = positiveTweets.map((tweet) => {
+        const lat = tweet.user_location_coords.lat;
+        const lng = tweet.user_location_coords.lng
+        const coord = makeUniqueCoord({lat, lng});
+        return new google.maps.LatLng(coord.lat, coord.lng);
+      })
+    }
+
+    if (neutralTweets.length > 0) {
+      neutralData = neutralTweets.map((tweet) => {
+        const lat = tweet.user_location_coords.lat;
+        const lng = tweet.user_location_coords.lng
+        const coord = makeUniqueCoord({lat, lng});
+        return new google.maps.LatLng(coord.lat, coord.lng);
+      })
+    }
+
+
 
     return (
       <GoogleMap
@@ -66,20 +151,29 @@ const ReactMap = withScriptjs(
         clickableIcons={false}
       >
         <HeatmapLayer
-          data={negativeTweets.map((tweet) => new google.maps.LatLng(tweet.user_location_coords.lat, tweet.user_location_coords.lng))}
-          // data={[new google.maps.LatLng(49.279793, -123.115669)]}
+          data={negativeData ? negativeData : []}
+          // data={negativeLocations.map((location) => new google.maps.LatLng(location.lat, location.lng))}
           options={{
-            opacity: 0.5,
+            opacity: 0.75,
             gradient: negative,
             radius: 20,
           }}
         />
         <HeatmapLayer
-          data={positiveTweets.map((tweet) => new google.maps.LatLng(tweet.user_location_coords.lat, tweet.user_location_coords.lng))}
-          // data={[new google.maps.LatLng(49.720692, -123.156624)]}
+          data={positiveData ? positiveData : []}
+          // data={positiveLocations.map((location) => new google.maps.LatLng(location.lat, location.lng))}
           options={{
-            opacity: 1,
+            opacity: 0.75,
             gradient: positive,
+            radius: 20,
+          }}
+        />
+        <HeatmapLayer
+          data={neutralData ? neutralData : []}
+          // data={positiveLocations.map((location) => new google.maps.LatLng(location.lat, location.lng))}
+          options={{
+            opacity: 0.75,
+            gradient: neutral,
             radius: 20,
           }}
         />
