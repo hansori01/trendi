@@ -49,6 +49,12 @@ export default function App() {
     };
   }, []);
 
+
+// 'data-icon'
+// 'data-icon animate'
+// 'tweet-icon'
+// 'tweet-icon animate'
+
   return (
     <div className="App">
       <Header />
@@ -63,7 +69,7 @@ export default function App() {
       </div>
 
       {!uiState.left &&
-        (<Fab className='data-icon'
+        (<Fab className={uiState.containerButtonClassLeft}
           onClick={toggleLeft}
           disabled={uiState.disableContainer}>
           <EqualizerOutlinedIcon className='icon' />
@@ -71,7 +77,7 @@ export default function App() {
       }
       {uiState.left &&
         (<Fab
-          className='data-icon'
+          className='data-icon animate'
           onClick={toggleLeft}>
           <PlayCircleOutlineIcon className='icon rotate' />
         </Fab>)
@@ -86,7 +92,7 @@ export default function App() {
 
       {!uiState.right &&
         (<Fab
-          className='tweet-icon'
+          className={uiState.containerButtonClassRight}
           onClick={toggleRight}
           disabled={uiState.disableContainer}
         >
@@ -95,7 +101,7 @@ export default function App() {
       }
       {uiState.right &&
         (<Fab
-          className='tweet-icon'
+          className='tweet-icon animate'
           onClick={toggleRight}
         >
           <PlayCircleOutlineIcon className='icon rotate' />
