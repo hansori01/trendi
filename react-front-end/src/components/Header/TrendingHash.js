@@ -62,6 +62,7 @@ export default function TrendingHash(props) {
   
   const trendingList = trendingHashtags.map((hashtag, i) => {
 
+
     const clickHandler = () =>{
       // console.log('running clickHandler', hashtag.name)
       updateCurrentTrend(hashtag.name);

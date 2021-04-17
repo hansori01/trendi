@@ -1026,7 +1026,7 @@
     coordinates: null,
     extended_tweet: null,
     place: null,
-    user_location_coords: null,
+    user_location_coords: {lat: 0, lng: 0},
     sentiment: {
       score: -2,
       positive: "[ 'big' ]",

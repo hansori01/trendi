@@ -18,19 +18,11 @@ import { Animated } from "react-animated-css";
 import './App.scss';
 
 export default function App() {
-
+  console.log('rendering app');
   const {
     tweets,
     setTweets,
-    neutralTweets,
-    setNeutralTweets,
-    positiveTweets,
-    setPositiveTweets,
-    negativeTweets,
-    setNegativeTweets,
-    socket,
-    setSocket,
-    getPositiveTweets,
+    setSocket
   } = useContext(tweetContext)
 
   const {
@@ -39,15 +31,8 @@ export default function App() {
     toggleRight,
   } = useContext(uiContext);
 
-  const appendTweets = async (tweet) => {
+  const appendTweets = (tweet) => {
     setTweets((prevTweets) => [tweet, ...prevTweets]);
-    if (tweet.sentiment.score > 0) {
-      setPositiveTweets((prevPositiveTweets) => [tweet, ...prevPositiveTweets]);
-    } else if (tweet.sentiment.score < 0) {
-      setNegativeTweets((prevNegativeTweets) => [tweet, ...prevNegativeTweets]);
-    } else {
-      setNeutralTweets((prevNeutralTweets) => [tweet, ...prevNeutralTweets]);
-    }
   }
 
   useEffect(() => {
@@ -55,8 +40,8 @@ export default function App() {
     let socket = io('http://localhost:8080/')
     setSocket(socket);
     socket.emit('start', '#apecave');
-    socket.on('tweet', async (tweet) => {
-      await appendTweets(tweet)
+    socket.on('tweet', (tweet) => {
+      appendTweets(tweet)
     })
     return () => {
       socket.disconnect();
@@ -73,9 +58,6 @@ export default function App() {
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           tweets={tweets}
-          positiveTweets={positiveTweets}
-          negativeTweets={negativeTweets}
-          neutralTweets={neutralTweets}
         />
       </div>
 

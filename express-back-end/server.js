@@ -36,6 +36,7 @@ io.on('connection', (socket) => {
     const regexpression = hashtag
     const regex = new RegExp(regexpression, "gi");
     tweetStream = streamCanadaBorderBox(hashtag);
+    console.log('tweetStream Created');
     tweetStream.on('tweet', async tweet => {
       console.log('Streaming')
       console.log(tweet);
@@ -44,7 +45,12 @@ io.on('connection', (socket) => {
           console.log(location)
           tweet['sentiment'] = sentiment.analyze(tweet.text)
           console.log(tweet.sentiment)
-          tweet['user_location_coords'] = location
+          if (location) {
+            tweet['user_location_coords'] = location
+          } else {
+            // put them in antartica where they belong
+            tweet['user_location_coords'] = {lat: -82.8628, lng: 135.0000}
+          }
           io.emit('tweet', tweet)
         })
       }
@@ -52,8 +58,12 @@ io.on('connection', (socket) => {
   })
   socket.on('disconnect', () => {
     console.log('user disconnected');
-    tweetStream.stop()
-    console.log('the tweetStream has stopped');
+    if (tweetStream) {
+      tweetStream.stop()
+      console.log('the tweetStream has stopped');
+    } else {
+      console.log('No tweet stream to disconnect');
+    }
   });
 })
 

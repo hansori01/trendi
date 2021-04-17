@@ -1,4 +1,4 @@
-module.exports = [
+const data = [
   {
     created_at: 'Thu Apr 15 23:32:26 +0000 2021',
     id: 1382839262249324500,
@@ -1026,7 +1026,7 @@ module.exports = [
     coordinates: null,
     extended_tweet: null,
     place: null,
-    user_location_coords: null,
+    user_location_coords: {lat: -82.8628, lng: 135.0000},
     sentiment: {
       score: -2,
       positive: "[ 'big' ]",
@@ -1358,3 +1358,5 @@ module.exports = [
     sentiment: { score: 4, positive: "[ 'wow' ]", negative: '[]' }
   }
 ]
+
+export default data;
