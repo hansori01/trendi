@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-// import {tweetContext} from '../States/TweetStateProvider'
+import {tweetContext} from '../States/TweetStateProvider'
 
 // import words from './tempWords';
 import Wordcloud from './Wordcloud';
@@ -12,11 +12,13 @@ import './LeftData.scss';
 
 export default function LeftData() {
   
-  // const {} = useContext(tweetContext)
-  const positiveTweets = data.filter((tweet) => tweet.sentiment.score > 0);
-  const negativeTweets = data.filter((tweet) => tweet.sentiment.score < 0);
-  const neutralTweets = data.filter((tweet) => tweet.sentiment.score === 0);
-  const tweets = data;
+  const {
+    tweets
+  } = useContext(tweetContext)
+  // const positiveTweets = data.filter((tweet) => tweet.sentiment.score > 0);
+  // const negativeTweets = data.filter((tweet) => tweet.sentiment.score < 0);
+  // const neutralTweets = data.filter((tweet) => tweet.sentiment.score === 0);
+  // const tweets = data;
   
   const words = [];
   const getWord = function(wordText) {
@@ -38,9 +40,11 @@ export default function LeftData() {
     });
   }
   
-  data.forEach(tweet => {
-    let negativeWordsArr = tweet.sentiment.negative.split(/(?:,|\[|\])/gm).slice(1,-1);
-    let positiveWordsArr = tweet.sentiment.positive.split(/(?:,|\[|\])/gm).slice(1,-1);
+  tweets.forEach(tweet => {
+    console.log(tweet);
+    // the .split is regex to parse an array for our test data
+    let negativeWordsArr = tweet.sentiment.negative // .split(/(?:,|\[|\])/gm).slice(1,-1);
+    let positiveWordsArr = tweet.sentiment.positive // .split(/(?:,|\[|\])/gm).slice(1,-1);
     pushToWordsArray(negativeWordsArr, false);
     pushToWordsArray(positiveWordsArr, true);
   })

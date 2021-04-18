@@ -3,7 +3,7 @@ const app = express();
 const BodyParser = require('body-parser');
 const PORT = 8080;
 const cors = require('cors')
-const { streamCanadaBorderBox, getCurrentCanadaTrends, getCurrentUSATrends } = require('./queries');
+const { streamKeyWord, getCurrentCanadaTrends, getCurrentUSATrends } = require('./queries');
 const Sentiment = require('sentiment');
 
 const http = require("http");
@@ -33,18 +33,20 @@ io.on('connection', (socket) => {
   let tweetStream;
   socket.on('start', (hashtag) => {
     console.log('starting stream ', hashtag);
+    // Regex checks if keyword is in tweet when it comes back
     const regexpression = hashtag
     const regex = new RegExp(regexpression, "gi");
-    tweetStream = streamCanadaBorderBox(hashtag);
+    tweetStream = streamKeyWord(hashtag);
     console.log('tweetStream Created');
     tweetStream.on('tweet', async tweet => {
-      console.log('Streaming')
       console.log(tweet);
+      // check tweet against regex
       if (tweet.text.match(regex)) {
+        // query google maps api for user location
         getLatLngFromLocation(tweet.user.location).then((location) => {
-          console.log(location)
+          // add sentiment analysis to tweet object
           tweet['sentiment'] = sentiment.analyze(tweet.text)
-          console.log(tweet.sentiment)
+          // add location to tweet object
           if (location) {
             tweet['user_location_coords'] = location
           } else {
@@ -58,14 +60,12 @@ io.on('connection', (socket) => {
   });
 
   socket.on('please_stop',(arg) => {
-    console.log('arg arg arg arg arg', arg);
     if (tweetStream) {
       tweetStream.stop();
       console.log('the tweetStream has stopped');
     } else {
       console.log('No tweet stream to disconnect');
     }
-
   });
 
   socket.on('disconnect', () => {
@@ -78,11 +78,6 @@ io.on('connection', (socket) => {
     }
   });
 })
-
-// Sample GET route
-app.get('/api/data', (req, res) => res.json({
-  message: "Seems to work!",
-}));
 
 app.get('/api/trending-canada', (req, res) => {
   getCurrentCanadaTrends().then(trends => {
