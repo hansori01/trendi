@@ -28,10 +28,12 @@ export default function LeftData() {
       // if the object already exists, update the value of the word
       let wordIndex = getWord(word)
       if (wordIndex > -1) {
-        words[wordIndex].value++;
+        words[wordIndex].value += 1;
       } else {
         //if the object does not exist push to words'
-        words.push({ text: word, value: 1, sentiment: isPositive})
+        if(word !== ''){
+          words.push({ text: word, value: 1, sentiment: isPositive})
+        }
       }
     });
   }
