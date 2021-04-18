@@ -38,13 +38,10 @@ io.on('connection', (socket) => {
     tweetStream = streamKeyWord(hashtag);
     console.log('tweetStream Created');
     tweetStream.on('tweet', async tweet => {
-      console.log('Streaming')
       console.log(tweet);
       if (tweet.text.match(regex)) {
         getLatLngFromLocation(tweet.user.location).then((location) => {
-          console.log(location)
           tweet['sentiment'] = sentiment.analyze(tweet.text)
-          console.log(tweet.sentiment)
           if (location) {
             tweet['user_location_coords'] = location
           } else {
@@ -58,14 +55,12 @@ io.on('connection', (socket) => {
   });
 
   socket.on('please_stop',(arg) => {
-    console.log('arg arg arg arg arg', arg);
     if (tweetStream) {
       tweetStream.stop();
       console.log('the tweetStream has stopped');
     } else {
       console.log('No tweet stream to disconnect');
     }
-
   });
 
   socket.on('disconnect', () => {
@@ -78,11 +73,6 @@ io.on('connection', (socket) => {
     }
   });
 })
-
-// Sample GET route
-app.get('/api/data', (req, res) => res.json({
-  message: "Seems to work!",
-}));
 
 app.get('/api/trending-canada', (req, res) => {
   getCurrentCanadaTrends().then(trends => {
