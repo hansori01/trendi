@@ -26,6 +26,7 @@ export default function Wordcloud(props) {
       callbacks={callbacks}
       options={options}
       size={size}
+      minSize={[380,400]}
       words={props.words}
       className='wordCloud'
     />
