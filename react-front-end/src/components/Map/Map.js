@@ -136,15 +136,14 @@ const ReactMap = withScriptjs(
     }
 
 
-
     return (
       <GoogleMap
         defaultOptions={{
           styles: mapStyle,
           disableDefaultUI: true,
         }}
-        zoom={10}
-        defaultCenter={{ lat: 49.279793, lng: -123.115669 }}
+        zoom={4.18}
+        defaultCenter={{ lat: 45.2895931, lng: -94.3827119 }}
         clickableIcons={false}
       >
         <HeatmapLayer
