@@ -5,8 +5,8 @@ import ReactWordcloud from 'react-wordcloud';
 import './LeftData.scss';
 
 const callbacks = {
-  getWordColor: word => word.value > 50 ? '#1DE9B6' : "#BA3B61",
-  getWordTooltip: word => `${word.text} (${word.value}) [${word.value > 50 ? "good" : "bad"}]`,
+  getWordColor: word => word.sentiment ? '#1DE9B6' : "#BA3B61",
+  getWordTooltip: word => `${word.text} (${word.value}) [${word.sentiment ? "good" : "bad"}]`,
 }
 const options = {
   rotations: 2,
@@ -26,6 +26,7 @@ export default function Wordcloud(props) {
       callbacks={callbacks}
       options={options}
       size={size}
+      minSize={[380,400]}
       words={props.words}
       className='wordCloud'
     />
