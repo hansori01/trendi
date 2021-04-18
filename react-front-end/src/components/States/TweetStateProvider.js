@@ -19,7 +19,7 @@ export default function TweetStateProvider(props) {
   let positiveTweets = tweets.filter(tweet => tweet.sentiment.score > 0);
   let negativeTweets = tweets.filter(tweet => tweet.sentiment.score < 0);
   let neutralTweets = tweets.filter(tweet => tweet.sentiment.score === 0);
-  console.log("positive twerts", positiveTweets);
+  // console.log("positive twerts", positiveTweets);
 
   
   const tweetData = {

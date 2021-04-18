@@ -86,7 +86,7 @@ const ReactMap = withScriptjs(
     }
 
 
-    console.log("usedCoords: ", usedCoords);
+    // console.log("usedCoords: ", usedCoords);
     let negativeData;
     let positiveData;
     let neutralData;

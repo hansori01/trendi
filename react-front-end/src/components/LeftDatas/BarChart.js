@@ -22,7 +22,6 @@ export default function SentiBarChart() {
       // checks that the tweets array has tweets then sorts based on senti score
       if (tweets.length > 0) {
         const sentiScore = tweets[0].sentiment.score;
-        console.log(sentiScore);
         if ((sentiScore > -1 && sentiScore < 1) || sentiScore === 0) {
           newData.neutral = prevScores.neutral + 1;         //  0
         } else if (sentiScore >= 1 && sentiScore < 2) {
@@ -38,7 +37,7 @@ export default function SentiBarChart() {
         } else if (sentiScore <= -3) {
           newData.veryNeg = prevScores.veryNeg + 1;         // -3
         } else {
-          console.log("This score doesn't have a home: ", sentiScore)
+          // console.log("This score doesn't have a home: ", sentiScore)
         }
       }
 

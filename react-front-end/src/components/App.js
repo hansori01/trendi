@@ -18,7 +18,7 @@ import { Animated } from "react-animated-css";
 import './App.scss';
 
 export default function App() {
-  console.log('rendering app');
+  // console.log('rendering app');
   const {
     tweets,
     setTweets,
