@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 // import {tweetContext} from '../States/TweetStateProvider'
 
 import words from './tempWords';
@@ -10,7 +10,6 @@ import './LeftData.scss';
 
 export default function LeftData() {
   
-  // const {} = useContext(tweetContext)
 
   return (
     <section className="leftData">

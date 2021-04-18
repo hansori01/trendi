@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { uiContext } from '../States/UIStateProvider'
 import { tweetContext } from '../States/TweetStateProvider'
 
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
@@ -111,7 +112,7 @@ export default function Header() {
 
           {!uiState.disableSearch && (
             <>
-              <form className={classes.root} onSubmit={activateTrendi} noValidate>
+              <form className={classes.root} onSubmit={e => startStream(e)} noValidate>
                 <CssTextField
                   className={classes.margin}
                   label={!uiState.disableSearch && "Trendi Search"}
@@ -119,6 +120,7 @@ export default function Header() {
                   disabled={uiState.disableSearch}
                   onChange={handleSearch}
                   InputLabelProps={{ style: { color: '#ffffffb4' } }}
+                  inputProps={{ autoComplete: 'off' }}
                   size="small"
                   id="custom-css-outlined-input"
                   onSubmit={e => startStream(e)}
@@ -161,6 +163,9 @@ export default function Header() {
         </img>
       </div>
 
+      {uiState.loading && (
+        <LinearProgress color="secondary" />
+      )}
       {uiState.chooseCountry && (
         <ChooseCountry />
       )}

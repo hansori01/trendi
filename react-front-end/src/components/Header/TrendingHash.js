@@ -44,6 +44,7 @@ export default function TrendingHash(props) {
 
   const {
     uiState,
+    setUIState,
     onBackHandler,
     updateCurrentTrend
   } = useContext(uiContext);
@@ -52,18 +53,23 @@ export default function TrendingHash(props) {
 
   useEffect(() => {
     const getTrending = async () => {
+
+      setUIState(prev => ({ ...prev, loading: true }))
+      
       const trending = await axios.get(`http://localhost:8080/api/trending-${uiState.currentCountry}`)
       setTrendingHashtags(trending.data)
+
+      setUIState(prev => ({ ...prev, loading: false }))
     }
 
     getTrending();
   }, [uiState.currentCountry]);
 
-  
+
   const trendingList = trendingHashtags.map((hashtag, i) => {
 
 
-    const clickHandler = () =>{
+    const clickHandler = () => {
       // console.log('running clickHandler', hashtag.name)
       updateCurrentTrend(hashtag.name);
       // activateContainer();// get this to be working
@@ -78,7 +84,7 @@ export default function TrendingHash(props) {
         key={i}
         className={classes.chip}
         onClick={clickHandler}
-        // id={hashtag.name}
+      // id={hashtag.name}
       />
     )
   })
