@@ -6,7 +6,7 @@ import {tweetContext} from '../States/TweetStateProvider'
 import Wordcloud from './Wordcloud';
 import SentiBarChart from './BarChart';
 import SentiPieChart from './PieChart';
-import data from "../../temp-data/seedData-location-added"
+// import data from "../../temp-data/seedData-location-added"
 
 import './LeftData.scss';
 
