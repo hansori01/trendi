@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-// import {tweetContext} from '../States/TweetStateProvider'
+import React from "react";
 
 import ReactWordcloud from 'react-wordcloud';
 import './LeftData.scss';
@@ -18,8 +17,6 @@ const size = [380, 400];
 
 
 export default function Wordcloud(props) {
-  
-  // const {} = useContext(tweetContext)
   
   return (
     <ReactWordcloud
