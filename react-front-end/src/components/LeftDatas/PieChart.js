@@ -14,6 +14,7 @@ export default function SentiPieChart() {
     neutralTweets
   } = useContext(tweetContext);
 
+  // uses the length of tweet sentiment arrays to pass values to pie chart
   const data = [
     { "name": "Positive", "value": positiveTweets.length },
     { "name": "Negative", "value": negativeTweets.length },

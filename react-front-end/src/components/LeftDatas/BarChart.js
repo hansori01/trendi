@@ -19,18 +19,18 @@ export default function SentiBarChart() {
       const newData = {
         ...prevScores
       };
-
+      // checks that the tweets array has tweets then sorts based on senti score
       if (tweets.length > 0) {
         const sentiScore = tweets[0].sentiment.score;
         console.log(sentiScore);
         if ((sentiScore > -1 && sentiScore < 1) || sentiScore === 0) {
           newData.neutral = prevScores.neutral + 1;         //  0
         } else if (sentiScore >= 1 && sentiScore < 2) {
-          newData.slightPos = prevScores.slightPos + 1;     //  3
+          newData.slightPos = prevScores.slightPos + 1;     //  1
         } else if (sentiScore >= 2 && sentiScore < 3) {
           newData.pos = prevScores.pos + 1;                 //  2
         } else if (sentiScore >= 3) {
-          newData.veryPos = prevScores.veryPos + 1;         //  1
+          newData.veryPos = prevScores.veryPos + 1;         //  3
         } else if (sentiScore <= -1 && sentiScore > -2) {
           newData.slightNeg = prevScores.slightNeg + 1;     // -1
         } else if (sentiScore <= -2 && sentiScore > -3) {
