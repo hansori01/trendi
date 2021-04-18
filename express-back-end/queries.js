@@ -21,20 +21,7 @@ const headers = {
   Authorization: `Bearer ${process.env.BEARER_TOKEN}`
 }
 
-
-// This works, basic search for word
-const streamKeyword = function(searchWord) {
-  const stream = T.stream('statuses/filter', {
-    track: searchWord,
-    language: 'en'
-  });
-  stream.on('tweet', async tweet => {
-      console.log(tweet);
-  });
-}
-
-const streamCanadaBorderBox = function(searchWord) {
-  const canada = ['-140.99778', '41.6751050889', '-52.6480987209', '83.23324'];
+const streamKeyWord = function(searchWord) {
   
   const stream = T.stream('statuses/filter', {
     track: searchWord,
@@ -70,4 +57,4 @@ const getCurrentUSATrends = function() {
   })
 }
 
-module.exports = { streamCanadaBorderBox, getCurrentCanadaTrends, getCurrentUSATrends }
+module.exports = { streamKeyWord, getCurrentCanadaTrends, getCurrentUSATrends }
