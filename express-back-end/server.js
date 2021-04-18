@@ -33,15 +33,20 @@ io.on('connection', (socket) => {
   let tweetStream;
   socket.on('start', (hashtag) => {
     console.log('starting stream ', hashtag);
+    // Regex checks if keyword is in tweet when it comes back
     const regexpression = hashtag
     const regex = new RegExp(regexpression, "gi");
     tweetStream = streamKeyWord(hashtag);
     console.log('tweetStream Created');
     tweetStream.on('tweet', async tweet => {
       console.log(tweet);
+      // check tweet against regex
       if (tweet.text.match(regex)) {
+        // query google maps api for user location
         getLatLngFromLocation(tweet.user.location).then((location) => {
+          // add sentiment analysis to tweet object
           tweet['sentiment'] = sentiment.analyze(tweet.text)
+          // add location to tweet object
           if (location) {
             tweet['user_location_coords'] = location
           } else {
