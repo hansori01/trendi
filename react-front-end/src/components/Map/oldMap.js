@@ -55,7 +55,7 @@ export class MapContainer extends Component {
       }
     }
 
-    console.log("positions: ", this.props.positions);
+    // console.log("positions: ", this.props.positions);
 
     const gradient = [
       'rgba(0, 255, 255, 0)',
