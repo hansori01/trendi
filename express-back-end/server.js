@@ -3,7 +3,7 @@ const app = express();
 const BodyParser = require('body-parser');
 const PORT = 8080;
 const cors = require('cors')
-const { streamCanadaBorderBox, getCurrentCanadaTrends, getCurrentUSATrends } = require('./queries');
+const { streamKeyWord, getCurrentCanadaTrends, getCurrentUSATrends } = require('./queries');
 const Sentiment = require('sentiment');
 
 const http = require("http");
@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
     console.log('starting stream ', hashtag);
     const regexpression = hashtag
     const regex = new RegExp(regexpression, "gi");
-    tweetStream = streamCanadaBorderBox(hashtag);
+    tweetStream = streamKeyWord(hashtag);
     console.log('tweetStream Created');
     tweetStream.on('tweet', async tweet => {
       console.log('Streaming')
