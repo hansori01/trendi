@@ -6,6 +6,8 @@ export default function UIStateProvider(props) {
     left: false,//is container open or closed
     right: false,
     disableContainer: true, //disable FAB icons and side containers when header is expanded
+    containerButtonClassLeft: 'data-icon',
+    containerButtonClassRight: 'tweet-icon',
     disableSearch: true,
     disableStart: true,
     disablePause: true,
@@ -16,6 +18,7 @@ export default function UIStateProvider(props) {
     currentTrend: '',
     trendiActivated: false,
     showController: false,
+    loading: false,
   });
 
 
@@ -26,10 +29,10 @@ export default function UIStateProvider(props) {
     setUIState(prev => ({ ...prev, right: !uiState.right }))
   };
   const activateContainer = () => {
-    setUIState(prev => ({ ...prev, disableContainer: false }))
+    setUIState(prev => ({ ...prev, disableContainer: false, containerButtonClassLeft: 'data-icon animate', containerButtonClassRight: 'tweet-icon animate' }))
   };
   const deactivateContainer = () => {
-    setUIState(prev => ({ ...prev, disableContainer: true }))
+    setUIState(prev => ({ ...prev, disableContainer: true, containerButtonClassLeft: 'data-icon', containerButtonClassRight: 'tweet-icon' }))
   };
 
   const toggleChooseCanada = () => {
@@ -89,7 +92,7 @@ export default function UIStateProvider(props) {
 
   const activateTrendi = (event) => {
     // if (event) {
-      event.preventDefault();
+    event.preventDefault();
     // }
     if (uiState.currentTrend === '') {
       console.log('dont do that')
@@ -122,6 +125,8 @@ export default function UIStateProvider(props) {
         left: false,
         right: false,
         disableContainer: true,
+        containerButtonClassLeft: 'data-icon',
+        containerButtonClassRight: 'tweet-icon'
       }));
     } else if (uiState.trendiActivated) {
       setUIState(prev => ({
@@ -136,6 +141,8 @@ export default function UIStateProvider(props) {
         left: false,
         right: false,
         disableContainer: true,
+        containerButtonClassLeft: 'data-icon',
+        containerButtonClassRight: 'tweet-icon'
       }));
     } else {
       setUIState(prev => ({
@@ -152,6 +159,8 @@ export default function UIStateProvider(props) {
         left: false,
         right: false,
         disableContainer: true,
+        containerButtonClassLeft: 'data-icon', 
+        containerButtonClassRight: 'tweet-icon'
       }));
     }
   };
@@ -168,6 +177,7 @@ export default function UIStateProvider(props) {
 
   const uiData = {
     uiState,
+    setUIState,
     toggleLeft,
     toggleRight,
     activateContainer,

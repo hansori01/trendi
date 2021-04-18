@@ -1,16 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { tweetContext } from "../States/TweetStateProvider";
-import { GoogleMap, OverlayView } from "react-google-maps";
+import { GoogleMap } from "react-google-maps";
 import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer";
-import "./Map.scss";
-import "./mapStyle";
-import Header from "../Header/Header";
 import withGoogleMap from "react-google-maps/lib/withGoogleMap";
 import withScriptjs from "react-google-maps/lib/withScriptjs";
-import mapStyle from "./mapStyle";
-import data from "../../temp-data/seedData-location-added"
+// import data from "../../temp-data/seedData-location-added"
 
+import mapStyle from "./mapStyle";
+import "./mapStyle";
+
+import "./Map.scss";
 /* global google */
+
 require("dotenv").config();
 
 const negative = [
@@ -68,15 +69,11 @@ const neutral = [
 const ReactMap = withScriptjs(
   withGoogleMap((props) => {
     const {
-      tweets,
       neutralTweets,
       positiveTweets,
       negativeTweets,
     } = useContext(tweetContext);
 
-    // const positiveTweets = data.filter((tweet) => tweet.sentiment.score > 0);
-    // const negativeTweets = data.filter((tweet) => tweet.sentiment.score < 0);
-    // const neutralTweets = data.filter((tweet) => tweet.sentiment.score === 0);
     const usedCoords = [];
 
     const isInUsedCoords = function(coords) {
@@ -152,7 +149,6 @@ const ReactMap = withScriptjs(
       >
         <HeatmapLayer
           data={negativeData ? negativeData : []}
-          // data={negativeLocations.map((location) => new google.maps.LatLng(location.lat, location.lng))}
           options={{
             opacity: 0.75,
             gradient: negative,
@@ -161,7 +157,6 @@ const ReactMap = withScriptjs(
         />
         <HeatmapLayer
           data={positiveData ? positiveData : []}
-          // data={positiveLocations.map((location) => new google.maps.LatLng(location.lat, location.lng))}
           options={{
             opacity: 0.75,
             gradient: positive,
@@ -170,7 +165,6 @@ const ReactMap = withScriptjs(
         />
         <HeatmapLayer
           data={neutralData ? neutralData : []}
-          // data={positiveLocations.map((location) => new google.maps.LatLng(location.lat, location.lng))}
           options={{
             opacity: 0.75,
             gradient: neutral,

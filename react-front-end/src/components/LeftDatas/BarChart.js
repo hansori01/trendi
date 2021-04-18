@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { tweetContext } from '../States/TweetStateProvider'
 
 import { BarChart, XAxis, Bar } from 'recharts';
@@ -6,6 +6,7 @@ import { BarChart, XAxis, Bar } from 'recharts';
 import './LeftData.scss';
 
 export default function SentiBarChart() {
+
   const {
     tweets,
     tweetScores,
@@ -58,7 +59,9 @@ export default function SentiBarChart() {
     { name: "3", 0: tweetScores.veryPos },
   ];
 
+  
   return (
+
     <BarChart
       width={420}
       height={280}
@@ -71,11 +74,9 @@ export default function SentiBarChart() {
       }}
       className="barChart"
     >
-
       <Bar dataKey={0} fill="#FFA500" barSize={20} />
-
       <XAxis dataKey="name" />
-
     </BarChart>
+
   );
 }

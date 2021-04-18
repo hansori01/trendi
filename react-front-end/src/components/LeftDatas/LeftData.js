@@ -45,7 +45,6 @@ export default function LeftData() {
     pushToWordsArray(positiveWordsArr, true);
   })
 
-
   return (
     <section className="leftData">
 

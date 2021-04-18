@@ -1,19 +1,16 @@
-// import userEvent from '@testing-library/user-event';
 import React from 'react';
-
-//TODO - i think we can still send tweets down as props from RightTweets
 
 export default function Tweets(props) {
 
-  //replace this with when connected to tweet streams
-  const { name, handle, text, img, created_at } = props
+
+  const { name, handle, text, img } = props
 
   return (
     <article>
       <header>
         <div className="tweeter">
           <span className="profile">
-            <img src={img} alt='profile picture'/>
+            <img src={img} alt=''/>
             {name}
           </span>
           <a className="handle" href={`https://twitter.com/${handle}`} target="_blank">{handle}</a>
@@ -22,7 +19,6 @@ export default function Tweets(props) {
       <div className="tweet">{text}
       </div>
       <footer>
-        {/* <div className="timestamp"><p>{date}</p></div> */}
         <div className="interact">
         </div>
       </footer>

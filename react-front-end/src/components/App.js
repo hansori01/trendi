@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { uiContext } from './States/UIStateProvider';
 import { tweetContext } from './States/TweetStateProvider';
 
@@ -36,11 +36,8 @@ export default function App() {
   }
 
   useEffect(() => {
-    // setSocket();
     let socket = io('http://localhost:8080/')
     setSocket(socket);
-    // socket.emit('start', '#apecave');
-    // console.log('this is SOCKET', socket.emit)
     socket.on('tweet', (tweet) => {
       appendTweets(tweet)
     })
@@ -48,6 +45,12 @@ export default function App() {
       socket.disconnect();
     };
   }, []);
+
+
+// 'data-icon'
+// 'data-icon animate'
+// 'tweet-icon'
+// 'tweet-icon animate'
 
   return (
     <div className="App">
@@ -63,7 +66,7 @@ export default function App() {
       </div>
 
       {!uiState.left &&
-        (<Fab className='data-icon'
+        (<Fab className={uiState.containerButtonClassLeft}
           onClick={toggleLeft}
           disabled={uiState.disableContainer}>
           <EqualizerOutlinedIcon className='icon' />
@@ -71,7 +74,7 @@ export default function App() {
       }
       {uiState.left &&
         (<Fab
-          className='data-icon'
+          className='data-icon animate'
           onClick={toggleLeft}>
           <PlayCircleOutlineIcon className='icon rotate' />
         </Fab>)
@@ -86,7 +89,7 @@ export default function App() {
 
       {!uiState.right &&
         (<Fab
-          className='tweet-icon'
+          className={uiState.containerButtonClassRight}
           onClick={toggleRight}
           disabled={uiState.disableContainer}
         >
@@ -95,7 +98,7 @@ export default function App() {
       }
       {uiState.right &&
         (<Fab
-          className='tweet-icon'
+          className='tweet-icon animate'
           onClick={toggleRight}
         >
           <PlayCircleOutlineIcon className='icon rotate' />
