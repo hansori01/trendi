@@ -91,13 +91,13 @@ export default function UIStateProvider(props) {
   };
 
   const activateTrendi = (event) => {
-    // if (event) {
+
     event.preventDefault();
-    // }
+
     if (uiState.currentTrend === '') {
-      // console.log('dont do that')
       return;
     }
+
     setUIState(prev => ({
       ...prev,
       chooseCountry: false,
@@ -108,7 +108,7 @@ export default function UIStateProvider(props) {
       disablePause: false,
       disableStop: false
     }));
-    // console.log('activate trendi', uiState)
+
     activateContainer();
   };
 
@@ -166,7 +166,7 @@ export default function UIStateProvider(props) {
   };
 
   const pauseStreamHandler = () => {
-    // console.log(' running togglePause')
+
     setUIState(prev => ({
       ...prev,
       disableStart: false,
@@ -197,4 +197,5 @@ export default function UIStateProvider(props) {
     </uiContext.Provider>
   );
 };
+
 export const uiContext = createContext();
