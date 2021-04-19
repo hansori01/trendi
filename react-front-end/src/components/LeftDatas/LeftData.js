@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 
 import {tweetContext} from '../States/TweetStateProvider'
 
-// import words from './tempWords';
 import Wordcloud from './Wordcloud';
 import SentiBarChart from './BarChart';
 import SentiPieChart from './PieChart';
-// import data from "../../temp-data/seedData-location-added"
+
 
 import './LeftData.scss';
 

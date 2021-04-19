@@ -3,9 +3,9 @@ import { createContext, useState } from 'react';
 export default function UIStateProvider(props) {
 
   const [uiState, setUIState] = useState({
-    left: false,//is container open or closed
+    left: false,
     right: false,
-    disableContainer: true, //disable FAB icons and side containers when header is expanded
+    disableContainer: true,
     containerButtonClassLeft: 'data-icon',
     containerButtonClassRight: 'tweet-icon',
     disableSearch: true,

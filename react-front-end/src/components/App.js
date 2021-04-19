@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import { uiContext } from './States/UIStateProvider';
 import { tweetContext } from './States/TweetStateProvider';
 
-// import TweetStateProvider from './States/TweetStateProvider';
 import LeftData from './LeftDatas/LeftData';
 import RightTweets from './RightTweets/RightTweets';
 import Header from './Header/Header';
@@ -18,7 +17,7 @@ import { Animated } from "react-animated-css";
 import './App.scss';
 
 export default function App() {
-  // console.log('rendering app');
+
   const {
     tweets,
     setTweets,
@@ -45,12 +44,6 @@ export default function App() {
       socket.disconnect();
     };
   }, []);
-
-
-// 'data-icon'
-// 'data-icon animate'
-// 'tweet-icon'
-// 'tweet-icon animate'
 
   return (
     <div className="App">
