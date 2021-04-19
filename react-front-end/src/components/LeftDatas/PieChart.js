@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import {tweetContext} from '../States/TweetStateProvider'
 
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, Legend } from 'recharts';
 
 import './LeftData.scss';
 
@@ -22,7 +22,8 @@ export default function SentiPieChart() {
   ];
 
   return (
-    <PieChart width={430} height={350} className='piechart'>
+    <PieChart margin={{top:30}} width={480} height={350} className='piechart'>
+      <Legend iconSize={0} verticalAlign="top" align="left" />
       <Pie
         data={data}
         innerRadius={60}

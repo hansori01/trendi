@@ -49,20 +49,20 @@ export default function SentiBarChart() {
   }, [tweets])
 
   const barData = [
-    { name: "3-", 0: tweetScores.veryNeg },
-    { name: "2-", 0: tweetScores.neg },
-    { name: "1-", 0: tweetScores.slightNeg },
-    { name: "0", 0: tweetScores.neutral },
-    { name: "1", 0: tweetScores.slightPos },
-    { name: "2", 0: tweetScores.pos },
-    { name: "3", 0: tweetScores.veryPos },
+    { name: "🤬", 0: tweetScores.veryNeg },
+    { name: "😠", 0: tweetScores.neg },
+    { name: "🥲", 0: tweetScores.slightNeg },
+    { name: "🤷", 0: tweetScores.neutral },
+    { name: "👍", 0: tweetScores.slightPos },
+    { name: "😊", 0: tweetScores.pos },
+    { name: "🤩", 0: tweetScores.veryPos },
   ];
 
   
   return (
 
     <BarChart
-      width={420}
+      width={500}
       height={280}
       data={barData}
       margin={{

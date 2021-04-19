@@ -5,15 +5,15 @@ import './LeftData.scss';
 
 const callbacks = {
   getWordColor: word => word.sentiment ? '#1DE9B6' : "#BA3B61",
-  getWordTooltip: word => `${word.text} (${word.value}) [${word.sentiment ? "good" : "bad"}]`,
+  // getWordTooltip: word => `${word.text} (${word.value}) [${word.sentiment ? "good" : "bad"}]`,
 }
 const options = {
   rotations: 2,
   rotationAngles: [0, 90],
-  fontFamily: 'UniNeue'
-  
+  fontFamily: 'UniNeue',
+  fontSizes: [14,40],
 };
-const size = [380, 400];
+const size = [490, 400];
 
 
 export default function Wordcloud(props) {
