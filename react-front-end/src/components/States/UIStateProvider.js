@@ -67,7 +67,8 @@ export default function UIStateProvider(props) {
       disableStart: true,
       disablePause: true,
       disableStop: true,
-      showController: false
+      showController: false,
+      currentTrend: '',
     }))
     deactivateContainer()
   };
