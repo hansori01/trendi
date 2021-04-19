@@ -69,7 +69,6 @@ export default function Header() {
   } = useContext(tweetContext);
 
 
-  //TODO make Enter key work
   const startStream = (event) => {
     activateTrendi(event);
     socket.emit('start', uiState.currentTrend);

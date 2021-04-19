@@ -75,7 +75,7 @@ const ReactMap = withScriptjs(
     } = useContext(tweetContext);
 
     const usedCoords = [];
-
+//check if the coordinates already exist in current stream
     const isInUsedCoords = function(coords) {
       for(const item of usedCoords){
         if (coords.lat === item.lat && coords.lng === item.lng) {
@@ -85,11 +85,10 @@ const ReactMap = withScriptjs(
       return false;
     }
 
-
-    // console.log("usedCoords: ", usedCoords);
     let negativeData;
     let positiveData;
     let neutralData;
+    //offset incoming heatmap to avoid overlap
     const makeUniqueCoord = function(coords) {
       for(const item of usedCoords){
         if (coords.lat === item.lat && coords.lng === item.lng) {

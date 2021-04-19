@@ -21,7 +21,7 @@ export default function UIStateProvider(props) {
     loading: false,
   });
 
-
+  // toggle containers
   const toggleLeft = () => {
     setUIState(prev => ({ ...prev, left: !uiState.left }))
   };
@@ -35,6 +35,7 @@ export default function UIStateProvider(props) {
     setUIState(prev => ({ ...prev, disableContainer: true, containerButtonClassLeft: 'data-icon', containerButtonClassRight: 'tweet-icon' }))
   };
 
+  //country selectors
   const toggleChooseCanada = () => {
     setUIState(prev => ({
       ...prev,
@@ -56,6 +57,7 @@ export default function UIStateProvider(props) {
     }));
   };
 
+  //navigate header
   const onBackHandler = () => {
     setUIState(prev => ({
       ...prev,
@@ -90,6 +92,7 @@ export default function UIStateProvider(props) {
     }));
   };
 
+  //start trendi
   const activateTrendi = (event) => {
 
     event.preventDefault();
@@ -112,6 +115,7 @@ export default function UIStateProvider(props) {
     activateContainer();
   };
 
+  //stop trendi
   const reset = () => {
     if (uiState.currentTrend.length > 0) {
       setUIState(prev => ({
@@ -159,7 +163,7 @@ export default function UIStateProvider(props) {
         left: false,
         right: false,
         disableContainer: true,
-        containerButtonClassLeft: 'data-icon', 
+        containerButtonClassLeft: 'data-icon',
         containerButtonClassRight: 'tweet-icon'
       }));
     }

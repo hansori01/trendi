@@ -14,10 +14,6 @@ export default function LeftData() {
   const {
     tweets
   } = useContext(tweetContext)
-  // const positiveTweets = data.filter((tweet) => tweet.sentiment.score > 0);
-  // const negativeTweets = data.filter((tweet) => tweet.sentiment.score < 0);
-  // const neutralTweets = data.filter((tweet) => tweet.sentiment.score === 0);
-  // const tweets = data;
   
   const words = [];
   const getWord = function(wordText) {
