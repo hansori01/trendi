@@ -51,6 +51,7 @@ export default function TrendingHash(props) {
 
   const [trendingHashtags, setTrendingHashtags] = useState([]);
 
+  // request for trending hashtag based on selected location
   useEffect(() => {
     const getTrending = async () => {
 
@@ -66,14 +67,10 @@ export default function TrendingHash(props) {
   }, [uiState.currentCountry]);
 
 
+  // generate chip for each trend
   const trendingList = trendingHashtags.map((hashtag, i) => {
-
-
     const clickHandler = () => {
-      // console.log('running clickHandler', hashtag.name)
       updateCurrentTrend(hashtag.name);
-      // activateContainer();// get this to be working
-      // console.log('log state in TrendingHash', uiState)
     }
 
     return (
@@ -84,7 +81,6 @@ export default function TrendingHash(props) {
         key={i}
         className={classes.chip}
         onClick={clickHandler}
-      // id={hashtag.name}
       />
     )
   })

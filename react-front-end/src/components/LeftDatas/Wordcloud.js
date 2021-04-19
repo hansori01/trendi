@@ -5,7 +5,6 @@ import './LeftData.scss';
 
 const callbacks = {
   getWordColor: word => word.sentiment ? '#1DE9B6' : "#BA3B61",
-  // getWordTooltip: word => `${word.text} (${word.value}) [${word.sentiment ? "good" : "bad"}]`,
 }
 const options = {
   rotations: 2,

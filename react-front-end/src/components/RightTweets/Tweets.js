@@ -2,7 +2,6 @@ import React from 'react';
 
 export default function Tweets(props) {
 
-
   const { name, handle, text, img } = props
 
   return (

@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 
 import {tweetContext} from '../States/TweetStateProvider'
 
-// import words from './tempWords';
 import Wordcloud from './Wordcloud';
 import SentiBarChart from './BarChart';
 import SentiPieChart from './PieChart';
-// import data from "../../temp-data/seedData-location-added"
+
 
 import './LeftData.scss';
 
@@ -15,10 +14,6 @@ export default function LeftData() {
   const {
     tweets
   } = useContext(tweetContext)
-  // const positiveTweets = data.filter((tweet) => tweet.sentiment.score > 0);
-  // const negativeTweets = data.filter((tweet) => tweet.sentiment.score < 0);
-  // const neutralTweets = data.filter((tweet) => tweet.sentiment.score === 0);
-  // const tweets = data;
   
   const words = [];
   const getWord = function(wordText) {

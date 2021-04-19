@@ -3,9 +3,9 @@ import { createContext, useState } from 'react';
 export default function UIStateProvider(props) {
 
   const [uiState, setUIState] = useState({
-    left: false,//is container open or closed
+    left: false,
     right: false,
-    disableContainer: true, //disable FAB icons and side containers when header is expanded
+    disableContainer: true,
     containerButtonClassLeft: 'data-icon',
     containerButtonClassRight: 'tweet-icon',
     disableSearch: true,
@@ -21,7 +21,7 @@ export default function UIStateProvider(props) {
     loading: false,
   });
 
-
+  // toggle containers
   const toggleLeft = () => {
     setUIState(prev => ({ ...prev, left: !uiState.left }))
   };
@@ -35,6 +35,7 @@ export default function UIStateProvider(props) {
     setUIState(prev => ({ ...prev, disableContainer: true, containerButtonClassLeft: 'data-icon', containerButtonClassRight: 'tweet-icon' }))
   };
 
+  //country selectors
   const toggleChooseCanada = () => {
     setUIState(prev => ({
       ...prev,
@@ -56,6 +57,7 @@ export default function UIStateProvider(props) {
     }));
   };
 
+  //navigate header
   const onBackHandler = () => {
     setUIState(prev => ({
       ...prev,
@@ -90,14 +92,15 @@ export default function UIStateProvider(props) {
     }));
   };
 
+  //start trendi
   const activateTrendi = (event) => {
-    // if (event) {
+
     event.preventDefault();
-    // }
+
     if (uiState.currentTrend === '') {
-      // console.log('dont do that')
       return;
     }
+
     setUIState(prev => ({
       ...prev,
       chooseCountry: false,
@@ -108,10 +111,11 @@ export default function UIStateProvider(props) {
       disablePause: false,
       disableStop: false
     }));
-    // console.log('activate trendi', uiState)
+
     activateContainer();
   };
 
+  //stop trendi
   const reset = () => {
     if (uiState.currentTrend.length > 0) {
       setUIState(prev => ({
@@ -159,14 +163,14 @@ export default function UIStateProvider(props) {
         left: false,
         right: false,
         disableContainer: true,
-        containerButtonClassLeft: 'data-icon', 
+        containerButtonClassLeft: 'data-icon',
         containerButtonClassRight: 'tweet-icon'
       }));
     }
   };
 
   const pauseStreamHandler = () => {
-    // console.log(' running togglePause')
+
     setUIState(prev => ({
       ...prev,
       disableStart: false,
@@ -197,4 +201,5 @@ export default function UIStateProvider(props) {
     </uiContext.Provider>
   );
 };
+
 export const uiContext = createContext();
