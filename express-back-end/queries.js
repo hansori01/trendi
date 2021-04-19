@@ -1,11 +1,5 @@
 const Twit = require('twit');
-const Sentiment = require('sentiment');
 const needle = require('needle');
-const _ = require('lodash');
-const { identity } = require('lodash');
-const fs = require('fs');
-const util = require('util');
-const { response } = require('express');
 require('dotenv').config()
 
 const T = new Twit({
