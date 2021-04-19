@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
     });
   });
 
-  socket.on('please_stop',(arg) => {
+  socket.on('please_stop', (arg) => {
     if (tweetStream) {
       tweetStream.stop();
       console.log('the tweetStream has stopped');

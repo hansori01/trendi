@@ -13,65 +13,65 @@ const T = new Twit({
   consumer_secret: process.env.CONSUMER_SECRET,
   access_token: process.env.AUTH_ACCESS,
   access_token_secret: process.env.AUTH_SECRET,
-  timeout_ms: 60*1000,  // optional HTTP request timeout to apply to all requests.
+  timeout_ms: 60 * 1000,  // optional HTTP request timeout to apply to all requests.
   strictSSL: true,     // optional - requires SSL certificates to be valid.
 });
 
 let tweetCount = 0;
 let tweetsData = []
 
-const pushToTweetsData = function(tweet) {
+const pushToTweetsData = function (tweet) {
   let sentiment = new Sentiment();
-      let sentimentResult = sentiment.analyze(tweet.text);
-      try {
-        let tweetData = {
-          created_at: tweet.created_at,
-          id: tweet.id,
-          text: tweet.text,
-          user: tweet.user || {},
-          geo: tweet.geo,
-          coordinates: tweet.coordinates,
-          extended_tweet: tweet.extended_tweet.full_text,
-          place: tweet.place,
-          user_location_coords: tweet.user_location_coords,
-          sentiment: {
-            score: sentimentResult.score,
-            positive: util.inspect(sentimentResult.positive),
-            negative: util.inspect(sentimentResult.negative)
-          }
-        }
-        tweetsData.push(tweetData);
-      } catch (error) {
-        console.log('no extended tweet');
-        let tweetData = {
-          created_at: tweet.created_at,
-          id: tweet.id,
-          text: tweet.text,
-          user: tweet.user || {},
-          geo: tweet.geo,
-          coordinates: tweet.coordinates,
-          extended_tweet: null,
-          place: tweet.place,
-          user_location_coords: tweet.user_location_coords,
-          sentiment: {
-            score: sentimentResult.score,
-            positive: util.inspect(sentimentResult.positive),
-            negative: util.inspect(sentimentResult.negative)
-          }
-        }
-        tweetsData.push(tweetData);
+  let sentimentResult = sentiment.analyze(tweet.text);
+  try {
+    let tweetData = {
+      created_at: tweet.created_at,
+      id: tweet.id,
+      text: tweet.text,
+      user: tweet.user || {},
+      geo: tweet.geo,
+      coordinates: tweet.coordinates,
+      extended_tweet: tweet.extended_tweet.full_text,
+      place: tweet.place,
+      user_location_coords: tweet.user_location_coords,
+      sentiment: {
+        score: sentimentResult.score,
+        positive: util.inspect(sentimentResult.positive),
+        negative: util.inspect(sentimentResult.negative)
       }
-      console.log("Match Count", tweetCount);
-      tweetCount++;
-      
+    }
+    tweetsData.push(tweetData);
+  } catch (error) {
+    console.log('no extended tweet');
+    let tweetData = {
+      created_at: tweet.created_at,
+      id: tweet.id,
+      text: tweet.text,
+      user: tweet.user || {},
+      geo: tweet.geo,
+      coordinates: tweet.coordinates,
+      extended_tweet: null,
+      place: tweet.place,
+      user_location_coords: tweet.user_location_coords,
+      sentiment: {
+        score: sentimentResult.score,
+        positive: util.inspect(sentimentResult.positive),
+        negative: util.inspect(sentimentResult.negative)
+      }
+    }
+    tweetsData.push(tweetData);
+  }
+  console.log("Match Count", tweetCount);
+  tweetCount++;
+
 }
 
-const streamCanadaBorderBox = function(searchWord) {
+const streamCanadaBorderBox = function (searchWord) {
   const canada = ['-140.99778', '41.6751050889', '-52.6480987209', '83.23324'];
   // const regexpression = /(?i)#RemoveThePM(?-i).*/gi
   const regexpression = searchWord
   const regex = new RegExp(regexpression, "gi");
-  
+
 
   const stream = T.stream('statuses/filter', {
     track: searchWord,
@@ -97,13 +97,13 @@ const streamCanadaBorderBox = function(searchWord) {
         }
       } catch (error) {
         console.log('No extended tweet');
-      }   
+      }
     }
 
     if (tweetsData.length === 25) {
       const data = util.inspect(tweetsData)
-      fs.writeFile('./seedData-location-added.js', data, function(err, result) {
-        if(err) console.log('error', err);
+      fs.writeFile('./seedData-location-added.js', data, function (err, result) {
+        if (err) console.log('error', err);
         stream.stop()
         console.log('Finished writing')
       })
@@ -114,7 +114,7 @@ const streamCanadaBorderBox = function(searchWord) {
   });
 }
 
-const streamUSBorderBox = function(searchWord) {
+const streamUSBorderBox = function (searchWord) {
   const USA = ['-171.791110603', '18.91619', '-66.96466', '71.3577635769'];
 
   const regexpression = searchWord
@@ -136,13 +136,13 @@ const streamUSBorderBox = function(searchWord) {
         }
       } catch (error) {
         console.log('No extended tweet');
-      }   
+      }
     }
 
     if (tweetsData.length === 50) {
       const data = util.inspect(tweetsData)
-      fs.writeFile('./seedDataUSA-with-locations.js', data, function(err, result) {
-        if(err) console.log('error', err);
+      fs.writeFile('./seedDataUSA-with-locations.js', data, function (err, result) {
+        if (err) console.log('error', err);
         stream.stop()
         console.log('Finished writing')
       })
@@ -152,10 +152,10 @@ const streamUSBorderBox = function(searchWord) {
   });
 }
 
-const getTweetsFromPointRadius = function(pointRadius) {
-  T.get('search/tweets', { q:`#RemoveThePM geocode:${pointRadius}`, count: 10 }, function(err, data, response) {
+const getTweetsFromPointRadius = function (pointRadius) {
+  T.get('search/tweets', { q: `#RemoveThePM geocode:${pointRadius}`, count: 10 }, function (err, data, response) {
     console.log(data)
-  
+
     console.log('######################################################################');
     data.statuses.forEach(tweet => {
       console.log(tweet.user);
@@ -165,13 +165,13 @@ const getTweetsFromPointRadius = function(pointRadius) {
 
 const senti = new Sentiment();
 const calgaryPointRadius = '51.0447,-114.0719,100mi'
-const runSingleQuery = function(hashtag) {
+const runSingleQuery = function (hashtag) {
   const headers = {
     Authorization: `Bearer ${process.env.BEARER_TOKEN}`
   }
-  needle.get(`https://api.twitter.com/1.1/search/tweets.json?q=%23${hashtag}%20-filter%3Aretweets%20AND%20-filter%3Areplies&geocode=${calgaryPointRadius}`,{headers: headers}, function(error, response) {
+  needle.get(`https://api.twitter.com/1.1/search/tweets.json?q=%23${hashtag}%20-filter%3Aretweets%20AND%20-filter%3Areplies&geocode=${calgaryPointRadius}`, { headers: headers }, function (error, response) {
     if (!error && response.statusCode == 200)
-    console.log(response.body);
+      console.log(response.body);
     console.log('##############################################################################')
     response.body.statuses.forEach(status => {
       // console.log(status.user);
