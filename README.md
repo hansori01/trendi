@@ -1,46 +1,76 @@
-# React + Express No-Fluff Boilerplate
+# Trendi
 
-A boilerplate project for anyone interested in making a project that uses React and Express.
+## Summary
+This is our final project for Lighthouse Labs. 
+The intention of Trendi was to get a generalized view of the sentiment towards a particular topic. 
+A user can select a trending or custom topic 
+and get a live stream of tweets and locations with a visualized sentiment analysis on that topic.
+The colourized overlay allows for quick consumption of data.
 
-This repository is a bootleg of @NimaBoscarino's [React Rails Boilerplate](https://github.com/NimaBoscarino/react-rails-boilerplate). It uses the same React app, but replaces the Rails server with an Express server.
+# Contributors
+- [Isamu Ito](https://github.com/Isams01)
+- [Sori Han](https://github.com/hansori01)
+- [Josh Rully](https://github.com/JoshuaRully)
 
-Note! This boilerplate has _no fluff_! That means that there's nothing set up for you to do authentication stuff, there's no Redux stuff, and there's no React Router stuff. On the Express end, there is no session storage or database connection.
+# Preview
 
-The main important bit is that the React project has `proxy` set to `localhost:8080` in the `package.json` file, and that the Express app listens to port 8080 in `server.js`. Take a look!
+Select a country and a popular trend!
+!["TrendDemo"](https://github.com/hansori01/trendi/blob/master/react-front-end/public/images/trendi-1.gif?raw=true)
 
-You can (and perhaps should) rename the directories `express-back-end` and `react-front-end` if you want-- The name doesn't matter.
+Watch North America react to the topic live!
+!["RealtimeLoading"](https://github.com/hansori01/trendi/blob/master/react-front-end/public/images/trendi-2.gif?raw=true)
 
-## Running the projects
+Analytics can be viewed in real time!
+!["AnalyticsFocus"](https://github.com/hansori01/trendi/blob/master/react-front-end/public/images/trendi-3.gif?raw=true)
+
+# Dependencies
+
+## Back-End
+- Express
+- Mongodb
+- Needle
+- Sentiment
+- socket.io
+- Twit
+
+## Front-End
+- React
+- Sass
+- Axios
+
+## API's
+- Twitter
+- Google Maps JavaScript
+- Google Maps Geocoding
+
+# Running the project
+
+Fork this repository, then clone it to your local machine.
 
 You need **TWO** terminal windows/tabs for this (or some other plan for running two Node processes).
 
-In one terminal, `cd` into `react-front-end`. Run `npm install` or `yarn` to install the dependencies. Then run `npm start` or `yarn start`, and go to `localhost:3000` in your browser.
+In one terminal, `cd` into `react-front-end`. Run 
+```bash
+npm install
+``` 
+Then run 
+```bash 
+npm start 
+```
+and go to `localhost:3000` in your browser.
 
-In the other terminal, `cd` into `express-back-end`. Run `npm install` or `yarn` to install the dependencies, then `npm start` or `yarn start` to launch the server.
+In the other terminal, `cd` into `express-back-end`. Run 
+```bash
+npm install
+``` 
+then 
+```bash
+npm start
+```
+to launch the server.
 
-In the browser, you can click on the button and see the data get loaded.
+For this project to work you will need API keys from Twitter and Google Maps. The `.example.env` file in both the front end and back end has the necessary fields that you will need to fill out for this to work.
 
-If this doesn't work, please message me!
+**The steps to get a `Twitter API` key can be found** [here](https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api)
 
-## Next steps
-
-From here, you can start working on your project!
-
-As soon as the dependencies are installed, your Express server can serve JSON and static assets (like images) in response to API calls from the React app. You can get started on developing your React app, routing plan, etc. right away! Any request that isn't handled by React is passed on to the Express server. That means that you can call a route like `/api/users` from React using `fetch`, `axios`, or something else, and Express will receive it as though they originated from the same app. For routing, best practice is to namespace all of your data routes to `/api`, so that they don't clash with other routing schemes, like React Router.
-
-At some point, you'll likely want to install and configure a database driver for Postgres or MongoDB-- Refer to past projects for hints on how to do this.
-
-And don't forget to update the README!
-
-## Example Projects
-
-You might want to look at examples of projects that have used this boilerplate for hints on how to extend it. Here are a few:
-
-* [Later Cart](https://github.com/bonitac/later-cart)
-* [Buddi.io](https://github.com/Danny-Tran/buddi.io)
-
-If you'd like your project added to the list, please shoot me a message.
-
-## Contact
-
-Please contact me on Slack (@garrettgsb) or Nima at `nima@lighthouselabs.com` if you have any questions, requests, or feedback, or post an issue to this repo. If you are using the boilerplate, I'd love to hear from you as well!
+**The steps to get a `Google API` key can be found** [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
