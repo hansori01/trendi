@@ -47,6 +47,9 @@ io.on('connection', (socket) => {
           // add sentiment analysis to tweet object
           tweet['sentiment'] = sentiment.analyze(tweet.text)
           // add location to tweet object
+          if (!tweet.user.location) {
+            location = { lat: -82.8628, lng: 135.0000 }
+          }
           if (location) {
             tweet['user_location_coords'] = location
           } else {
