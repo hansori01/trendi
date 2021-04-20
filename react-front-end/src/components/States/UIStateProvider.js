@@ -176,6 +176,7 @@ export default function UIStateProvider(props) {
       ...prev,
       disableStart: false,
       disablePause: true,
+      trendiActivated: false,
     }));
   }
 
