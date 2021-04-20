@@ -1,22 +1,18 @@
 
 @import "../styles/variables.scss";
-// @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@700&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
-// @import "styles/reset.scss";
+
 
 nav {
   background-color: $dark-grey-background-opacity-darker;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   left: 20vw;
   overflow: auto;
   margin: 15px auto;
   width: 60vw;
   min-height: 90px;
   position: fixed;
-  // position: relative;
   border-radius: 55px;
   z-index: 1;
 
