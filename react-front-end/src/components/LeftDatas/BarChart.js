@@ -62,7 +62,7 @@ export default function SentiBarChart() {
   return (
 
     <BarChart
-      width={500}
+      width={410}
       height={280}
       data={barData}
       margin={{

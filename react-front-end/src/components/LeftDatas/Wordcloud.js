@@ -12,8 +12,7 @@ const options = {
   fontFamily: 'UniNeue',
   fontSizes: [14,40],
 };
-const size = [490, 400];
-
+const size = [410, 400];
 
 export default function Wordcloud(props) {
   
