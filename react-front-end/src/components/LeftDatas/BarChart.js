@@ -58,11 +58,13 @@ export default function SentiBarChart() {
     { name: "🤩", 0: tweetScores.veryPos },
   ];
 
+  console.log(window.innerWidth); //1536 @125% - 1745 @110%
+
   
   return (
 
     <BarChart
-      width={410}
+      width={window.innerWidth < 1550 ? 360 : 400}
       height={280}
       data={barData}
       margin={{

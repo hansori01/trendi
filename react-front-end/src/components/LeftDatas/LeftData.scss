@@ -53,6 +53,7 @@
     justify-content: center;
     align-content: flex-start;
     overflow: visible;
+    // overflow-x: ;
     background: $black-opacity;
     border-radius: 35px;
     box-shadow: 13px 15px 15px -3px rgba(0, 0, 0, 0.404);
@@ -66,15 +67,22 @@
 
     .wordCloud {
       width: 80%;
+      // background-size: contain
       overflow: hidden;
+      // position:fixed;
+
     }
     .barchart {
-      width: 80%;
-      overflow: hidden;
+      // width: 80%;
+      background-size: contain;
+      // position: fixed;
+      
+      // overflow;
     }
     .piechart {
       width: 80%;
-      overflow: hidden;
+      background-size: contain;
+      // overflow: hidden;
     }
   }
 }
