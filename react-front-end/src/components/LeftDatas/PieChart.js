@@ -22,7 +22,7 @@ export default function SentiPieChart() {
   ];
 
   return (
-    <PieChart margin={{top:30}} width={480} height={350} className='piechart'>
+    <PieChart margin={{top:30}} width={410} height={350} className='piechart'>
       <Legend iconSize={0} verticalAlign="top" align="left" />
       <Pie
         data={data}
