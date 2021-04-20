@@ -14,20 +14,19 @@ The colourized overlay allows for quick consumption of data.
 
 # Preview
 
-Select a country and a popular trend!
+### Select a country and a popular trend!
 !["TrendDemo"](https://github.com/hansori01/trendi/blob/master/react-front-end/public/images/trendi-1.gif?raw=true)
 
-Watch North America react to the topic live!
+### Watch North America react to the topic live!
 !["RealtimeLoading"](https://github.com/hansori01/trendi/blob/master/react-front-end/public/images/trendi-2.gif?raw=true)
 
-Analytics can be viewed in real time!
+### Analytics can be viewed in real time!
 !["AnalyticsFocus"](https://github.com/hansori01/trendi/blob/master/react-front-end/public/images/trendi-3.gif?raw=true)
 
 # Dependencies
 
 ## Back-End
 - Express
-- Mongodb
 - Needle
 - Sentiment
 - socket.io
@@ -37,6 +36,9 @@ Analytics can be viewed in real time!
 - React
 - Sass
 - Axios
+- Material-UI
+- Recharts
+- React-Wordcloud
 
 ## API's
 - Twitter
