@@ -9,7 +9,7 @@ The colourized overlay allows for quick consumption of data.
 
 Trendi was conceptualized with the desire of working with live-streaming, raw data. In creating the user stories, we wanted to build a tool that allows users to see the sentiment analysis in a variety of simple views. We hope to expand Trendi in the future and worked on this application with scalability in mind.
 
-For more projects visit my portfolio at [sorihan.com](https://www.sorihan.com)
+For more projects visit my portfolio at <a href="https://www.sorihan.com" target="_blank">sorihan.com</a>
 
 ### Video Demo of 
 <a href="https://youtu.be/Ydj6O67c7a0" target="_blank">Click here to see Trendi in action</a>
