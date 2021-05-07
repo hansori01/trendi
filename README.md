@@ -1,11 +1,18 @@
 # Trendi
 
 ## Summary
-This is our final project for Lighthouse Labs. 
-The intention of Trendi was to get a generalized view of the sentiment towards a particular topic. 
-A user can select a trending or custom topic 
-and get a live stream of tweets and locations with a visualized sentiment analysis on that topic.
+Trendi is a single-page-app that lets users browse top trends on Twitter and see a visualized geo-locational sentiment analysis in real-time. This was our final project at Lighthouse Labs that gave us another chance to work independently from instructions while building an app from scratch using our choice of tools/frameworks. I was in charge of planning and implementing the React components, UI/UX, and the core functionality while working proactively for seamless integration with the Twitter and Google Maps API.
+
+Trendi lets users get a generalized view of the sentiment towards a particular topic. 
+A user can select a trending or custom topic and get a live stream of tweets and locations with a visualized sentiment analysis on that topic.
 The colourized overlay allows for quick consumption of data.
+
+Trendi was conceptualized with the desire of working with live-streaming, raw data. In creating the user stories, we wanted to build a tool that allows users to see the sentiment analysis in a variety of simple views. We hope to expand Trendi in the future and worked on this application with scalability in mind.
+
+For more projects visit my portfolio at [sorihan.com](https://www.sorihan.com)
+
+### Video Demo of 
+[Click here to see Trendi in action](https://youtu.be/Ydj6O67c7a0)
 
 # Contributors
 - [Isamu Ito](https://github.com/Isams01)
@@ -13,7 +20,6 @@ The colourized overlay allows for quick consumption of data.
 - [Josh Rully](https://github.com/JoshuaRully)
 
 # Preview
-
 ### Select a country and a popular trend!
 !["TrendDemo"](https://github.com/hansori01/trendi/blob/master/react-front-end/public/images/trendi-1.gif?raw=true)
 
