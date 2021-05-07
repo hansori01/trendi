@@ -11,7 +11,7 @@ Trendi was conceptualized with the desire of working with live-streaming, raw da
 
 For more projects visit my portfolio at <a href="https://www.sorihan.com" target="_blank">sorihan.com</a>
 
-### Video Demo of 
+### Video Demo
 <a href="https://youtu.be/Ydj6O67c7a0" target="_blank">Click here to see Trendi in action</a>
 
 # Contributors
