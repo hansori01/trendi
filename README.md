@@ -55,23 +55,27 @@ For more projects visit my portfolio at <a href="https://www.sorihan.com" target
 
 Fork this repository, then clone it to your local machine.
 
-You need **TWO** terminal windows/tabs for this (or some other plan for running two Node processes).
+You need **TWO** terminal windows/tabs to run Trendi.
 
-In one terminal, `cd` into `react-front-end`. Run 
+In one terminal, `cd` into `react-front-end`. 
+
+Install dependencies: 
 ```bash
 npm install
 ``` 
-Then run 
+Then run:
 ```bash 
 npm start 
 ```
 and go to `localhost:3000` in your browser.
 
-In the other terminal, `cd` into `express-back-end`. Run 
+In the other terminal, `cd` into `express-back-end`. 
+
+Install dependencies: 
 ```bash
 npm install
 ``` 
-then 
+then run:
 ```bash
 npm start
 ```
