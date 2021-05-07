@@ -12,7 +12,7 @@ Trendi was conceptualized with the desire of working with live-streaming, raw da
 For more projects visit my portfolio at [sorihan.com](https://www.sorihan.com)
 
 ### Video Demo of 
-[Click here to see Trendi in action](https://youtu.be/Ydj6O67c7a0)
+<a href="https://youtu.be/Ydj6O67c7a0" target="_blank">Click here to see Trendi in action</a>
 
 # Contributors
 - [Isamu Ito](https://github.com/Isams01)
