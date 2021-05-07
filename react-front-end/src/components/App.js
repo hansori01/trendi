@@ -1,45 +1,36 @@
-import React, { useContext, useEffect } from 'react';
-import { uiContext } from './States/UIStateProvider';
-import { tweetContext } from './States/TweetStateProvider';
+import React, { useContext, useEffect } from "react";
+import { uiContext } from "./States/UIStateProvider";
+import { tweetContext } from "./States/TweetStateProvider";
 
-import LeftData from './LeftDatas/LeftData';
-import RightTweets from './RightTweets/RightTweets';
-import Header from './Header/Header';
+import LeftData from "./LeftDatas/LeftData";
+import RightTweets from "./RightTweets/RightTweets";
+import Header from "./Header/Header";
 
-import ReactMap from './Map/Map.js';
+import ReactMap from "./Map/Map.js";
 import Fab from "@material-ui/core/Fab";
-import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
-import EqualizerOutlinedIcon from '@material-ui/icons/EqualizerOutlined';
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
+import EqualizerOutlinedIcon from "@material-ui/icons/EqualizerOutlined";
+import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import io from "socket.io-client";
 import { Animated } from "react-animated-css";
 
-import './App.scss';
+import "./App.scss";
 
 export default function App() {
+  const { tweets, setTweets, setSocket } = useContext(tweetContext);
 
-  const {
-    tweets,
-    setTweets,
-    setSocket
-  } = useContext(tweetContext)
-
-  const {
-    uiState,
-    toggleLeft,
-    toggleRight,
-  } = useContext(uiContext);
+  const { uiState, toggleLeft, toggleRight } = useContext(uiContext);
 
   const appendTweets = (tweet) => {
     setTweets((prevTweets) => [tweet, ...prevTweets]);
-  }
+  };
 
   useEffect(() => {
-    let socket = io('http://localhost:8080/')
+    let socket = io("http://localhost:8080/");
     setSocket(socket);
-    socket.on('tweet', (tweet) => {
-      appendTweets(tweet)
-    })
+    socket.on("tweet", (tweet) => {
+      appendTweets(tweet);
+    });
     return () => {
       socket.disconnect();
     };
@@ -58,20 +49,20 @@ export default function App() {
         />
       </div>
 
-      {!uiState.left &&
-        (<Fab className={uiState.containerButtonClassLeft}
+      {!uiState.left && (
+        <Fab
+          className={uiState.containerButtonClassLeft}
           onClick={toggleLeft}
-          disabled={uiState.disableContainer}>
-          <EqualizerOutlinedIcon className='icon' />
-        </Fab>)
-      }
-      {uiState.left &&
-        (<Fab
-          className='data-icon animate'
-          onClick={toggleLeft}>
-          <PlayCircleOutlineIcon className='icon rotate' />
-        </Fab>)
-      }
+          disabled={uiState.disableContainer}
+        >
+          <EqualizerOutlinedIcon className="icon" />
+        </Fab>
+      )}
+      {uiState.left && (
+        <Fab className="data-icon animate" onClick={toggleLeft}>
+          <PlayCircleOutlineIcon className="icon rotate" />
+        </Fab>
+      )}
       <Animated
         animationInDuration={500}
         animationOutDuration={500}
@@ -80,23 +71,20 @@ export default function App() {
         <LeftData />
       </Animated>
 
-      {!uiState.right &&
-        (<Fab
+      {!uiState.right && (
+        <Fab
           className={uiState.containerButtonClassRight}
           onClick={toggleRight}
           disabled={uiState.disableContainer}
         >
-          <ChatOutlinedIcon className='icon' />
-        </Fab>)
-      }
-      {uiState.right &&
-        (<Fab
-          className='tweet-icon animate'
-          onClick={toggleRight}
-        >
-          <PlayCircleOutlineIcon className='icon rotate' />
-        </Fab>)
-      }
+          <ChatOutlinedIcon className="icon" />
+        </Fab>
+      )}
+      {uiState.right && (
+        <Fab className="tweet-icon animate" onClick={toggleRight}>
+          <PlayCircleOutlineIcon className="icon rotate" />
+        </Fab>
+      )}
       <Animated
         animationInDuration={500}
         animationOutDuration={500}

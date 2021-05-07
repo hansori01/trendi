@@ -1,8 +1,6 @@
-import { createContext, useState } from 'react';
-
+import { createContext, useState } from "react";
 
 export default function TweetStateProvider(props) {
-
   const [tweets, setTweets] = useState([]);
   const [socket, setSocket] = useState();
 
@@ -13,13 +11,13 @@ export default function TweetStateProvider(props) {
     neutral: 0,
     slightPos: 0,
     pos: 0,
-    veryPos: 0
-  })
+    veryPos: 0,
+  });
 
-  let positiveTweets = tweets.filter(tweet => tweet.sentiment.score > 0);
-  let negativeTweets = tweets.filter(tweet => tweet.sentiment.score < 0);
-  let neutralTweets = tweets.filter(tweet => tweet.sentiment.score === 0);
-  
+  let positiveTweets = tweets.filter((tweet) => tweet.sentiment.score > 0);
+  let negativeTweets = tweets.filter((tweet) => tweet.sentiment.score < 0);
+  let neutralTweets = tweets.filter((tweet) => tweet.sentiment.score === 0);
+
   const tweetData = {
     tweets,
     setTweets,
@@ -29,7 +27,7 @@ export default function TweetStateProvider(props) {
     socket,
     setSocket,
     tweetScores,
-    setTweetScores
+    setTweetScores,
   };
 
   return (
@@ -37,5 +35,5 @@ export default function TweetStateProvider(props) {
       {props.children}
     </tweetContext.Provider>
   );
-};
+}
 export const tweetContext = createContext();

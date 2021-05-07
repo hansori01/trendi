@@ -1,17 +1,14 @@
 import React, { useContext } from "react";
-import { tweetContext } from '../States/TweetStateProvider'
+import { tweetContext } from "../States/TweetStateProvider";
 
-import Tweets from './Tweets'
+import Tweets from "./Tweets";
 
-import './RightTweets.scss';
+import "./RightTweets.scss";
 
 export default function RightTweets() {
+  const { tweets } = useContext(tweetContext);
 
-  const {
-    tweets
-  } = useContext(tweetContext)
-
-  const loadTweets = tweets.map((tweet, i) =>
+  const loadTweets = tweets.map((tweet, i) => (
     <Tweets
       key={i}
       name={tweet.user.name}
@@ -20,10 +17,6 @@ export default function RightTweets() {
       img={tweet.user.profile_image_url}
       date={tweet.created_at}
     />
-  );
-  return (
-    <section className="righttweets">
-      {loadTweets}
-    </section>
-  );
+  ));
+  return <section className="righttweets">{loadTweets}</section>;
 }
