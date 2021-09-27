@@ -63,40 +63,37 @@ const neutral = [
   "rgba(255,165,0,0.75)",
   "rgba(255,165,0,0.8)",
   "rgba(255,165,0,0.9)",
-]
-
+];
 
 const ReactMap = withScriptjs(
   withGoogleMap((props) => {
-    const {
-      neutralTweets,
-      positiveTweets,
-      negativeTweets,
-    } = useContext(tweetContext);
+    const { neutralTweets, positiveTweets, negativeTweets } = useContext(
+      tweetContext
+    );
 
     const usedCoords = [];
-//check if the coordinates already exist in current stream
-    const isInUsedCoords = function(coords) {
-      for(const item of usedCoords){
+    //check if the coordinates already exist in current stream
+    const isInUsedCoords = function (coords) {
+      for (const item of usedCoords) {
         if (coords.lat === item.lat && coords.lng === item.lng) {
-          return true
+          return true;
         }
       }
       return false;
-    }
+    };
 
     let negativeData;
     let positiveData;
     let neutralData;
     //offset incoming heatmap to avoid overlap
-    const makeUniqueCoord = function(coords) {
-      for(const item of usedCoords){
+    const makeUniqueCoord = function (coords) {
+      for (const item of usedCoords) {
         if (coords.lat === item.lat && coords.lng === item.lng) {
           const updatedCoord = {
             lat: coords.lat + 0.01,
-            lng: coords.lng
-          }
-          while(isInUsedCoords(updatedCoord)){
+            lng: coords.lng,
+          };
+          while (isInUsedCoords(updatedCoord)) {
             updatedCoord.lat += 0.01;
           }
           usedCoords.push(updatedCoord);
@@ -105,35 +102,34 @@ const ReactMap = withScriptjs(
       }
       usedCoords.push(coords);
       return coords;
-    }
+    };
 
-    if(negativeTweets.length > 0){
+    if (negativeTweets.length > 0) {
       negativeData = negativeTweets.map((tweet) => {
         const lat = tweet.user_location_coords.lat;
-        const lng = tweet.user_location_coords.lng
-        const coord = makeUniqueCoord({lat, lng});
+        const lng = tweet.user_location_coords.lng;
+        const coord = makeUniqueCoord({ lat, lng });
         return new google.maps.LatLng(coord.lat, coord.lng);
-      })
+      });
     }
 
     if (positiveTweets.length > 0) {
       positiveData = positiveTweets.map((tweet) => {
         const lat = tweet.user_location_coords.lat;
-        const lng = tweet.user_location_coords.lng
-        const coord = makeUniqueCoord({lat, lng});
+        const lng = tweet.user_location_coords.lng;
+        const coord = makeUniqueCoord({ lat, lng });
         return new google.maps.LatLng(coord.lat, coord.lng);
-      })
+      });
     }
 
     if (neutralTweets.length > 0) {
       neutralData = neutralTweets.map((tweet) => {
         const lat = tweet.user_location_coords.lat;
-        const lng = tweet.user_location_coords.lng
-        const coord = makeUniqueCoord({lat, lng});
+        const lng = tweet.user_location_coords.lng;
+        const coord = makeUniqueCoord({ lat, lng });
         return new google.maps.LatLng(coord.lat, coord.lng);
-      })
+      });
     }
-
 
     return (
       <GoogleMap

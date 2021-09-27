@@ -1,21 +1,20 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
 export default function UIStateProvider(props) {
-
   const [uiState, setUIState] = useState({
     left: false,
     right: false,
     disableContainer: true,
-    containerButtonClassLeft: 'data-icon',
-    containerButtonClassRight: 'tweet-icon',
+    containerButtonClassLeft: "data-icon",
+    containerButtonClassRight: "tweet-icon",
     disableSearch: true,
     disableStart: true,
     disablePause: true,
     disableStop: true,
     chooseCountry: true,
     showTrends: false,
-    currentCountry: '',
-    currentTrend: '',
+    currentCountry: "",
+    currentTrend: "",
     trendiActivated: false,
     showController: false,
     loading: false,
@@ -23,43 +22,53 @@ export default function UIStateProvider(props) {
 
   // toggle containers
   const toggleLeft = () => {
-    setUIState(prev => ({ ...prev, left: !uiState.left }))
+    setUIState((prev) => ({ ...prev, left: !uiState.left }));
   };
   const toggleRight = () => {
-    setUIState(prev => ({ ...prev, right: !uiState.right }))
+    setUIState((prev) => ({ ...prev, right: !uiState.right }));
   };
   const activateContainer = () => {
-    setUIState(prev => ({ ...prev, disableContainer: false, containerButtonClassLeft: 'data-icon animate', containerButtonClassRight: 'tweet-icon animate' }))
+    setUIState((prev) => ({
+      ...prev,
+      disableContainer: false,
+      containerButtonClassLeft: "data-icon animate",
+      containerButtonClassRight: "tweet-icon animate",
+    }));
   };
   const deactivateContainer = () => {
-    setUIState(prev => ({ ...prev, disableContainer: true, containerButtonClassLeft: 'data-icon', containerButtonClassRight: 'tweet-icon' }))
+    setUIState((prev) => ({
+      ...prev,
+      disableContainer: true,
+      containerButtonClassLeft: "data-icon",
+      containerButtonClassRight: "tweet-icon",
+    }));
   };
 
   //country selectors
   const toggleChooseCanada = () => {
-    setUIState(prev => ({
+    setUIState((prev) => ({
       ...prev,
       chooseCountry: !uiState.chooseCountry,
       showTrends: !uiState.showTrends,
       disableSearch: false,
-      currentCountry: 'Canada',
-      showController: true
+      currentCountry: "Canada",
+      showController: true,
     }));
   };
   const toggleChooseUsa = () => {
-    setUIState(prev => ({
+    setUIState((prev) => ({
       ...prev,
       chooseCountry: !uiState.chooseCountry,
       showTrends: !uiState.showTrends,
       disableSearch: false,
-      currentCountry: 'USA',
+      currentCountry: "USA",
       showController: true,
     }));
   };
 
   //navigate header
   const onBackHandler = () => {
-    setUIState(prev => ({
+    setUIState((prev) => ({
       ...prev,
       chooseCountry: true,
       showTrends: false,
@@ -67,23 +76,31 @@ export default function UIStateProvider(props) {
       disableStart: true,
       disablePause: true,
       disableStop: true,
-      showController: false
-    }))
-    deactivateContainer()
+      showController: false,
+    }));
+    deactivateContainer();
   };
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     if (e.target.value.length === 0) {
-      setUIState(prev => ({ ...prev, disableStart: true, disableStop: true }))
-    };
+      setUIState((prev) => ({
+        ...prev,
+        disableStart: true,
+        disableStop: true,
+      }));
+    }
     if (e.target.value.length > 0) {
-      setUIState(prev => ({ ...prev, disableStart: false, disableStop: false }))
-    };
-    setUIState(prev => ({ ...prev, currentTrend: e.target.value }));
+      setUIState((prev) => ({
+        ...prev,
+        disableStart: false,
+        disableStop: false,
+      }));
+    }
+    setUIState((prev) => ({ ...prev, currentTrend: e.target.value }));
   };
 
-  const updateCurrentTrend = trend => {
-    setUIState(prev => ({
+  const updateCurrentTrend = (trend) => {
+    setUIState((prev) => ({
       ...prev,
       currentTrend: trend,
       disableStart: false,
@@ -94,14 +111,13 @@ export default function UIStateProvider(props) {
 
   //start trendi
   const activateTrendi = (event) => {
-
     event.preventDefault();
 
-    if (uiState.currentTrend === '') {
+    if (uiState.currentTrend === "") {
       return;
     }
 
-    setUIState(prev => ({
+    setUIState((prev) => ({
       ...prev,
       chooseCountry: false,
       showTrends: false,
@@ -109,7 +125,7 @@ export default function UIStateProvider(props) {
       disableSearch: true,
       disableStart: true,
       disablePause: false,
-      disableStop: false
+      disableStop: false,
     }));
 
     activateContainer();
@@ -118,22 +134,22 @@ export default function UIStateProvider(props) {
   //stop trendi
   const reset = () => {
     if (uiState.currentTrend.length > 0) {
-      setUIState(prev => ({
+      setUIState((prev) => ({
         ...prev,
         chooseCountry: false,
         showTrends: true,
-        currentTrend: '',
+        currentTrend: "",
         trendiActivated: false,
         disableSearch: false,
         disablePause: true,
         left: false,
         right: false,
         disableContainer: true,
-        containerButtonClassLeft: 'data-icon',
-        containerButtonClassRight: 'tweet-icon'
+        containerButtonClassLeft: "data-icon",
+        containerButtonClassRight: "tweet-icon",
       }));
     } else if (uiState.trendiActivated) {
-      setUIState(prev => ({
+      setUIState((prev) => ({
         ...prev,
         chooseCountry: false,
         showTrends: true,
@@ -145,15 +161,15 @@ export default function UIStateProvider(props) {
         left: false,
         right: false,
         disableContainer: true,
-        containerButtonClassLeft: 'data-icon',
-        containerButtonClassRight: 'tweet-icon'
+        containerButtonClassLeft: "data-icon",
+        containerButtonClassRight: "tweet-icon",
       }));
     } else {
-      setUIState(prev => ({
+      setUIState((prev) => ({
         ...prev,
         chooseCountry: true,
         showTrends: false,
-        currentTrend: '',
+        currentTrend: "",
         disableSearch: true,
         disableStart: true,
         disablePause: true,
@@ -163,20 +179,19 @@ export default function UIStateProvider(props) {
         left: false,
         right: false,
         disableContainer: true,
-        containerButtonClassLeft: 'data-icon',
-        containerButtonClassRight: 'tweet-icon'
+        containerButtonClassLeft: "data-icon",
+        containerButtonClassRight: "tweet-icon",
       }));
     }
   };
 
   const pauseStreamHandler = () => {
-
-    setUIState(prev => ({
+    setUIState((prev) => ({
       ...prev,
       disableStart: false,
       disablePause: true,
     }));
-  }
+  };
 
   const uiData = {
     uiState,
@@ -192,14 +207,12 @@ export default function UIStateProvider(props) {
     updateCurrentTrend,
     activateTrendi,
     reset,
-    pauseStreamHandler
+    pauseStreamHandler,
   };
 
   return (
-    <uiContext.Provider value={uiData}>
-      {props.children}
-    </uiContext.Provider>
+    <uiContext.Provider value={uiData}>{props.children}</uiContext.Provider>
   );
-};
+}
 
 export const uiContext = createContext();

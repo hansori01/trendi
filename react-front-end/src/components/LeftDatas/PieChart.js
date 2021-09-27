@@ -1,32 +1,31 @@
 import React, { useContext } from "react";
-import {tweetContext} from '../States/TweetStateProvider'
+import { tweetContext } from "../States/TweetStateProvider";
 
-import { PieChart, Pie, Cell, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Legend } from "recharts";
 
-import './LeftData.scss';
+import "./LeftData.scss";
 
-const COLORS = ['#1DE9B6', '#e41956', '#FFA500'];
+const COLORS = ["#1DE9B6", "#e41956", "#FFA500"];
 
 export default function SentiPieChart() {
-  const {
-    positiveTweets,
-    negativeTweets,
-    neutralTweets
-  } = useContext(tweetContext);
+  const { positiveTweets, negativeTweets, neutralTweets } = useContext(
+    tweetContext
+  );
 
   // uses the length of tweet sentiment arrays to pass values to pie chart
   const data = [
-    { "name": "Positive", "value": positiveTweets.length },
-    { "name": "Negative", "value": negativeTweets.length },
-    { "name": "Neutral", "value": neutralTweets.length }
+    { name: "Positive", value: positiveTweets.length },
+    { name: "Negative", value: negativeTweets.length },
+    { name: "Neutral", value: neutralTweets.length },
   ];
 
   return (
     <PieChart
-     margin={{top:30}} 
-     width={window.innerWidth < 1550 ? 350 : 380} 
-     height={350} 
-     className='piechart'>
+      margin={{ top: 30 }}
+      width={window.innerWidth < 1550 ? 350 : 380}
+      height={350}
+      className="piechart"
+    >
       <Legend iconSize={0} verticalAlign="top" align="left" />
       <Pie
         data={data}
