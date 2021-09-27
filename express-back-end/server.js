@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const BodyParser = require('body-parser');
 const PORT = 8080;
-const cors = require('cors')
+const cors = require('cors');
 const { streamKeyWord, getCurrentCanadaTrends, getCurrentUSATrends } = require('./queries');
 const Sentiment = require('sentiment');
 
@@ -15,7 +15,7 @@ const { getLatLngFromLocation } = require('./google-maps-search');
 app.use(BodyParser.urlencoded({ extended: false }));
 app.use(BodyParser.json());
 app.use(express.static('public'));
-app.use(cors())
+app.use(cors());
 
 const sentiment = new Sentiment();
 const server = http.createServer(app);
@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
   socket.on('start', (hashtag) => {
     console.log('starting stream ', hashtag);
     // Regex checks if keyword is in tweet when it comes back
-    const regexpression = hashtag
+    const regexpression = hashtag;
     const regex = new RegExp(regexpression, "gi");
     tweetStream = streamKeyWord(hashtag);
     console.log('tweetStream Created');
@@ -45,19 +45,19 @@ io.on('connection', (socket) => {
         // query google maps api for user location
         getLatLngFromLocation(tweet.user.location).then((location) => {
           // add sentiment analysis to tweet object
-          tweet['sentiment'] = sentiment.analyze(tweet.text)
+          tweet['sentiment'] = sentiment.analyze(tweet.text);
           // add location to tweet object
           if (!tweet.user.location) {
-            location = { lat: -82.8628, lng: 135.0000 }
+            location = { lat: -82.8628, lng: 135.0000 };
           }
           if (location) {
-            tweet['user_location_coords'] = location
+            tweet['user_location_coords'] = location;
           } else {
             // put them in antartica where they belong
-            tweet['user_location_coords'] = { lat: -82.8628, lng: 135.0000 }
+            tweet['user_location_coords'] = { lat: -82.8628, lng: 135.0000 };
           }
-          io.emit('tweet', tweet)
-        })
+          io.emit('tweet', tweet);
+        });
       }
     });
   });
@@ -74,29 +74,33 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
     if (tweetStream) {
-      tweetStream.stop()
+      tweetStream.stop();
       console.log('the tweetStream has stopped');
     } else {
       console.log('No tweet stream to disconnect');
     }
   });
-})
+});
 
 app.get('/api/trending-canada', (req, res) => {
   getCurrentCanadaTrends().then(trends => {
-    res.json(trends)
+    res.json(trends);
   })
-    .catch((error) => { console.log('Something went wrong', error) })
-})
+    .catch((error) => {
+      console.log('Something went wrong', error);
+    });
+});
 
 app.get('/api/trending-USA', (req, res) => {
   getCurrentUSATrends().then(trends => {
-    res.json(trends)
+    res.json(trends);
   })
-    .catch((error) => { console.log('Something went wrong', error) })
-})
+    .catch((error) => {
+      console.log('Something went wrong', error);
+    });
+});
 
 server.listen(PORT, () => {
   console.log("Listen on port: ", PORT);
-})
+});
 

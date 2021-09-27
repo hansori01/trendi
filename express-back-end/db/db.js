@@ -31,11 +31,11 @@ require('dotenv').config();
 // db.tweets.find( { $text: { $search: "\"NDPConvention2021\"" }  } ).pretty()
 
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@tweetmaps.lu2jd.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db('trendi').collection('tweets');
-  // perform actions on the collection object
-  client.close();
-});
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@tweetmaps.lu2jd.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect(err => {
+//   const collection = client.db('trendi').collection('tweets');
+//   // perform actions on the collection object
+//   client.close();
+// });
